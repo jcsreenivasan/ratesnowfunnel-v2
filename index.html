@@ -1893,7 +1893,7 @@
       const apr = card.dataset.apr || '—';
       const points = card.dataset.points || '—';
       const ratesHtml = `<div class="ty-lender-rates"><div class="ty-rate-item"><div class="ty-rate-lbl">Rate</div><div class="ty-rate-val">${rate}</div></div><div class="ty-rate-item"><div class="ty-rate-lbl">APR</div><div class="ty-rate-val">${apr}</div></div><div class="ty-rate-item"><div class="ty-rate-lbl">Points</div><div class="ty-rate-val">${points}</div></div></div>`;
-      return `<div class="ty-lender-card">${logoHtml}${ratesHtml}<button class="btn-continue" style="margin-top:0">View Full Rates &amp; Fees</button></div>`;
+      return `<div class="ty-lender-card">${logoHtml}${ratesHtml}<button class="btn-continue secondary" style="margin-top:0">View Full Rates &amp; Fees</button></div>`;
     }).join('');
   }
 
