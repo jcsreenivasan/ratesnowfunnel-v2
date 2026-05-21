@@ -343,7 +343,7 @@
     .btn-back:hover { text-decoration: underline; }
 
     /* Lender cards */
-    .lender-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 18px; }
+    .lender-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 18px; }
     .lender-rate-row { display: flex; justify-content: space-between; gap: 6px; margin: 10px 0 8px; padding: 10px 8px; background: var(--purple-bg); border-radius: 8px; user-select: none; pointer-events: none; }
     .lender-rate-item { display: flex; flex-direction: column; align-items: center; flex: 1; }
     .lrf-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
@@ -380,8 +380,12 @@
     .ty-page { text-align: center; padding: 10px 0; }
     .ty-medal { margin-bottom: 20px; display: flex; justify-content: center; }
     .ty-lenders { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
-    .ty-lender-card { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px 20px 20px; background: rgba(255,255,255,0.95); border: 1px solid var(--lborder); border-radius: 18px; flex: 1; min-width: 155px; max-width: 290px; box-shadow: 0 4px 20px rgba(83,73,219,0.07); }
-    .ty-pts-badge { font-size: 12px; font-weight: 700; color: var(--purple); background: var(--purple-bg); border-radius: 20px; padding: 4px 12px; white-space: nowrap; }
+    .ty-lender-card { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px 20px 20px; background: rgba(255,255,255,0.95); border: 1px solid var(--lborder); border-radius: 18px; flex: 1; min-width: 220px; max-width: 420px; box-shadow: 0 4px 20px rgba(83,73,219,0.07); }
+    .ty-rate-options { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+    .ty-rate-option { display: flex; justify-content: space-between; gap: 6px; width: 100%; padding: 10px 12px; border-radius: 10px; }
+    .ty-rate-option.shade-1 { background: #F0EFFE; }
+    .ty-rate-option.shade-2 { background: #DDD9FC; }
+    .ty-rate-option.shade-3 { background: #C9C2F9; }
     .ty-lender-logo { display: flex; align-items: center; justify-content: center; min-height: 60px; width: 100%; }
     .ty-lender-logo img { max-width: 160px; max-height: 60px; object-fit: contain; display: block; }
     .ty-lender-name { font-size: 14px; font-weight: 700; color: var(--text); text-align: center; line-height: 1.3; }
@@ -510,7 +514,7 @@
       input[type=range]::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: var(--purple); cursor: pointer; }
 
       /* Lender cards */
-      .lender-grid { grid-template-columns: 1fr; gap: 8px; }
+      .lender-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
       .lender-card { padding: 12px 10px; }
       .lender-badge { min-height: 48px; padding: 8px 6px; }
       .lender-badge img { max-width: 90px; max-height: 36px; }
@@ -1354,7 +1358,11 @@
       <h2 class="step-q">These offers match your search criteria</h2>
       <p class="step-sub">Request quotes from these top lenders. Free — no impact to your credit score.</p>
       <div class="lender-grid" id="lender-grid">
-        <div class="lender-card" onclick="toggleLender(this)" data-rate="6.125%" data-apr="6.38%" data-points="0.5" data-pts-label="2 Points">
+        <div class="lender-card" onclick="toggleLender(this)"
+          data-rate="6.125%" data-apr="6.38%" data-points="0.5"
+          data-rate1="6.125%" data-apr1="6.38%" data-pts1="0.5"
+          data-rate2="6.250%" data-apr2="6.45%" data-pts2="0.25"
+          data-rate3="6.375%" data-apr3="6.52%" data-pts3="0">
           <div class="lender-chk">✓</div>
           <div class="lender-badge"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div>
           <div class="lender-rate-row">
@@ -1366,7 +1374,11 @@
           <div class="lender-stars">★★★★★</div>
           <div class="lender-score">4.97 (2,841 reviews)</div>
         </div>
-        <div class="lender-card" onclick="toggleLender(this)" data-rate="6.250%" data-apr="6.49%" data-points="0.625" data-pts-label="1 Point">
+        <div class="lender-card" onclick="toggleLender(this)"
+          data-rate="6.250%" data-apr="6.49%" data-points="0.625"
+          data-rate1="6.250%" data-apr1="6.49%" data-pts1="0.625"
+          data-rate2="6.375%" data-apr2="6.55%" data-pts2="0.375"
+          data-rate3="6.500%" data-apr3="6.63%" data-pts3="0">
           <div class="lender-chk">✓</div>
           <div class="lender-badge"><img src="better-mortgage-logo.svg" alt="Better Mortgage"></div>
           <div class="lender-rate-row">
@@ -1378,20 +1390,8 @@
           <div class="lender-stars">★★★★★</div>
           <div class="lender-score">4.76 (3,241 reviews)</div>
         </div>
-        <div class="lender-card" onclick="toggleLender(this)" data-rate="6.375%" data-apr="6.61%" data-points="0" data-pts-label="0 Points">
-          <div class="lender-chk">✓</div>
-          <div class="lender-badge"><img src="rocket-logo.png" alt="Rocket Mortgage"></div>
-          <div class="lender-rate-row">
-            <div class="lender-rate-item"><div class="lrf-label">Rate</div><div class="lrf-val">6.375%</div></div>
-            <div class="lender-rate-item"><div class="lrf-label">APR</div><div class="lrf-val">6.61%</div></div>
-            <div class="lender-rate-item"><div class="lrf-label">Points</div><div class="lrf-val">0</div></div>
-          </div>
-          <div class="lender-nmls">NMLS #3030</div>
-          <div class="lender-stars">★★★★★</div>
-          <div class="lender-score">4.62 (5,183 reviews)</div>
-        </div>
       </div>
-<button class="btn-continue" onclick="continueWithOffers('all')">Continue with all 3 offers</button>
+<button class="btn-continue" onclick="continueWithOffers('all')">Continue with both offers</button>
       <button class="btn-continue secondary" onclick="continueWithOffers(1)">Continue with first offer</button>
       <a class="btn-back" onclick="go(12)">Back</a>
     </div>
@@ -1904,13 +1904,14 @@
         const name = badge ? badge.textContent.trim() : '';
         logoHtml = `<div class="ty-lender-logo"><span class="ty-lender-name">${name}</span></div>`;
       }
-      const rate = card.dataset.rate || '—';
-      const apr = card.dataset.apr || '—';
-      const points = card.dataset.points || '—';
-      const ptsLabel = card.dataset.ptsLabel || '';
-      const ptsBadgeHtml = ptsLabel ? `<div class="ty-pts-badge">${ptsLabel}</div>` : '';
-      const ratesHtml = `<div class="ty-lender-rates"><div class="ty-rate-item"><div class="ty-rate-lbl">Rate</div><div class="ty-rate-val">${rate}</div></div><div class="ty-rate-item"><div class="ty-rate-lbl">APR</div><div class="ty-rate-val">${apr}</div></div><div class="ty-rate-item"><div class="ty-rate-lbl">Points</div><div class="ty-rate-val">${points}</div></div></div>`;
-      return `<div class="ty-lender-card">${logoHtml}${ptsBadgeHtml}${ratesHtml}<button class="btn-continue secondary" style="margin-top:0;color:#5349DB;border-color:#5349DB">View Full Rates &amp; Fees</button></div>`;
+      const opts = [
+        { rate: card.dataset.rate1||'—', apr: card.dataset.apr1||'—', pts: card.dataset.pts1||'—', shade: 'shade-1' },
+        { rate: card.dataset.rate2||'—', apr: card.dataset.apr2||'—', pts: card.dataset.pts2||'—', shade: 'shade-2' },
+        { rate: card.dataset.rate3||'—', apr: card.dataset.apr3||'—', pts: card.dataset.pts3||'—', shade: 'shade-3' },
+      ];
+      const rateRow = o => `<div class="ty-rate-option ${o.shade}"><div class="ty-rate-item"><div class="ty-rate-lbl">Rate</div><div class="ty-rate-val">${o.rate}</div></div><div class="ty-rate-item"><div class="ty-rate-lbl">APR</div><div class="ty-rate-val">${o.apr}</div></div><div class="ty-rate-item"><div class="ty-rate-lbl">Points</div><div class="ty-rate-val">${o.pts}</div></div></div>`;
+      const ratesHtml = `<div class="ty-rate-options">${opts.map(rateRow).join('')}</div>`;
+      return `<div class="ty-lender-card">${logoHtml}${ratesHtml}<button class="btn-continue secondary" style="margin-top:0;color:#5349DB;border-color:#5349DB">View Full Rates &amp; Fees</button></div>`;
     }).join('');
   }
 
