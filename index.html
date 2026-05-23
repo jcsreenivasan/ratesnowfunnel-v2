@@ -1329,8 +1329,19 @@
           <div class="slider-labels"><span>$0</span><span>$500K+</span></div>
         </div>
       </div>
-      <button class="btn-continue" onclick="go('sload')">Continue</button>
+      <button class="btn-continue" onclick="go('s12b')">Continue</button>
       <a class="btn-back" onclick="go(11)">Back</a>
+    </div>
+
+    <!-- ─── STEP 12b: LATE PAYMENTS ─── -->
+    <div class="step-card hidden" id="s12b">
+      <h2 class="step-q">Have you had any mortgage payments that were 30 or more days late within the past 12 months?</h2>
+      <div class="opts-list">
+        <div class="opt-list" onclick="pick(this,'s12b','sload')">No</div>
+        <div class="opt-list" onclick="pick(this,'s12b','sload')">Yes, 1 time</div>
+        <div class="opt-list" onclick="pick(this,'s12b','sload')">Yes, 2+ times</div>
+      </div>
+      <a class="btn-back" onclick="go(12)">Back</a>
     </div>
 
     <!-- ─── STEP LOAD: FINDING MATCHES ─── -->
@@ -1749,7 +1760,7 @@
 <script>
   let curStep = 1;
   let flowType = 'buy';
-  const progress = { 1:4,2:15,3:19,4:30,5:46,6:54,7:58,8:62,9:69,10:72,11:75,12:82,'sload':85,13:88,14:92,'sotp':96,15:100 };
+  const progress = { 1:4,2:15,3:19,4:30,5:46,6:54,7:58,8:62,9:69,10:72,11:75,12:82,'s12b':84,'sload':86,13:89,14:92,'sotp':96,15:100 };
   const refiProgress = { 's1':4,'s2':10,'s3':16,'rs4':22,'rs5':30,'rs6':38,'rs7':46,'rs8':54,'rs9':60,'s8':67,'s9':73,'s10':78,'s11':82,'s12':87,'sload':89,'snomatch':92,'s13':92,'s14':96,'sotp':98,'s15':100 };
 
   function beginFunnel(type) {
@@ -1880,7 +1891,7 @@
   function cancelLoader() {
     _loaderTimers.forEach(clearTimeout);
     _loaderTimers = [];
-    go(12);
+    go('s12b');
   }
 
   function continueWithOffers(count) {
