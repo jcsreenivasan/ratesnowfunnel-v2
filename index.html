@@ -1329,7 +1329,7 @@
           <div class="slider-labels"><span>$0</span><span>$500K+</span></div>
         </div>
       </div>
-      <button class="btn-continue" onclick="go('s12b')">Continue</button>
+      <button class="btn-continue" onclick="go(flowType==='refi'?'sload':'s12b')">Continue</button>
       <a class="btn-back" onclick="go(11)">Back</a>
     </div>
 
@@ -1891,7 +1891,7 @@
   function cancelLoader() {
     _loaderTimers.forEach(clearTimeout);
     _loaderTimers = [];
-    go('s12b');
+    go(flowType === 'refi' ? 12 : 's12b');
   }
 
   function continueWithOffers(count) {
