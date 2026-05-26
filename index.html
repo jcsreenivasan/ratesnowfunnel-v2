@@ -113,35 +113,48 @@
     .hero::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 900px; height: 600px; background: radial-gradient(ellipse at center top, rgba(247,247,251,0.7) 0%, transparent 65%); pointer-events: none; }
     .eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--green-lt); color: var(--green); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 28px; position: relative; z-index: 1; }
     .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
-    .hero h1 { font-size: 50px; font-weight: 900; line-height: 1.1; color: var(--ink); letter-spacing: -1.5px; max-width: 680px; margin: 0 auto 22px; position: relative; z-index: 1; }
+    .hero h1 { font-size: 50px; font-weight: 900; line-height: 1.1; color: var(--ink); letter-spacing: -1.5px; max-width: 680px; margin: 0 auto 32px; position: relative; z-index: 1; }
     .hero h1 em { font-style: normal; color: var(--primary); }
     .hero-sub { display: none; }
     .hero-trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin-top: 22px; position: relative; z-index: 1; }
     .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.83rem; color: var(--slate); font-weight: 500; }
     .trust-check { width: 19px; height: 19px; border-radius: 50%; border: 1.5px solid var(--slate); display: inline-flex; align-items: center; justify-content: center; font-size: 10px; color: var(--slate); flex-shrink: 0; line-height: 1; }
 
-    /* CTA Cards */
-    .btn-group { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
-    .btn-card { position: relative; overflow: hidden; border: none; cursor: pointer; border-radius: var(--radius); padding: 0; text-align: left; flex: 0 0 252px; transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s; }
-    .btn-card::after { content: ''; position: absolute; top: 0; left: -80%; width: 55%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.28) 50%, transparent 100%); transform: skewX(-12deg); pointer-events: none; animation: auto-flash var(--flash-dur) ease-in-out 0.8s infinite; }
-    .btn-card:hover::after { animation: flash-sweep 0.5s ease-in-out forwards; }
-    .btn-card:hover { transform: translateY(-5px) scale(1.02); }
-    .btn-card:active { transform: scale(0.97); }
-    .btn-purchase { background: linear-gradient(145deg, var(--primary) 0%, #3d33c4 100%); box-shadow: 0 14px 40px rgba(83,73,219,0.38); }
-    .btn-purchase:hover { box-shadow: 0 22px 52px rgba(83,73,219,0.48); }
-    .btn-refinance { background: linear-gradient(145deg, #1a1a2e 0%, #2d2b50 100%); box-shadow: 0 14px 40px rgba(15,14,26,0.32); }
-    .btn-refinance::after { animation-delay: 2.1s; }
-    .btn-refinance:hover { box-shadow: 0 22px 52px rgba(15,14,26,0.42); }
-    .btn-inner { padding: 28px 26px 52px; display: flex; flex-direction: column; gap: 8px; position: relative; z-index: 1; }
-    .btn-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; font-size: 1.4rem; }
-    .btn-purchase .btn-icon { background: rgba(255,255,255,0.12); }
-    .btn-refinance .btn-icon { background: rgba(255,255,255,0.08); }
-    .btn-label { font-size: 1.4rem; font-weight: 800; line-height: 1.1; color: #ffffff; letter-spacing: -0.5px; }
-    .btn-desc { font-size: 14px; font-weight: 400; line-height: 1.5; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
-    .btn-footer-bar { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 26px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); z-index: 1; }
-    .btn-footer-text { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; color: #ffffff; text-transform: uppercase; }
-    .btn-arrow { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; transition: transform 0.2s, background 0.2s; }
-    .btn-card:hover .btn-arrow { transform: translate(2px,-2px); background: rgba(255,255,255,0.25); }
+    /* ─── PROPERTY TYPE SELECTOR (Landing) ─── */
+    .prop-type-intro { position: relative; z-index: 1; width: 100%; }
+    .prop-type-sublabel { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.3px; color: var(--ink); margin-bottom: 22px; display: flex; align-items: center; justify-content: center; gap: 16px; }
+    .prop-type-sublabel::before, .prop-type-sublabel::after { content: ''; width: 40px; height: 2px; background: var(--lborder); border-radius: 2px; }
+    .prop-type-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1020px; margin: 0 auto; }
+    .prop-type-card {
+      position: relative; overflow: hidden;
+      background: rgba(255,255,255,0.97);
+      border: 2px solid var(--lborder);
+      border-radius: 22px;
+      padding: 42px 20px 64px;
+      cursor: pointer; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 9px;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 4px 28px rgba(83,73,219,0.07);
+      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s, border-color 0.2s, background 0.2s;
+    }
+    .prop-type-card::after { content: ''; position: absolute; top: 0; left: -80%; width: 55%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(83,73,219,0.07) 50%, transparent 100%); transform: skewX(-12deg); pointer-events: none; animation: auto-flash var(--flash-dur) ease-in-out 0.9s infinite; }
+    .prop-type-card:nth-child(2)::after { animation-delay: 1.7s; }
+    .prop-type-card:nth-child(3)::after { animation-delay: 2.6s; }
+    .prop-type-card:nth-child(4)::after { animation-delay: 3.4s; }
+    .prop-type-card:hover::after { animation: flash-sweep 0.45s ease-in-out forwards; }
+    .prop-type-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 24px 60px rgba(83,73,219,0.24); border-color: var(--primary); background: #fff; }
+    .prop-type-card:active { transform: scale(0.97); }
+    .ptc-icon { margin-bottom: 4px; transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1); }
+    .prop-type-card:hover .ptc-icon { transform: translateY(-3px) scale(1.08); }
+    .ptc-name { font-size: 1.12rem; font-weight: 800; color: var(--ink); line-height: 1.2; letter-spacing: -0.3px; transition: color 0.2s; }
+    .prop-type-card:hover .ptc-name { color: var(--primary); }
+    .ptc-desc { font-size: 0.82rem; color: var(--slate); line-height: 1.45; font-weight: 400; }
+    .ptc-cta { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; border-top: 1.5px solid var(--lborder); transition: background 0.2s, border-color 0.2s; }
+    .ptc-cta-text { font-size: 0.69rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--primary); transition: color 0.2s; }
+    .ptc-cta-arrow { width: 26px; height: 26px; border-radius: 50%; background: var(--primary-lt); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; color: var(--primary); transition: background 0.2s, color 0.2s, transform 0.2s; }
+    .prop-type-card:hover .ptc-cta { background: var(--primary); border-color: var(--primary); }
+    .prop-type-card:hover .ptc-cta-text { color: #fff; }
+    .prop-type-card:hover .ptc-cta-arrow { background: rgba(255,255,255,0.2); color: #fff; transform: translate(3px,-2px); }
 
     /* Rates Widget */
     .rates-section { position: relative; z-index: 1; padding: 64px 40px 0; display: flex; justify-content: center; }
@@ -438,6 +451,7 @@
     /* ── TABLET ── */
     @media (max-width: 860px) {
       .reviews-grid { grid-template-columns: 1fr 1fr; }
+      .prop-type-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; max-width: 560px; }
     }
 
     /* ── MOBILE ── */
@@ -453,12 +467,14 @@
       .hero h1 { font-size: 30px; letter-spacing: -0.8px; margin-bottom: 18px; }
       .eyebrow { font-size: 0.66rem; margin-bottom: 18px; }
 
-      /* CTA buttons – stack full-width */
-      .btn-group { flex-direction: column; align-items: center; gap: 12px; }
-      .btn-card { flex: 0 0 auto; width: 100%; max-width: 380px; }
+      /* Property type grid – 2-col on mobile */
+      .prop-type-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .prop-type-card { padding: 26px 10px 48px; border-radius: 18px; }
+      .ptc-name { font-size: 0.88rem; }
+      .ptc-desc { font-size: 0.71rem; }
 
       /* VA rate bar */
-      .va-rate-bar { padding: 10px 14px; gap: 8px 14px; margin-top: 16px; }
+      .va-rate-bar { padding: 10px 14px; gap: 8px 14px; margin-top: 40px; }
       .va-rate-bar-label { font-size: 14px; }
       .va-rate-bar-divider { display: none; }
       .va-rate-bar-stats { gap: 10px; font-size: 14px; }
@@ -544,6 +560,23 @@
       .lender-grid { grid-template-columns: 1fr; }
       .step-card { padding: 22px 14px 26px; }
     }
+
+    /* Social proof popup */
+    #proof-notif {
+      position: fixed; bottom: 24px; left: 24px; z-index: 9999;
+      background: #fff; border: 1.5px solid var(--lborder);
+      border-radius: 16px; box-shadow: 0 8px 36px rgba(0,0,0,0.13);
+      padding: 14px 18px; display: flex; align-items: center; gap: 12px;
+      max-width: 290px;
+      transform: translateY(calc(100% + 40px)); opacity: 0;
+      transition: transform 0.48s cubic-bezier(0.34,1.56,0.64,1), opacity 0.35s ease;
+      pointer-events: none;
+    }
+    #proof-notif.visible { transform: translateY(0); opacity: 1; }
+    .pn-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-lt); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.15rem; }
+    .pn-body { display: flex; flex-direction: column; gap: 3px; }
+    .pn-label { font-size: 0.68rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.07em; }
+    .pn-msg { font-size: 0.83rem; font-weight: 600; color: var(--ink); line-height: 1.35; }
   </style>
 </head>
 <body>
@@ -812,33 +845,37 @@
   <!-- HERO -->
   <section class="hero">
     <div class="eyebrow fade-up">Live rates · No credit pull</div>
-    <h1 class="fade-up">The mortgage rate<br>you <em>actually</em> deserve.</h1>
+    <h1 class="fade-up">Check VA Refi Loan Qualifications with Top VA Loan Lenders</h1>
     <p class="hero-sub fade-up">Real offers from 40+ lenders, matched to your profile in under 3 minutes. Zero obligation, zero impact on your score.</p>
 
-    <div class="btn-group fade-up">
-      <button class="btn-card btn-purchase" onclick="beginFunnel('buy')">
-        <div class="btn-inner">
-          <div class="btn-icon">🏡</div>
-          <div class="btn-label">VA Purchase</div>
-          <div class="btn-desc">Find the sharpest rate<br>to fund your next move.</div>
-        </div>
-        <div class="btn-footer-bar">
-          <span class="btn-footer-text">Start here</span>
-          <div class="btn-arrow">→</div>
-        </div>
-      </button>
-
-      <button class="btn-card btn-refinance" onclick="beginFunnel('refi')">
-        <div class="btn-inner">
-          <div class="btn-icon">🔁</div>
-          <div class="btn-label">VA Refinance</div>
-          <div class="btn-desc">Reduce monthly payment.<br>Take cash-out, lower the term.</div>
-        </div>
-        <div class="btn-footer-bar">
-          <span class="btn-footer-text">Lower my rate</span>
-          <div class="btn-arrow">→</div>
-        </div>
-      </button>
+    <div class="prop-type-intro fade-up">
+      <div class="prop-type-sublabel">What type of property are you refinancing?</div>
+      <div class="prop-type-grid">
+        <button class="prop-type-card" onclick="selectPropertyType(this,'Single Family Home')">
+          <div class="ptc-icon"><svg class="svg-icon svg-icon-lg"><use href="#icon-house"/></svg></div>
+          <div class="ptc-name">Single Family Home</div>
+          <div class="ptc-desc">Detached house on its own lot</div>
+          <div class="ptc-cta"><span class="ptc-cta-text">Get my rates</span><span class="ptc-cta-arrow">→</span></div>
+        </button>
+        <button class="prop-type-card" onclick="selectPropertyType(this,'Townhome')">
+          <div class="ptc-icon"><svg class="svg-icon svg-icon-lg"><use href="#icon-townhome"/></svg></div>
+          <div class="ptc-name">Townhome</div>
+          <div class="ptc-desc">Multi-floor attached home</div>
+          <div class="ptc-cta"><span class="ptc-cta-text">Get my rates</span><span class="ptc-cta-arrow">→</span></div>
+        </button>
+        <button class="prop-type-card" onclick="selectPropertyType(this,'Condominium')">
+          <div class="ptc-icon"><svg class="svg-icon svg-icon-lg"><use href="#icon-condo"/></svg></div>
+          <div class="ptc-name">Condominium</div>
+          <div class="ptc-desc">Unit in a shared building</div>
+          <div class="ptc-cta"><span class="ptc-cta-text">Get my rates</span><span class="ptc-cta-arrow">→</span></div>
+        </button>
+        <button class="prop-type-card" onclick="selectPropertyType(this,'Multi-Family Home')">
+          <div class="ptc-icon"><svg class="svg-icon svg-icon-lg"><use href="#icon-multifamily"/></svg></div>
+          <div class="ptc-name">Multi-Family Home</div>
+          <div class="ptc-desc">2–4 unit investment property</div>
+          <div class="ptc-cta"><span class="ptc-cta-text">Get my rates</span><span class="ptc-cta-arrow">→</span></div>
+        </button>
+      </div>
     </div>
 
     <!-- VA Rate Bar -->
@@ -872,142 +909,6 @@
     </div>
   </div>
 
-  <!-- Reviews -->
-  <section class="reviews-section fade-up">
-    <div class="section-label" style="display:none;">What customers say</div>
-    <h2 class="section-title">Lender Partner Reviews</h2>
-
-    <div class="review-platforms">
-      <div class="review-platform">
-        <div class="platform-icon g">G</div>
-        <div>
-          <div style="display:flex;align-items:center;gap:6px;">
-            <span class="platform-score">4.5</span>
-            <span class="platform-stars">★★★★½</span>
-          </div>
-          <div class="platform-count">1,030 reviews</div>
-        </div>
-      </div>
-      <div class="review-platform">
-        <div class="platform-icon z">Z</div>
-        <div>
-          <div style="display:flex;align-items:center;gap:6px;">
-            <span class="platform-score">4.5</span>
-            <span class="platform-stars">★★★★½</span>
-          </div>
-          <div class="platform-count">1,030 reviews</div>
-        </div>
-      </div>
-      <div class="review-platform">
-        <div class="platform-icon x">X</div>
-        <div>
-          <div style="display:flex;align-items:center;gap:6px;">
-            <span class="platform-score">4.5</span>
-            <span class="platform-stars">★★★★½</span>
-          </div>
-          <div class="platform-count">1,030 reviews</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="reviews-grid">
-      <div class="review-card">
-        <div class="review-header">
-          <div class="review-avatar">P</div>
-          <div class="review-meta">
-            <div class="review-name">Philip Dillard</div>
-            <div class="review-date">4 days ago</div>
-          </div>
-          <div class="review-stars" style="margin-left:auto;">★★★★★</div>
-        </div>
-        <div class="review-body">Very prompt service! Rates.now kept everyone informed throughout the process. Approval was super quick and the loan was funded faster than I expected. Highly recommend to anyone shopping for a mortgage.</div>
-        <div class="review-footer">
-          <span class="review-footer-text">Posted on</span>
-          <div class="review-platform-dot g">G</div>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-header">
-          <div class="review-avatar">S</div>
-          <div class="review-meta">
-            <div class="review-name">Sandra Chen</div>
-            <div class="review-date">1 week ago</div>
-          </div>
-          <div class="review-stars" style="margin-left:auto;">★★★★★</div>
-        </div>
-        <div class="review-body">Found a rate 0.4% lower than my bank offered. The whole process was clear and transparent — no surprise fees. The matched lender was responsive and professional. Loan was funded quickly.</div>
-        <div class="review-footer">
-          <span class="review-footer-text">Posted on</span>
-          <div class="review-platform-dot z">Z</div>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-header">
-          <div class="review-avatar">D</div>
-          <div class="review-meta">
-            <div class="review-name">David Reyes</div>
-            <div class="review-date">2 weeks ago</div>
-          </div>
-          <div class="review-stars" style="margin-left:auto;">★★★★★</div>
-        </div>
-        <div class="review-body">Compared 3 lenders through rates.now and saved over $280/month on my refinance. The platform is intuitive and the whole experience was stress-free. Loan was approved faster than expected.</div>
-        <div class="review-footer">
-          <span class="review-footer-text">Posted on</span>
-          <div class="review-platform-dot x">X</div>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-header">
-          <div class="review-avatar">M</div>
-          <div class="review-meta">
-            <div class="review-name">Maria Torres</div>
-            <div class="review-date">3 weeks ago</div>
-          </div>
-          <div class="review-stars" style="margin-left:auto;">★★★★★</div>
-        </div>
-        <div class="review-body">As a first-time buyer I was nervous about the whole mortgage process. Rates.now made it completely painless. I had 4 offers in my inbox within hours and locked in a rate I didn't think I'd qualify for.</div>
-        <div class="review-footer">
-          <span class="review-footer-text">Posted on</span>
-          <div class="review-platform-dot g">G</div>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-header">
-          <div class="review-avatar">J</div>
-          <div class="review-meta">
-            <div class="review-name">James Okafor</div>
-            <div class="review-date">1 month ago</div>
-          </div>
-          <div class="review-stars" style="margin-left:auto;">★★★★★</div>
-        </div>
-        <div class="review-body">I was skeptical at first, but the platform delivered real lenders with real rates — not teaser rates. Saved $190/month on my refi. No hidden fees, no pressure. Would use again without hesitation.</div>
-        <div class="review-footer">
-          <span class="review-footer-text">Posted on</span>
-          <div class="review-platform-dot z">Z</div>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-header">
-          <div class="review-avatar">A</div>
-          <div class="review-meta">
-            <div class="review-name">Aisha Patel</div>
-            <div class="review-date">1 month ago</div>
-          </div>
-          <div class="review-stars" style="margin-left:auto;">★★★★★</div>
-        </div>
-        <div class="review-body">The comparison tool is excellent. I could see exactly how each offer broke down — monthly payment, total interest, closing costs. Made picking the right lender a no-brainer. 10/10 experience.</div>
-        <div class="review-footer">
-          <span class="review-footer-text">Posted on</span>
-          <div class="review-platform-dot x">X</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- FAQ -->
   <section class="faq-section fade-up">
@@ -1121,117 +1022,117 @@
         <label class="inp-label">ZIP Code</label>
         <input class="inp" type="text" id="zip" placeholder="e.g. 90210" maxlength="5" inputmode="numeric">
       </div>
-      <button class="btn-continue" onclick="go(2)">Continue</button>
+      <button class="btn-continue" onclick="go(3)">Continue</button>
       <a class="btn-back" onclick="exitFunnel()">Back</a>
-    </div>
-
-    <!-- ─── STEP 2: PROPERTY TYPE ─── -->
-    <div class="step-card hidden" id="s2">
-      <h2 class="step-q">What type of property are you purchasing?</h2>
-      <div class="opts-icon">
-        <div class="opt-icon-card" onclick="pick(this,'s2',3)">
-          <div class="oi"><svg class="svg-icon svg-icon-lg"><use href="#icon-house"/></svg></div>
-          <span class="ol">Single Family Home</span>
-        </div>
-        <div class="opt-icon-card" onclick="pick(this,'s2',3)">
-          <div class="oi"><svg class="svg-icon svg-icon-lg"><use href="#icon-townhome"/></svg></div>
-          <span class="ol">Townhome</span>
-        </div>
-        <div class="opt-icon-card" onclick="pick(this,'s2',3)">
-          <div class="oi"><svg class="svg-icon svg-icon-lg"><use href="#icon-condo"/></svg></div>
-          <span class="ol">Condominium</span>
-        </div>
-        <div class="opt-icon-card" onclick="pick(this,'s2',3)">
-          <div class="oi"><svg class="svg-icon svg-icon-lg"><use href="#icon-multifamily"/></svg></div>
-          <span class="ol">Multi-Family Home</span>
-        </div>
-      </div>
-      <a class="btn-back" onclick="go(1)">Back</a>
     </div>
 
     <!-- ─── STEP 3: PROPERTY USE ─── -->
     <div class="step-card hidden" id="s3">
       <h2 class="step-q">How will this property be used?</h2>
       <div class="opts-icon cols3">
-        <div class="opt-icon-card" onclick="pickPropertyUse(this)">
+        <div class="opt-icon-card" onclick="pick(this,'s3','rs4')">
           <div class="oi"><svg class="svg-icon svg-icon-lg"><use href="#icon-primary"/></svg></div>
           <span class="ol">Primary Residence</span>
         </div>
-        <div class="opt-icon-card" onclick="pickPropertyUse(this)">
+        <div class="opt-icon-card" onclick="pick(this,'s3','rs4')">
           <div class="oi"><svg class="svg-icon svg-icon-lg"><use href="#icon-secondhome"/></svg></div>
           <span class="ol">Second Home</span>
         </div>
-        <div class="opt-icon-card" onclick="pickPropertyUse(this)">
+        <div class="opt-icon-card" onclick="pick(this,'s3','rs4')">
           <div class="oi"><svg class="svg-icon svg-icon-lg"><use href="#icon-investment"/></svg></div>
           <span class="ol">Investment / Rental</span>
         </div>
       </div>
-      <a class="btn-back" onclick="go(2)">Back</a>
+      <a class="btn-back" onclick="go(1)">Back</a>
     </div>
 
-    <!-- ─── STEP 4: FIRST TIME BUYER ─── -->
-    <div class="step-card hidden" id="s4">
-      <h2 class="step-q">Are you a first-time homebuyer?</h2>
+    <!-- ─── STEP rs4: ESTIMATED PROPERTY VALUE ─── -->
+    <div class="step-card hidden" id="rs4">
+      <h2 class="step-q">What is your estimated property value?</h2>
+      <div class="inp-group">
+        <div class="inp-dollar">
+          <span class="inp-dollar-sym">$</span>
+          <input class="inp" type="text" id="prop-val" value="500,000">
+        </div>
+        <div class="slider-wrap">
+          <input type="range" id="prop-range" min="80000" max="2000000" value="500000" step="10000"
+                 oninput="syncSlider('prop-range','prop-val')">
+          <div class="slider-labels"><span>$80K</span><span>$2M+</span></div>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="go('rs5')">Continue</button>
+      <a class="btn-back" onclick="go(3)">Back</a>
+    </div>
+
+    <!-- ─── STEP rs5: REMAINING MORTGAGE BALANCE ─── -->
+    <div class="step-card hidden" id="rs5">
+      <h2 class="step-q">What's the remaining balance on the mortgage?</h2>
+      <div class="inp-group">
+        <div style="text-align:center;font-size:1.5rem;font-weight:700;color:var(--purple);margin-bottom:8px;" id="rb-pct-label">60%</div>
+        <div class="inp-dollar">
+          <span class="inp-dollar-sym">$</span>
+          <input class="inp" type="text" id="rb-dollar-val" value="300,000" readonly>
+        </div>
+        <div class="slider-wrap">
+          <input type="range" id="rb-range" min="0" max="100" value="60" step="1"
+                 oninput="syncRemainingBalance()">
+          <div class="slider-labels"><span>0%</span><span>100%</span></div>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="go('rs6')">Continue</button>
+      <a class="btn-back" onclick="go('rs4')">Back</a>
+    </div>
+
+    <!-- ─── STEP rs6: CURRENT INTEREST RATE ─── -->
+    <div class="step-card hidden" id="rs6">
+      <h2 class="step-q">What is your current interest rate?</h2>
+      <div class="inp-group">
+        <div class="inp-pct">
+          <input class="inp" type="text" id="ir-val" value="6.50">
+          <span class="inp-pct-sym">%</span>
+        </div>
+        <div class="slider-wrap">
+          <input type="range" id="ir-range" min="0" max="12" value="6.5" step="0.125"
+                 oninput="syncInterestRate()">
+          <div class="slider-labels"><span>0%</span><span>12%+</span></div>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="go('rs7')">Continue</button>
+      <a class="btn-back" onclick="go('rs5')">Back</a>
+    </div>
+
+    <!-- ─── STEP rs7: SECOND MORTGAGE ─── -->
+    <div class="step-card hidden" id="rs7">
+      <h2 class="step-q">Do you have a second mortgage?</h2>
       <div class="opts-yn">
-        <div class="opt-yn" onclick="pick(this,'s4',5)">
+        <div class="opt-yn" onclick="pick(this,'rs7','rs8')">
           <svg class="svg-icon svg-icon-md"><use href="#icon-yes"/></svg>
           <span class="yn-lbl">Yes</span>
         </div>
-        <div class="opt-yn" onclick="pick(this,'s4',5)">
+        <div class="opt-yn" onclick="pick(this,'rs7','rs8')">
           <svg class="svg-icon svg-icon-md"><use href="#icon-no"/></svg>
           <span class="yn-lbl">No</span>
         </div>
       </div>
-      <a class="btn-back" onclick="go(3)">Back</a>
+      <a class="btn-back" onclick="go('rs6')">Back</a>
     </div>
 
-    <!-- ─── STEP 5: HOMEBUYING STAGE ─── -->
-    <div class="step-card hidden" id="s5">
-      <h2 class="step-q">Where are you in the homebuying process?</h2>
-      <div class="opts-list">
-        <button class="opt-list" onclick="pick(this,'s5',6)">Offer Accepted by Seller</button>
-        <button class="opt-list" onclick="pick(this,'s5',6)">Making Offers</button>
-        <button class="opt-list" onclick="pick(this,'s5',6)">Going to Open Houses</button>
-        <button class="opt-list" onclick="pick(this,'s5',6)">Researching Options</button>
-      </div>
-      <a class="btn-back" onclick="go(4)">Back</a>
-    </div>
-
-    <!-- ─── STEP 6: PURCHASE PRICE ─── -->
-    <div class="step-card hidden" id="s6">
-      <h2 class="step-q">What's the estimated purchase price of the property?</h2>
+    <!-- ─── STEP rs8: ADDITIONAL CASH ─── -->
+    <div class="step-card hidden" id="rs8">
+      <h2 class="step-q">Would you like to borrow additional cash?</h2>
       <div class="inp-group">
         <div class="inp-dollar">
           <span class="inp-dollar-sym">$</span>
-          <input class="inp" type="text" id="price-val" value="500,000">
+          <input class="inp" type="text" id="cash-val" value="0">
         </div>
         <div class="slider-wrap">
-          <input type="range" id="price-range" min="100000" max="5000000" value="500000" step="10000"
-                 oninput="syncSlider('price-range','price-val')">
-          <div class="slider-labels"><span>$100K</span><span>$5M+</span></div>
+          <input type="range" id="cash-range" min="0" max="100000" value="0" step="5000"
+                 oninput="syncSlider('cash-range','cash-val')">
+          <div class="slider-labels"><span>$0</span><span>$100K+</span></div>
         </div>
       </div>
-      <button class="btn-continue" onclick="go(7)">Continue</button>
-      <a class="btn-back" onclick="go(5)">Back</a>
-    </div>
-
-    <!-- ─── STEP 7: DOWN PAYMENT ─── -->
-    <div class="step-card hidden" id="s7">
-      <h2 class="step-q">What is your estimated down payment?</h2>
-      <div class="inp-group">
-        <div class="dp-pct-label" id="dp-pct-label" style="text-align:center;font-size:1.5rem;font-weight:700;color:var(--purple);margin-bottom:8px;">20%</div>
-        <div class="inp-dollar">
-          <span class="inp-dollar-sym">$</span>
-          <input class="inp" type="text" id="dp-dollar-val" value="100,000" readonly>
-        </div>
-        <div class="slider-wrap">
-          <input type="range" id="dp-range" min="0" max="100" value="20" step="1"
-                 oninput="syncDownPayment()">
-          <div class="slider-labels"><span>0%</span><span>100%</span></div>
-        </div>
-      </div>
-      <button class="btn-continue" onclick="go(8)">Continue</button>
-      <a class="btn-back" onclick="go(6)">Back</a>
+      <button class="btn-continue" onclick="go('s12b')">Continue</button>
+      <a class="btn-back" onclick="go('rs7')">Back</a>
     </div>
 
     <!-- ─── STEP 8: CREDIT SCORE ─── -->
@@ -1247,7 +1148,7 @@
         </div>
       </div>
       <button class="btn-continue" onclick="go(9)">Continue</button>
-      <a class="btn-back" onclick="go(flowType === 'refi' ? 'rs9' : 7)">Back</a>
+      <a class="btn-back" onclick="go('s12b')">Back</a>
     </div>
 
     <!-- ─── STEP 9: EMPLOYMENT ─── -->
@@ -1329,19 +1230,19 @@
           <div class="slider-labels"><span>$0</span><span>$500K+</span></div>
         </div>
       </div>
-      <button class="btn-continue" onclick="go(flowType==='refi'?'sload':'s12b')">Continue</button>
+      <button class="btn-continue" onclick="go('sload')">Continue</button>
       <a class="btn-back" onclick="go(11)">Back</a>
     </div>
 
     <!-- ─── STEP 12b: LATE PAYMENTS ─── -->
     <div class="step-card hidden" id="s12b">
-      <h2 class="step-q">Have you had any mortgage payments that were 30 or more days late within the past 12 months?</h2>
+      <h2 class="step-q">Any 30 day late mortgage payments in the last 12 months?</h2>
       <div class="opts-list">
-        <div class="opt-list" onclick="pick(this,'s12b','sload')">No</div>
-        <div class="opt-list" onclick="pick(this,'s12b','sload')">Yes, 1 time</div>
-        <div class="opt-list" onclick="pick(this,'s12b','sload')">Yes, 2+ times</div>
+        <div class="opt-list" onclick="pick(this,'s12b',8)">No</div>
+        <div class="opt-list" onclick="pick(this,'s12b',8)">Yes, 1 time</div>
+        <div class="opt-list" onclick="pick(this,'s12b',8)">Yes, 2+ times</div>
       </div>
-      <a class="btn-back" onclick="go(12)">Back</a>
+      <a class="btn-back" onclick="go('rs8')">Back</a>
     </div>
 
     <!-- ─── STEP LOAD: FINDING MATCHES ─── -->
@@ -1407,19 +1308,6 @@
       <a class="btn-back" onclick="go(12)">Back</a>
     </div>
 
-    <!-- ─── REFI NO-MATCH SCREEN ─── -->
-    <div class="step-card hidden" id="snomatch">
-      <div style="text-align:center;padding:10px 0 4px;">
-        <div style="display:flex;justify-content:center;margin-bottom:20px;">
-          <div style="width:72px;height:72px;border-radius:50%;background:var(--purple-bg);display:flex;align-items:center;justify-content:center;">
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" stroke="#5349DB" stroke-width="2" fill="#ece9ff"/><line x1="11" y1="11" x2="25" y2="25" stroke="#5349DB" stroke-width="2.5" stroke-linecap="round"/><line x1="25" y1="11" x2="11" y2="25" stroke="#5349DB" stroke-width="2.5" stroke-linecap="round"/></svg>
-          </div>
-        </div>
-        <div style="font-size:22px;font-weight:800;color:var(--purple-dark);margin-bottom:14px;line-height:1.25;">No Offers Match<br>Your Criteria</div>
-        <p style="font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:32px;max-width:380px;margin-left:auto;margin-right:auto;">We were unable to find matching lender offers at this time. You can go back and adjust your details to try again.</p>
-        <a class="btn-back" onclick="go(12)">Back</a>
-      </div>
-    </div>
 
     <!-- ─── STEP 14: CONTACT ─── -->
     <div class="step-card hidden" id="s14">
@@ -1466,105 +1354,6 @@
       </div>
     </div>
 
-    <!-- ─── REFI STEP rs4: PROPERTY VALUE ─── -->
-    <div class="step-card hidden" id="rs4">
-      <h2 class="step-q">What is your estimated property value?</h2>
-      <div class="inp-group">
-        <div class="inp-dollar">
-          <span class="inp-dollar-sym">$</span>
-          <input class="inp" type="text" id="prop-val" value="500,000">
-        </div>
-        <div class="slider-wrap">
-          <input type="range" id="prop-range" min="100000" max="5000000" value="500000" step="10000"
-                 oninput="syncSlider('prop-range','prop-val')">
-          <div class="slider-labels"><span>$100K</span><span>$5M+</span></div>
-        </div>
-      </div>
-      <button class="btn-continue" onclick="go('rs5')">Continue</button>
-      <a class="btn-back" onclick="go(3)">Back</a>
-    </div>
-
-    <!-- ─── REFI STEP rs5: REMAINING BALANCE ─── -->
-    <div class="step-card hidden" id="rs5">
-      <h2 class="step-q">What's the remaining balance on the mortgage?</h2>
-      <div class="inp-group">
-        <div style="text-align:center;font-size:1.5rem;font-weight:700;color:var(--purple);margin-bottom:8px;" id="rb-pct-label">60%</div>
-        <div class="inp-dollar">
-          <span class="inp-dollar-sym">$</span>
-          <input class="inp" type="text" id="rb-dollar-val" value="300,000" readonly>
-        </div>
-        <div class="slider-wrap">
-          <input type="range" id="rb-range" min="0" max="100" value="60" step="1"
-                 oninput="syncRemainingBalance()">
-          <div class="slider-labels"><span>0%</span><span>100%</span></div>
-        </div>
-      </div>
-      <button class="btn-continue" onclick="go('rs6')">Continue</button>
-      <a class="btn-back" onclick="go('rs4')">Back</a>
-    </div>
-
-    <!-- ─── REFI STEP rs6: CURRENT INTEREST RATE ─── -->
-    <div class="step-card hidden" id="rs6">
-      <h2 class="step-q">What is your current interest rate?</h2>
-      <div class="inp-group">
-        <div class="inp-pct">
-          <input class="inp" type="text" id="ir-val" value="6.50">
-          <span class="inp-pct-sym">%</span>
-        </div>
-        <div class="slider-wrap">
-          <input type="range" id="ir-range" min="0" max="12" value="6.5" step="0.125"
-                 oninput="syncInterestRate()">
-          <div class="slider-labels"><span>0%</span><span>12%+</span></div>
-        </div>
-      </div>
-      <button class="btn-continue" onclick="go('rs7')">Continue</button>
-      <a class="btn-back" onclick="go('rs5')">Back</a>
-    </div>
-
-    <!-- ─── REFI STEP rs7: SECOND MORTGAGE ─── -->
-    <div class="step-card hidden" id="rs7">
-      <h2 class="step-q">Do you have a second mortgage?</h2>
-      <div class="opts-yn">
-        <div class="opt-yn" onclick="pick(this,'rs7','rs8')">
-          <svg class="svg-icon svg-icon-md"><use href="#icon-yes"/></svg>
-          <span class="yn-lbl">Yes</span>
-        </div>
-        <div class="opt-yn" onclick="pick(this,'rs7','rs8')">
-          <svg class="svg-icon svg-icon-md"><use href="#icon-no"/></svg>
-          <span class="yn-lbl">No</span>
-        </div>
-      </div>
-      <a class="btn-back" onclick="go('rs6')">Back</a>
-    </div>
-
-    <!-- ─── REFI STEP rs8: ADDITIONAL CASH ─── -->
-    <div class="step-card hidden" id="rs8">
-      <h2 class="step-q">Would you like to borrow additional cash?</h2>
-      <div class="inp-group">
-        <div class="inp-dollar">
-          <span class="inp-dollar-sym">$</span>
-          <input class="inp" type="text" id="cash-val" value="0">
-        </div>
-        <div class="slider-wrap">
-          <input type="range" id="cash-range" min="0" max="250000" value="0" step="5000"
-                 oninput="syncSlider('cash-range','cash-val')">
-          <div class="slider-labels"><span>$0</span><span>$250K+</span></div>
-        </div>
-      </div>
-      <button class="btn-continue" onclick="go('rs9')">Continue</button>
-      <a class="btn-back" onclick="go('rs7')">Back</a>
-    </div>
-
-    <!-- ─── REFI STEP rs9: LATE PAYMENTS ─── -->
-    <div class="step-card hidden" id="rs9">
-      <h2 class="step-q">Any 30 day late mortgage payments in the last 12 months?</h2>
-      <div class="opts-list">
-        <button class="opt-list" onclick="pick(this,'rs9',8)">No</button>
-        <button class="opt-list" onclick="pick(this,'rs9',8)">1 Late Payment</button>
-        <button class="opt-list" onclick="pick(this,'rs9',8)">2+ Late Payments</button>
-      </div>
-      <a class="btn-back" onclick="go('rs8')">Back</a>
-    </div>
 
     <!-- ─── STEP OTP: VERIFY PHONE ─── -->
     <div class="step-card hidden" id="sotp">
@@ -1759,12 +1548,15 @@
 
 <script>
   let curStep = 1;
-  let flowType = 'buy';
-  const progress = { 1:4,2:15,3:19,4:30,5:46,6:54,7:58,8:62,9:69,10:72,11:75,12:82,'s12b':84,'sload':86,13:89,14:92,'sotp':96,15:100 };
-  const refiProgress = { 's1':4,'s2':10,'s3':16,'rs4':22,'rs5':30,'rs6':38,'rs7':46,'rs8':54,'rs9':60,'s8':67,'s9':73,'s10':78,'s11':82,'s12':87,'sload':89,'snomatch':92,'s13':92,'s14':96,'sotp':98,'s15':100 };
+  let propertyType = '';
+  const progress = { 1:4, 3:11, 'rs4':18, 'rs5':25, 'rs6':32, 'rs7':38, 'rs8':44, 's12b':51, 8:58, 9:64, 10:69, 11:74, 12:80, 'sload':85, 13:89, 14:93, 'sotp':97, 15:100 };
 
-  function beginFunnel(type) {
-    flowType = type || 'buy';
+  function selectPropertyType(el, type) {
+    propertyType = type;
+    beginFunnel();
+  }
+
+  function beginFunnel() {
     document.getElementById('landing').style.display = 'none';
     document.getElementById('funnel').classList.add('active');
     go(1);
@@ -1777,7 +1569,6 @@
   function showLanding() { exitFunnel(); }
 
   function go(step) {
-    if (step === 13 && flowType === 'refi') step = 'snomatch';
     const prevId = (typeof curStep === 'number') ? 's'+curStep : curStep;
     const nextId = (typeof step === 'number') ? 's'+step : step;
     const prev = document.getElementById(prevId);
@@ -1790,15 +1581,9 @@
       void next.offsetWidth;
       next.style.animation = '';
     }
-    let pct;
-    if (flowType === 'refi') {
-      pct = refiProgress[nextId] || 100;
-    } else {
-      pct = progress[step] || 100;
-    }
+    const pct = progress[step] || 100;
     document.getElementById('pbar').style.width = pct+'%';
     document.getElementById('ppct').textContent = pct+'% complete';
-    if (step === 7) syncDownPayment();
     if (nextId === 'rs5') syncRemainingBalance();
     if (step === 15) buildTyLenders();
     if (nextId === 'sload') startLoader();
@@ -1814,7 +1599,7 @@
   function pickPropertyUse(el) {
     el.parentElement.querySelectorAll('.opt-icon-card').forEach(b => b.classList.remove('sel'));
     el.classList.add('sel');
-    setTimeout(() => { if (flowType === 'refi') go('rs4'); else go(4); }, 280);
+    setTimeout(() => go(4), 280);
   }
 
   function toggleLender(card) { card.classList.toggle('sel'); }
@@ -1891,7 +1676,7 @@
   function cancelLoader() {
     _loaderTimers.forEach(clearTimeout);
     _loaderTimers = [];
-    go(flowType === 'refi' ? 12 : 's12b');
+    go(12);
   }
 
   function continueWithOffers(count) {
@@ -1946,6 +1731,33 @@
     footer.appendChild(right);
   });
 
+  // Social proof popup
+  const _proofNotifs = [
+    { name: 'Jimmy K.',   city: 'Miami',       mins: 32 },
+    { name: 'Sarah M.',   city: 'Houston',     mins: 17 },
+    { name: 'Carlos R.',  city: 'San Diego',   mins: 44 },
+    { name: 'Linda T.',   city: 'Phoenix',     mins: 8  },
+    { name: 'Marcus W.',  city: 'Atlanta',     mins: 51 },
+    { name: 'Priya N.',   city: 'Dallas',      mins: 23 },
+    { name: 'Derek H.',   city: 'Tampa',       mins: 6  },
+    { name: 'Tanya B.',   city: 'Las Vegas',   mins: 38 },
+    { name: 'Kevin L.',   city: 'Denver',      mins: 14 },
+    { name: 'Rachel S.',  city: 'Charlotte',   mins: 27 },
+  ];
+  let _proofIdx = 0;
+  function _showProofNotif() {
+    const popup = document.getElementById('proof-notif');
+    const n = _proofNotifs[_proofIdx % _proofNotifs.length];
+    _proofIdx++;
+    document.getElementById('pn-msg').textContent = n.name + ' in ' + n.city + ' got a rate ' + n.mins + ' minutes ago';
+    popup.classList.add('visible');
+    setTimeout(function() {
+      popup.classList.remove('visible');
+      setTimeout(_showProofNotif, 3000);
+    }, 5000);
+  }
+  setTimeout(_showProofNotif, 3000);
+
   // OTP input: auto-advance and backspace navigation
   document.addEventListener('input', function(e) {
     if (!e.target.classList.contains('otp-inp')) return;
@@ -1964,5 +1776,14 @@
     if (e.key === 'ArrowRight' && idx < inputs.length - 1) { e.preventDefault(); inputs[idx + 1].focus(); }
   });
 </script>
+
+<!-- Social proof popup -->
+<div id="proof-notif">
+  <div class="pn-icon">🏠</div>
+  <div class="pn-body">
+    <div class="pn-label">Just now</div>
+    <div class="pn-msg" id="pn-msg"></div>
+  </div>
+</div>
 </body>
 </html>
