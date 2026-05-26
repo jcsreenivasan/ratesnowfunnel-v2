@@ -8,6 +8,8 @@ VA mortgage rate comparison funnel — **variation v2** (forked from `ratesnowfu
 
 ## Deployment
 
+### Production (`main` branch)
+
 ```bash
 /tmp/vercel-local/node_modules/.bin/vercel --prod --cwd /Users/sreenivasanjayachandrabalaji/Desktop/claudework/ratesnowfunnel-v2
 ```
@@ -19,6 +21,26 @@ npm install --prefix /tmp/vercel-local vercel --cache /tmp/npm-cache
 ```
 
 Live URL: **https://ratesnowfunnel-v2.vercel.app**
+
+### Branch deployments (`v2-version-ratetable` and others)
+
+Vercel Git integration is connected to **https://github.com/jcsreenivasan/ratesnowfunnel-v2**. Every `git push` to any branch triggers an automatic deployment — no CLI command needed.
+
+**Stable branch URL (never changes):**
+```
+https://ratesnowfunnel-v2-git-v2-version-43e5b5-jcsreenivasans-projects.vercel.app
+```
+
+Workflow for branch changes:
+
+```bash
+git add index.html
+git commit -m "your message"
+git push origin v2-version-ratetable
+# Vercel auto-deploys. Stable branch URL updates automatically.
+```
+
+> **Note:** `vercel --prod` is only needed to promote a build to production (`ratesnowfunnel-v2.vercel.app`). The production URL only changes when you run `--prod` or merge to `main`.
 
 GitHub: **https://github.com/jcsreenivasan/ratesnowfunnel-v2**
 
