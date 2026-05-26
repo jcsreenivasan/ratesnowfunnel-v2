@@ -109,7 +109,7 @@
     @keyframes auto-flash { 0% { left:-80%; opacity:1; } 28% { left:140%; opacity:1; } 28.1%,100% { left:140%; opacity:0; } }
 
     /* Hero */
-    .hero { text-align: center; padding: 30px 40px 48px; position: relative; z-index: 1; }
+    .hero { text-align: center; padding: 30px 40px 0; position: relative; z-index: 1; }
     .hero::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 900px; height: 600px; background: radial-gradient(ellipse at center top, rgba(247,247,251,0.7) 0%, transparent 65%); pointer-events: none; }
     .eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--green-lt); color: var(--green); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 28px; position: relative; z-index: 1; }
     .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
@@ -463,7 +463,7 @@
       #funnel { padding-top: 80px; }
 
       /* Hero */
-      .hero { padding: 22px 18px 28px; }
+      .hero { padding: 22px 18px 0; }
       .hero h1 { font-size: 30px; letter-spacing: -0.8px; margin-bottom: 18px; }
       .eyebrow { font-size: 0.66rem; margin-bottom: 18px; }
 
@@ -573,7 +573,7 @@
       pointer-events: none;
     }
     #proof-notif.visible { transform: translateY(0); opacity: 1; }
-    .ratetable-wrap { max-width: 960px; width: 100%; margin: 40px auto 0; padding: 0 16px; box-sizing: border-box; }
+    .ratetable-wrap { max-width: 1248px; width: 100%; margin: 40px auto 0; padding: 0 16px; box-sizing: border-box; }
     .ratetable-img { width: 100%; height: auto; display: block; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
     .pn-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-lt); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.15rem; }
     .pn-body { display: flex; flex-direction: column; gap: 3px; }
