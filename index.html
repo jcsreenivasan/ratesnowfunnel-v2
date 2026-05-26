@@ -205,6 +205,7 @@
     /* Q&A Chat Bubbles */
     .qa-strip { position: relative; z-index: 1; padding: 48px 40px 0; display: flex; justify-content: center; }
     .qa-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1428px; width: 100%; }
+    .qa-grid-single { grid-template-columns: 1fr; max-width: 520px; }
     .qa-card { background: #fff; border-radius: 20px; padding: 40px 34px; box-shadow: 0 4px 28px rgba(83,73,219,0.09); border: 1px solid var(--lborder); display: flex; flex-direction: column; gap: 20px; }
     .qa-bubble { padding: 18px 22px; font-size: 1.0rem; line-height: 1.55; font-weight: 500; max-width: 90%; }
     .qa-q { background: #2D2D2D; color: #fff; border-radius: 18px 18px 4px 18px; align-self: flex-end; font-weight: 600; }
@@ -905,18 +906,10 @@
 
   <!-- Q&A CHAT BUBBLES -->
   <div class="qa-strip fade-up">
-    <div class="qa-grid">
+    <div class="qa-grid qa-grid-single">
       <div class="qa-card">
-        <div class="qa-bubble qa-q">Can I get cash out using my VA Loan?</div>
-        <div class="qa-bubble qa-a">Yes, a VA Cash-Out Refinance allows you to access home equity as cash.</div>
-      </div>
-      <div class="qa-card">
-        <div class="qa-bubble qa-q">Do I need perfect credit to qualify for a VA Cash-Out Refinance?</div>
-        <div class="qa-bubble qa-a">No. Credit requirements vary by lender, but VA loans are often more flexible.</div>
-      </div>
-      <div class="qa-card">
-        <div class="qa-bubble qa-q">Can I use my VA Cash-Out Refinance to pay off debt?</div>
-        <div class="qa-bubble qa-a">Yes. Some veterans use cash out to pay off high-interest debt.</div>
+        <div class="qa-bubble qa-q">What is a VA IRRRL?</div>
+        <div class="qa-bubble qa-a">VA IRRRLs, or VA Streamline Refinance, helps eligible veterans lower their rate or payment with less documentation.</div>
       </div>
     </div>
   </div>
