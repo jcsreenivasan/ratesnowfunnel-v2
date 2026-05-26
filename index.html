@@ -202,6 +202,14 @@
     .proof-check { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 12px; font-weight: 700; flex-shrink: 0; }
     .proof-text { font-size: 14px; color: var(--ink); font-weight: 600; line-height: 1.35; }
 
+    /* Q&A Chat Bubbles */
+    .qa-strip { position: relative; z-index: 1; padding: 48px 40px 0; display: flex; justify-content: center; }
+    .qa-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1020px; width: 100%; }
+    .qa-card { background: #fff; border-radius: 20px; padding: 28px 24px; box-shadow: 0 4px 28px rgba(83,73,219,0.09); border: 1px solid var(--lborder); display: flex; flex-direction: column; gap: 14px; }
+    .qa-bubble { padding: 13px 16px; font-size: 0.855rem; line-height: 1.55; font-weight: 500; max-width: 90%; }
+    .qa-q { background: var(--primary); color: #fff; border-radius: 18px 18px 4px 18px; align-self: flex-end; font-weight: 600; }
+    .qa-a { background: var(--primary-lt); color: var(--ink); border-radius: 18px 18px 18px 4px; align-self: flex-start; }
+
     /* FAQ */
     .faq-section { position: relative; z-index: 1; padding: 80px 40px 40px; display: flex; flex-direction: column; align-items: center; }
     .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary); margin-bottom: 12px; }
@@ -496,6 +504,10 @@
       .rate-row { padding: 16px 0; gap: 8px; }
       .rate-row-center { display: none; }
       .rates-savings { margin: 4px 16px 16px; padding: 12px 14px; }
+
+      /* Q&A bubbles */
+      .qa-strip { padding: 36px 14px 0; }
+      .qa-grid { grid-template-columns: 1fr; gap: 16px; }
 
       /* FAQ */
       .faq-section { padding: 44px 14px 28px; }
@@ -891,7 +903,23 @@
 
   </section>
 
-
+  <!-- Q&A CHAT BUBBLES -->
+  <div class="qa-strip fade-up">
+    <div class="qa-grid">
+      <div class="qa-card">
+        <div class="qa-bubble qa-q">Can I get cash out using my VA Loan?</div>
+        <div class="qa-bubble qa-a">Yes, a VA Cash-Out Refinance allows you to access home equity as cash.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-bubble qa-q">Do I need perfect credit to qualify for a VA Cash-Out Refinance?</div>
+        <div class="qa-bubble qa-a">No. Credit requirements vary by lender, but VA loans are often more flexible.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-bubble qa-q">Can I use my VA Cash-Out Refinance to pay off debt?</div>
+        <div class="qa-bubble qa-a">Yes. Some veterans use cash out to pay off high-interest debt.</div>
+      </div>
+    </div>
+  </div>
 
   <!-- FAQ -->
   <section class="faq-section fade-up">
