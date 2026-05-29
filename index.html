@@ -260,6 +260,21 @@
     .review-platform-dot.z { background: #006AFF; }
     .review-platform-dot.x { background: #000; }
 
+    /* VA comparison table */
+    .va-wrapper { width: 100%; overflow-x: auto; margin: 32px 0; }
+    .va-table { width: 100%; min-width: 700px; border-collapse: collapse; background-color: #fff; }
+    .va-table caption { caption-side: top; text-align: left; font-size: 1.1rem; font-weight: 700; color: #232227; margin-bottom: 18px; line-height: 1.4; padding-bottom: 12px; display: block; }
+    .va-table thead tr { background-color: #000; }
+    .va-table thead th { background-color: #000 !important; color: #fff !important; padding: 18px 16px; border: 1px solid #000; font-size: 15px; font-weight: 700; text-align: center; vertical-align: middle; }
+    .va-table tbody th, .va-table tbody td { padding: 18px 16px; border: 1px solid #e5e5e5; font-size: 14px; line-height: 1.8; color: #333; vertical-align: middle; text-align: center; transition: background 0.2s; }
+    .va-table tbody th { background-color: #fafafa; font-weight: 700; text-align: left; }
+    .va-table tbody tr:hover td, .va-table tbody tr:hover th { background-color: #f7f9fc; }
+    .va-table .yes { color: #1e8e5a; font-weight: 700; font-size: 16px; }
+    .va-table .no { color: #c0392b; font-weight: 700; font-size: 16px; }
+    .va-note { margin-top: 24px; padding: 20px; background-color: #f7f9fc; border-left: 4px solid #000; border-radius: 0 10px 10px 0; font-size: 14px; line-height: 1.8; color: #444; }
+    .va-note strong { color: #000; }
+    @media (max-width: 640px) { .va-table { min-width: 600px; } }
+
     /* Article section */
     .article-section { background: #fff; width: 100%; padding: 72px 40px; }
     .article-inner { max-width: 780px; margin: 0 auto; }
@@ -1080,6 +1095,65 @@
 
         <h3>VA IRRRL vs. cash-out refinance: Deciding which is best for you</h3>
         <p>With a better understanding of the two types of VA-backed refinances, you may have a general sense for which fits your situation. Still, asking a few follow-up questions often helps to provide you with added clarity. If you want to dig deeper into all of this, the VA has a handbook for lenders about refinancing loans. While you're not its target audience, that document has a lot of info about what's required for each type of VA refinance.</p>
+
+        <div class="va-wrapper">
+          <table class="va-table">
+            <caption>VA IRRRL vs VA Cash-Out Refinance Eligibility and Feature Comparison</caption>
+            <thead>
+              <tr>
+                <th scope="col">Can You Get a Loan If…</th>
+                <th scope="col">VA IRRRL</th>
+                <th scope="col">VA Cash-Out Refinance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">…you currently have a VA loan?</th>
+                <td class="yes">Yes</td>
+                <td class="yes">Yes</td>
+              </tr>
+              <tr>
+                <th scope="row">…you currently have a conventional, FHA, or USDA loan?</th>
+                <td class="no">No</td>
+                <td class="yes">Yes</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want to skip the appraisal?</th>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want a lower VA funding fee?</th>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want to cash out equity from your home?</th>
+                <td class="no">No</td>
+                <td class="yes">Yes</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want a loan amount equal to 100% of your current property value?</th>
+                <td class="no">No</td>
+                <td class="yes">Yes</td>
+              </tr>
+              <tr>
+                <th scope="row">…you no longer live in the property but once did?</th>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want to skip credit underwriting?</th>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="va-note">
+            <strong>Important:</strong> A VA IRRRL is designed for simplifying and lowering the rate on an existing VA loan, while a VA cash-out refinance is intended for accessing home equity or converting non-VA loans into VA financing.
+          </div>
+        </div>
+
         <p>Or, if you'd rather talk it through with a person, you can start exploring your options with lenders that offer VA refinances. We have rate tables showcasing today's interest rates for both IRRRLs and cash-out refinances. The loan officers at any of those lenders should be able to help you figure out which type of VA refi best matches your needs.</p>
       </div>
     </div>
