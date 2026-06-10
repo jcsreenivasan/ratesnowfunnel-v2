@@ -545,6 +545,8 @@
     .ty-checkmark { color: var(--purple); font-size: 15px; flex-shrink: 0; }
 
     .hidden { display: none !important; }
+    br.mob-br { display: none; }
+    @media (max-width: 640px) { br.mob-br { display: inline; } }
 
     /* ── LOADER SCREEN ── */
     .loader-top { display: flex; justify-content: center; margin-bottom: 24px; }
@@ -994,7 +996,7 @@
       <div class="hero-banner-overlay"></div>
       <div class="hero-banner-content">
         <div class="eyebrow">Live rates · No credit pull</div>
-        <h1>Compare Top VA Cashout Lenders</h1>
+        <h1>Compare Top VA<br class="mob-br"> Cashout Lenders</h1>
         <p class="hero-banner-sub">Vetted VA lenders. Real numbers. No guesswork.</p>
       </div>
     </div>
