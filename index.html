@@ -176,6 +176,12 @@
       text-align: center;
       text-shadow: 0 2px 16px rgba(0,0,0,0.35);
     }
+    .hero-banner-sub {
+      color: rgba(255,255,255,0.88);
+      font-size: 1rem; font-weight: 500; line-height: 1.5;
+      margin: 0; text-align: center;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+    }
 
     /* ─── PROPERTY TYPE SELECTOR (Landing) ─── */
     .prop-type-intro { position: relative; z-index: 1; width: 100%; }
@@ -592,8 +598,10 @@
       .hero h1 { font-size: 30px; letter-spacing: -0.8px; margin-bottom: 18px; }
       .eyebrow { font-size: 0.66rem; margin-bottom: 18px; }
       .hero-banner-wrap { height: 168px; border-radius: 16px; margin: 0 auto 24px; }
-      .hero-banner-content { padding: 0 18px; gap: 12px; }
-      .hero-banner-wrap h1 { font-size: 20px; letter-spacing: -0.4px; }
+      .hero-banner-content { padding: 0 18px; gap: 10px; align-items: flex-start; text-align: left; }
+      .hero-banner-wrap h1 { font-size: 20px; letter-spacing: -0.4px; text-align: left; }
+      .hero-banner-sub { text-align: left; font-size: 0.8rem; }
+      .hero-banner-wrap .eyebrow { margin-bottom: 0; }
 
       /* Property type grid – 2-col on mobile */
       .prop-type-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -961,11 +969,15 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-banner-wrap fade-up">
-      <img class="hero-banner-img" src="veterana2.png" alt="Veteran with family waving American flag">
+      <picture>
+        <source media="(max-width: 640px)" srcset="veterana-mobile.png">
+        <img class="hero-banner-img" src="veterana2.png" alt="Veteran with family waving American flag">
+      </picture>
       <div class="hero-banner-overlay"></div>
       <div class="hero-banner-content">
         <div class="eyebrow">Live rates · No credit pull</div>
         <h1>Compare Top VA Cashout Lenders</h1>
+        <p class="hero-banner-sub">Vetted VA lenders. Real numbers. No guesswork.</p>
       </div>
     </div>
     <p class="hero-sub fade-up">Real offers from 40+ lenders, matched to your profile in under 3 minutes. Zero obligation, zero impact on your score.</p>
