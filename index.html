@@ -496,9 +496,10 @@
     .offer-td-lender img { height: 26px; max-width: 110px; object-fit: contain; display: block; filter: blur(4px); }
     .offer-val { filter: blur(5px); user-select: none; font-size: 0.88rem; font-weight: 600; color: var(--text); pointer-events: none; }
 
-    /* Offer unlock card (s13) */
-    .offer-unlock-wrap { padding-top: 34px; margin-bottom: 28px; }
-    .offer-unlock-card { background: #fff; border-radius: 20px; box-shadow: 0 8px 40px rgba(30,27,75,0.14); padding: 0 32px 28px; text-align: center; max-width: 500px; margin: 0 auto; }
+    /* Offer unlock card (s13) — overlaid on top of table */
+    .offer-gated-wrap { position: relative; padding-top: 240px; }
+    .offer-unlock-wrap { position: absolute; top: 0; left: 0; right: 0; padding-top: 34px; z-index: 10; }
+    .offer-unlock-card { background: #fff; border-radius: 20px; box-shadow: 0 8px 40px rgba(30,27,75,0.18); padding: 0 32px 28px; text-align: center; max-width: 500px; margin: 0 auto; }
     .offer-unlock-badge { width: 62px; height: 62px; background: #f5f5f8; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: -31px auto 20px; border: 3px solid #fff; box-shadow: 0 2px 12px rgba(30,27,75,0.1); }
     .offer-unlock-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 20px; line-height: 1.4; }
     .offer-unlock-input { width: 100%; border: 1.5px solid #d8d8e8; border-radius: 10px; padding: 14px 16px; font-size: 0.95rem; color: var(--text); outline: none; margin-bottom: 12px; font-family: 'Inter', sans-serif; background: #fff; transition: border-color 0.2s; box-sizing: border-box; }
@@ -1546,6 +1547,8 @@
         </div>
       </div>
 
+      <!-- Gated section: unlock card overlaid on table -->
+      <div class="offer-gated-wrap">
       <!-- Unlock card -->
       <div class="offer-unlock-wrap">
         <div class="offer-unlock-card">
@@ -1577,7 +1580,7 @@
           </thead>
           <tbody>
             <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div></td>
+              <td><div class="offer-td-lender"><img src="armed-forces-logo.svg" alt="Armed Forces Bank"></div></td>
               <td><span class="offer-val">30-yr Fixed</span></td>
               <td><span class="offer-val">6.125%</span></td>
               <td><span class="offer-val">$3,200</span></td>
@@ -1585,7 +1588,7 @@
               <td><span class="offer-val">$2,184</span></td>
             </tr>
             <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="better-mortgage-logo.svg" alt="Better Mortgage"></div></td>
+              <td><div class="offer-td-lender"><img src="farmers-bank-logo.svg" alt="Farmers Bank"></div></td>
               <td><span class="offer-val">30-yr Fixed</span></td>
               <td><span class="offer-val">6.250%</span></td>
               <td><span class="offer-val">$2,950</span></td>
@@ -1593,7 +1596,7 @@
               <td><span class="offer-val">$2,218</span></td>
             </tr>
             <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="rocket-logo.png" alt="Rocket Mortgage"></div></td>
+              <td><div class="offer-td-lender"><img src="lender3-logo.svg" alt="Lender"></div></td>
               <td><span class="offer-val">30-yr Fixed</span></td>
               <td><span class="offer-val">6.375%</span></td>
               <td><span class="offer-val">$3,875</span></td>
@@ -1601,7 +1604,7 @@
               <td><span class="offer-val">$2,253</span></td>
             </tr>
             <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="veterans-united-logo.png" alt="Veterans United"></div></td>
+              <td><div class="offer-td-lender"><img src="shm-logo.png" alt="Strong Home Mortgage"></div></td>
               <td><span class="offer-val">30-yr Fixed</span></td>
               <td><span class="offer-val">6.000%</span></td>
               <td><span class="offer-val">$4,100</span></td>
@@ -1609,7 +1612,7 @@
               <td><span class="offer-val">$2,148</span></td>
             </tr>
             <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div></td>
+              <td><div class="offer-td-lender"><img src="armed-forces-logo.svg" alt="Armed Forces Bank"></div></td>
               <td><span class="offer-val">15-yr Fixed</span></td>
               <td><span class="offer-val">5.750%</span></td>
               <td><span class="offer-val">$3,600</span></td>
@@ -1617,7 +1620,7 @@
               <td><span class="offer-val">$3,142</span></td>
             </tr>
             <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="better-mortgage-logo.svg" alt="Better Mortgage"></div></td>
+              <td><div class="offer-td-lender"><img src="farmers-bank-logo.svg" alt="Farmers Bank"></div></td>
               <td><span class="offer-val">30-yr Fixed</span></td>
               <td><span class="offer-val">6.500%</span></td>
               <td><span class="offer-val">$2,800</span></td>
@@ -1625,7 +1628,7 @@
               <td><span class="offer-val">$2,275</span></td>
             </tr>
             <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="rocket-logo.png" alt="Rocket Mortgage"></div></td>
+              <td><div class="offer-td-lender"><img src="lender3-logo.svg" alt="Lender"></div></td>
               <td><span class="offer-val">30-yr Fixed</span></td>
               <td><span class="offer-val">6.250%</span></td>
               <td><span class="offer-val">$3,450</span></td>
@@ -1633,7 +1636,7 @@
               <td><span class="offer-val">$2,218</span></td>
             </tr>
             <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="veterans-united-logo.png" alt="Veterans United"></div></td>
+              <td><div class="offer-td-lender"><img src="shm-logo.png" alt="Strong Home Mortgage"></div></td>
               <td><span class="offer-val">30-yr Fixed</span></td>
               <td><span class="offer-val">6.125%</span></td>
               <td><span class="offer-val">$4,500</span></td>
@@ -1643,6 +1646,7 @@
           </tbody>
         </table>
       </div>
+      </div><!-- /.offer-gated-wrap -->
 
       <a class="btn-back" onclick="go(12)">Back</a>
     </div>
