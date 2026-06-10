@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rates.now | Find Competitive Mortgage Rates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple:      #5B5BD6;
+      --purple-dark: #1E1B4B;
+      --purple-bg:   #EBEBFB;
+      --gold:        #F59E0B;
+      --white:       #FFFFFF;
+      --border:      #D8D8E8;
+      --text:        #1A1A2E;
+      --text-mid:    #4A4A6A;
+      --text-light:  #8A8AAA;
+      --shadow:      0 8px 48px rgba(30,27,75,.13);
+      /* Landing design tokens */
+      --primary:    #5349DB;
+      --primary-dk: #3d33c4;
+      --primary-lt: #ece9ff;
+      --ink:        #0f0e1a;
+      --slate:      #6b6b8a;
+      --lborder:    rgba(83,73,219,0.12);
+      --green:      #16a25b;
+      --green-lt:   #d6f4e6;
+      --radius:     20px;
+      --flash-dur:  3.5s;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      background-color: #f7f7fb;
+      background-image: url('ca.png');
+      background-repeat: repeat;
+      background-size: 900px auto;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── SHARED ICON SIZES ─── */
+    .svg-icon { display: block; }
+    .svg-icon-sm { width: 28px; height: 28px; }
+    .svg-icon-md { width: 44px; height: 44px; }
+    .svg-icon-lg { width: 56px; height: 56px; }
+    .svg-icon-xl { width: 72px; height: 72px; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 200;
+      background: rgba(247,247,251,0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--lborder);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 28px;
+      height: 64px;
+    }
+    .logo-img { height: 44px; cursor: pointer; display: block; }
+    .nav-cta {
+      background: var(--primary);
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover { background: var(--primary-dk); box-shadow: 0 4px 16px rgba(83,73,219,0.35); }
+
+    /* ─── PROGRESS BAR ─── */
+    .progress-bar-wrap {
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      z-index: 190;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(91,91,214,.08);
+    }
+    .progress-track { height: 4px; background: #E0E0F0; }
+    .progress-fill { height: 100%; background: var(--purple); transition: width .5s ease; }
+    .progress-pct { font-size: 11px; font-weight: 600; color: var(--text-light); padding: 3px 16px 4px; }
+
+    /* ─── LANDING ─── */
+    #landing { padding-top: 64px; }
+
+    .fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.65s ease forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .fade-up:nth-child(1) { animation-delay: 0.08s; }
+    .fade-up:nth-child(2) { animation-delay: 0.18s; }
+    .fade-up:nth-child(3) { animation-delay: 0.28s; }
+    .fade-up:nth-child(4) { animation-delay: 0.38s; }
+    .fade-up:nth-child(5) { animation-delay: 0.48s; }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(1.5); } }
+    @keyframes flash-sweep { 0% { left:-80%; } 100% { left:140%; } }
+    @keyframes auto-flash { 0% { left:-80%; opacity:1; } 28% { left:140%; opacity:1; } 28.1%,100% { left:140%; opacity:0; } }
+
+    /* Hero */
+    .hero { text-align: center; padding: 30px 40px 48px; position: relative; z-index: 1; }
+    .hero::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 900px; height: 600px; background: radial-gradient(ellipse at center top, rgba(247,247,251,0.7) 0%, transparent 65%); pointer-events: none; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--green-lt); color: var(--green); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 28px; position: relative; z-index: 1; }
+    .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    .hero h1 { font-size: 50px; font-weight: 900; line-height: 1.1; color: var(--ink); letter-spacing: -1.5px; max-width: 680px; margin: 0 auto 32px; position: relative; z-index: 1; }
+    .hero h1 em { font-style: normal; color: var(--primary); }
+    .hero-sub { display: none; }
+    .hero-trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin-top: 22px; position: relative; z-index: 1; }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.83rem; color: var(--slate); font-weight: 500; }
+    .trust-check { width: 19px; height: 19px; border-radius: 50%; border: 1.5px solid var(--slate); display: inline-flex; align-items: center; justify-content: center; font-size: 10px; color: var(--slate); flex-shrink: 0; line-height: 1; }
+
+    /* ─── PROPERTY TYPE SELECTOR (Landing) ─── */
+    .prop-type-intro { position: relative; z-index: 1; width: 100%; }
+    .prop-type-sublabel { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.3px; color: var(--ink); margin-bottom: 22px; display: flex; align-items: center; justify-content: center; gap: 16px; }
+    .prop-type-sublabel::before, .prop-type-sublabel::after { content: ''; width: 40px; height: 2px; background: var(--lborder); border-radius: 2px; }
+    .prop-type-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1020px; margin: 0 auto; }
+    .prop-type-card {
+      position: relative; overflow: hidden;
+      background: rgba(255,255,255,0.97);
+      border: 2px solid var(--lborder);
+      border-radius: 22px;
+      padding: 42px 20px 64px;
+      cursor: pointer; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 9px;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 4px 28px rgba(83,73,219,0.07);
+      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s, border-color 0.2s, background 0.2s;
+    }
+    .prop-type-card::after { content: ''; position: absolute; top: 0; left: -80%; width: 55%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(83,73,219,0.07) 50%, transparent 100%); transform: skewX(-12deg); pointer-events: none; animation: auto-flash var(--flash-dur) ease-in-out 0.9s infinite; }
+    .prop-type-card:nth-child(2)::after { animation-delay: 1.7s; }
+    .prop-type-card:nth-child(3)::after { animation-delay: 2.6s; }
+    .prop-type-card:nth-child(4)::after { animation-delay: 3.4s; }
+    .prop-type-card:hover::after { animation: flash-sweep 0.45s ease-in-out forwards; }
+    .prop-type-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 24px 60px rgba(83,73,219,0.24); border-color: var(--primary); background: #fff; }
+    .prop-type-card:active { transform: scale(0.97); }
+    .ptc-icon { margin-bottom: 4px; transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1); }
+    .prop-type-card:hover .ptc-icon { transform: translateY(-3px) scale(1.08); }
+    .ptc-name { font-size: 1.12rem; font-weight: 800; color: var(--ink); line-height: 1.2; letter-spacing: -0.3px; transition: color 0.2s; }
+    .prop-type-card:hover .ptc-name { color: var(--primary); }
+    .ptc-desc { font-size: 0.82rem; color: var(--slate); line-height: 1.45; font-weight: 400; }
+    .ptc-cta { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; border-top: 1.5px solid var(--lborder); transition: background 0.2s, border-color 0.2s; }
+    .ptc-cta-text { font-size: 0.69rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--primary); transition: color 0.2s; }
+    .ptc-cta-arrow { width: 26px; height: 26px; border-radius: 50%; background: var(--primary-lt); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; color: var(--primary); transition: background 0.2s, color 0.2s, transform 0.2s; }
+    .prop-type-card:hover .ptc-cta { background: var(--primary); border-color: var(--primary); }
+    .prop-type-card:hover .ptc-cta-text { color: #fff; }
+    .prop-type-card:hover .ptc-cta-arrow { background: rgba(255,255,255,0.2); color: #fff; transform: translate(3px,-2px); }
+
+    /* Rates Widget */
+    .rates-section { position: relative; z-index: 1; padding: 64px 40px 0; display: flex; justify-content: center; }
+    .rates-widget { width: 100%; max-width: 680px; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 28px; border: 1px solid var(--lborder); box-shadow: 0 8px 48px rgba(83,73,219,0.1); overflow: hidden; }
+    .rates-header { background: var(--primary); padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; }
+    .rates-header-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+    .rates-live-badge { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.7); letter-spacing: 0.08em; text-transform: uppercase; }
+    .rates-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
+    .rates-body { padding: 0 32px 8px; }
+    .rate-row { display: flex; align-items: center; padding: 26px 0; border-bottom: 1px solid rgba(83,73,219,0.07); gap: 16px; }
+    .rate-row:last-child { border-bottom: none; }
+    .rate-row-left { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+    .rate-row-name { font-size: 0.8rem; font-weight: 700; color: var(--ink); }
+    .rate-row-sub { font-size: 0.73rem; color: #a0a0b8; font-weight: 400; }
+    .rate-row-center { flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 12px; }
+    .rate-bar-wrap { width: 100%; max-width: 140px; height: 5px; background: #eeedf9; border-radius: 100px; overflow: hidden; }
+    .rate-bar-fill { height: 100%; border-radius: 100px; }
+    .rate-bar-fill.us { background: var(--primary); width: 82%; }
+    .rate-bar-fill.avg { background: #d0cef5; width: 100%; }
+    .rate-row-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+    .rate-big { font-size: 2.4rem; font-weight: 800; letter-spacing: -1.5px; line-height: 1; }
+    .rate-row.highlight .rate-big { color: var(--primary); }
+    .rate-row:not(.highlight) .rate-big { color: #c0bedd; }
+    .rate-chip { font-size: 0.68rem; font-weight: 700; padding: 3px 10px; border-radius: 100px; }
+    .rate-row.highlight .rate-chip { background: var(--primary-lt); color: var(--primary); }
+    .rate-row:not(.highlight) .rate-chip { background: #f2f2f8; color: #9898b8; }
+    .rates-savings { margin: 4px 32px 24px; background: var(--green-lt); border-radius: 14px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .rates-savings-text { font-size: 0.82rem; font-weight: 600; color: var(--green); }
+    .rates-savings-text strong { font-weight: 800; }
+    .rates-savings-note { font-size: 0.7rem; color: #52a87b; font-weight: 400; margin-top: 2px; }
+
+    /* VA rate bar */
+    .va-rate-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 20px; justify-content: center; background: rgba(235,240,255,0.88); border: 1.5px solid rgba(83,73,219,0.18); border-radius: 10px; padding: 11px 22px; margin-top: 40px; position: relative; z-index: 1; max-width: 580px; width: 100%; margin-left: auto; margin-right: auto; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+    .va-rate-bar-label { font-size: 14px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+    .va-rate-bar-divider { width: 1px; height: 18px; background: rgba(83,73,219,0.2); flex-shrink: 0; }
+    .va-rate-bar-stats { display: flex; align-items: center; gap: 16px; font-size: 14px; color: var(--slate); flex-wrap: wrap; justify-content: center; }
+    .va-rate-bar-stats strong { font-weight: 700; color: var(--ink); }
+    .va-rate-green { color: var(--green); font-weight: 700; }
+    .va-rate-sep { color: rgba(83,73,219,0.25); }
+
+    /* Proof strip */
+    .proof-strip { position: relative; z-index: 1; display: flex; justify-content: center; padding: 0 40px; margin: 20px 0 0; }
+    .proof-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 680px; width: 100%; }
+    .proof-item { background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 14px; border: 1px solid var(--lborder); padding: 16px 14px; display: flex; align-items: center; gap: 11px; }
+    .proof-check { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 12px; font-weight: 700; flex-shrink: 0; }
+    .proof-text { font-size: 14px; color: var(--ink); font-weight: 600; line-height: 1.35; }
+
+    /* Q&A Chat Bubbles */
+    .qa-strip { position: relative; z-index: 1; padding: 48px 40px 0; display: flex; justify-content: center; }
+    .qa-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1428px; width: 100%; }
+    .qa-grid-single { grid-template-columns: 1fr; max-width: 520px; }
+    .qa-card { background: #fff; border-radius: 20px; padding: 40px 34px; box-shadow: 0 4px 28px rgba(83,73,219,0.09); border: 1px solid var(--lborder); display: flex; flex-direction: column; gap: 20px; }
+    .qa-bubble { padding: 18px 22px; font-size: 1.0rem; line-height: 1.55; font-weight: 500; max-width: 90%; }
+    .qa-q { background: #2D2D2D; color: #fff; border-radius: 18px 18px 4px 18px; align-self: flex-end; font-weight: 600; }
+    .qa-a { background: #F0F0F0; color: #1A1A1A; border-radius: 18px 18px 18px 4px; align-self: flex-start; }
+
+    /* FAQ */
+    .faq-section { position: relative; z-index: 1; padding: 80px 40px 40px; display: flex; flex-direction: column; align-items: center; }
+    .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary); margin-bottom: 12px; }
+    .section-title { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; letter-spacing: -1.2px; color: var(--ink); margin-bottom: 48px; text-align: center; }
+    .faq-list { width: 100%; max-width: 680px; display: flex; flex-direction: column; background: rgba(255,255,255,0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 24px; border: 1px solid var(--lborder); overflow: hidden; }
+    .faq-item { border-bottom: 1px solid var(--lborder); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 22px 28px; text-align: left; gap: 16px; font-family: 'Inter', sans-serif; }
+    .faq-q-text { font-size: 0.95rem; font-weight: 700; color: var(--ink); line-height: 1.35; }
+    .faq-icon { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--primary-lt); display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .faq-icon svg { transition: transform 0.3s; }
+    .faq-item.open .faq-icon { background: var(--primary); }
+    .faq-item.open .faq-icon svg { transform: rotate(180deg); }
+    .faq-item.open .faq-icon svg path { stroke: #fff; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; padding: 0 28px; }
+    .faq-a-inner { font-size: 0.88rem; color: var(--slate); line-height: 1.7; padding-bottom: 22px; }
+    .faq-item.open .faq-a { max-height: 300px; }
+
+    /* Reviews */
+    .reviews-section { position: relative; z-index: 1; padding: 80px 40px 100px; display: flex; flex-direction: column; align-items: center; }
+    #funnel .reviews-section { padding: 10px 20px 40px; }
+    .review-platforms { display: flex; align-items: center; gap: 28px; margin-bottom: 48px; flex-wrap: wrap; justify-content: center; }
+    .review-platform { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--lborder); border-radius: 100px; padding: 8px 16px 8px 10px; }
+    .platform-icon { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+    .platform-icon.g { background: #EA4335; }
+    .platform-icon.z { background: #006AFF; }
+    .platform-icon.x { background: #000000; }
+    .platform-score { font-size: 0.9rem; font-weight: 700; color: var(--ink); }
+    .platform-stars { color: #F5A623; font-size: 0.78rem; letter-spacing: 1px; }
+    .platform-count { font-size: 0.72rem; color: var(--slate); font-weight: 500; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1000px; width: 100%; }
+    .review-card { background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 20px; border: 1px solid var(--lborder); padding: 24px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 4px 24px rgba(83,73,219,0.06); transition: transform 0.22s, box-shadow 0.22s; }
+    .review-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(83,73,219,0.12); }
+    .review-header { display: flex; align-items: center; gap: 12px; }
+    .review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-lt); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: var(--primary); flex-shrink: 0; }
+    .review-meta { display: flex; flex-direction: column; gap: 2px; }
+    .review-name { font-size: 0.88rem; font-weight: 700; color: var(--ink); }
+    .review-date { font-size: 0.72rem; color: #a0a0b8; font-weight: 400; }
+    .review-stars { color: #F5A623; font-size: 0.8rem; letter-spacing: 1px; }
+    .review-body { font-size: 0.83rem; color: var(--slate); line-height: 1.65; flex: 1; }
+    .review-footer { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding-top: 10px; border-top: 1px solid var(--lborder); }
+    .review-footer-right { display: flex; align-items: center; gap: 6px; }
+    .review-lender-logo { max-height: 22px; max-width: 80px; object-fit: contain; display: block; }
+    .review-footer-text { font-size: 0.68rem; color: #b0b0c8; font-weight: 500; }
+    .review-platform-dot { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 800; color: #fff; }
+    .review-platform-dot.g { background: #EA4335; }
+    .review-platform-dot.z { background: #006AFF; }
+    .review-platform-dot.x { background: #000; }
+
+    /* VA comparison table */
+    .va-wrapper { width: 100%; overflow-x: auto; margin: 32px 0; }
+    .va-table { width: 100%; min-width: 700px; border-collapse: collapse; background-color: #fff; }
+    .va-table caption { caption-side: top; text-align: left; font-size: 1.1rem; font-weight: 700; color: #232227; margin-bottom: 18px; line-height: 1.4; padding-bottom: 12px; display: block; }
+    .va-table thead tr { background-color: #000; }
+    .va-table thead th { background-color: #000 !important; color: #fff !important; padding: 18px 16px; border: 1px solid #000; font-size: 15px; font-weight: 700; text-align: center; vertical-align: middle; }
+    .va-table tbody th, .va-table tbody td { padding: 18px 16px; border: 1px solid #e5e5e5; font-size: 14px; line-height: 1.8; color: #333; vertical-align: middle; text-align: center; transition: background 0.2s; }
+    .va-table tbody th { background-color: #fafafa; font-weight: 700; text-align: left; }
+    .va-table tbody tr:hover td, .va-table tbody tr:hover th { background-color: #f7f9fc; }
+    .va-table .yes { color: #1e8e5a; font-weight: 700; font-size: 16px; }
+    .va-table .no { color: #c0392b; font-weight: 700; font-size: 16px; }
+    .va-note { margin-top: 24px; padding: 20px; background-color: #f7f9fc; border-left: 4px solid #000; border-radius: 0 10px 10px 0; font-size: 14px; line-height: 1.8; color: #444; }
+    .va-note strong { color: #000; }
+    @media (max-width: 640px) { .va-table { min-width: 600px; } }
+
+    /* Article section */
+    .article-section { background: #fff; width: 100%; padding: 72px 40px; }
+    .article-inner { max-width: 780px; margin: 0 auto; }
+    .article-title { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800; color: var(--ink); letter-spacing: -0.5px; line-height: 1.25; margin-bottom: 32px; }
+    .article-body { font-size: 0.95rem; color: var(--text-mid); line-height: 1.85; }
+    .article-body p { margin-bottom: 20px; }
+    .article-body h3 { font-size: 1.1rem; font-weight: 800; color: var(--ink); margin: 36px 0 12px; }
+    .article-body h4 { font-size: 0.95rem; font-weight: 700; color: var(--ink); margin: 24px 0 10px; }
+    .article-body ul { padding-left: 22px; margin-bottom: 20px; }
+    .article-body ul li { margin-bottom: 8px; }
+    .article-kp { background: var(--primary-lt); border-left: 4px solid var(--primary); border-radius: 0 10px 10px 0; padding: 20px 24px; margin-bottom: 28px; }
+    .article-kp p { margin-bottom: 8px; color: var(--ink); font-size: 0.9rem; }
+    .article-kp p:last-child { margin-bottom: 0; }
+    @media (max-width: 640px) {
+      .article-section { padding: 48px 16px; }
+    }
+
+    /* Footer */
+    footer { background: rgba(255,255,255,0.97); border-top: 1px solid rgba(91,91,214,.10); padding: 32px 28px 24px; }
+    .footer-links { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-bottom: 24px; }
+    .footer-links a { color: var(--text-mid); font-size: 13px; font-weight: 500; text-decoration: none; }
+    .footer-links a:hover { color: var(--purple); }
+    .footer-bottom { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-company { display: flex; align-items: center; gap: 12px; }
+    .eho-badge { width: 48px; height: 48px; border: 2px solid var(--text); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; text-align: center; color: var(--text); line-height: 1.2; padding: 3px; flex-shrink: 0; }
+    .footer-company-name { font-size: 13px; font-weight: 700; color: var(--text); }
+    .footer-nmls { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+    .footer-legal { font-size: 11.5px; color: var(--text-light); text-align: right; line-height: 1.7; max-width: 460px; }
+    .footer-legal a { color: var(--purple); }
+
+    /* ═══════════════ FUNNEL ═══════════════ */
+    #funnel { display: none; padding-top: 88px; min-height: 100vh; }
+    #funnel.active { display: block; }
+
+    .funnel-body {
+      display: flex; align-items: flex-start; justify-content: center;
+      padding: 36px 16px 60px;
+    }
+
+    .step-card {
+      background: rgba(255,255,255,0.97);
+      border-radius: 20px;
+      padding: 44px 52px;
+      width: 100%; max-width: 680px;
+      box-shadow: 0 12px 56px rgba(30,27,75,.14);
+      animation: slideIn .3s ease;
+    }
+    .step-card-wide { max-width: 940px; padding: 44px 40px; }
+    @keyframes slideIn { from { opacity:0; transform:translateX(16px); } to { opacity:1; transform:translateX(0); } }
+
+    .step-q { font-size: 21px; font-weight: 800; text-align: center; color: var(--text); margin-bottom: 28px; line-height: 1.3; }
+    .step-sub { font-size: 13px; text-align: center; color: var(--text-light); margin-top: -18px; margin-bottom: 24px; }
+    .step-sub strong { color: var(--purple); }
+
+    /* Icon option grid */
+    .opts-icon { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+    .opts-icon.cols3 { grid-template-columns: repeat(3,1fr); }
+    .opts-icon.cols4 { grid-template-columns: repeat(4,1fr); }
+
+    .opt-icon-card {
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .18s;
+      background: rgba(255,255,255,0.9);
+    }
+    .opt-icon-card:hover { border-color: var(--purple); background: var(--purple-bg); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(91,91,214,.18); }
+    .opt-icon-card.sel { border-color: var(--purple); border-width: 2px; background: var(--purple-bg); transform: translateY(-2px); }
+    .opt-icon-card .oi { display: flex; justify-content: center; margin-bottom: 10px; }
+    .opt-icon-card .ol { font-size: 14px; font-weight: 600; color: var(--text-mid); line-height: 1.3; }
+    .opt-icon-card:hover .ol,
+    .opt-icon-card.sel .ol { color: var(--purple); font-weight: 700; }
+
+    /* Yes/No */
+    .opts-yn { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+    .opt-yn { border: 1.5px solid var(--border); border-radius: 12px; padding: 24px 14px; text-align: center; cursor: pointer; transition: all .18s; background: rgba(255,255,255,0.9); display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .opt-yn:hover { border-color: var(--purple); background: var(--purple-bg); transform: translateY(-2px); }
+    .opt-yn.sel { border-color: var(--purple); border-width: 2px; background: var(--purple-bg); }
+    .yn-lbl { font-size: 15px; font-weight: 700; color: var(--text-mid); }
+    .opt-yn:hover .yn-lbl, .opt-yn.sel .yn-lbl { color: var(--purple); }
+
+    /* List options */
+    .opts-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .opt-list { width: 100%; border: 1.5px solid var(--border); border-radius: 10px; padding: 14px 20px; text-align: center; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--text-mid); background: rgba(255,255,255,0.9); transition: all .18s; font-family: 'Inter', sans-serif; }
+    .opt-list:hover { border-color: var(--purple); color: var(--purple); background: var(--purple-bg); }
+    .opt-list.sel { border-color: var(--purple); border-width: 2px; color: var(--purple); font-weight: 600; background: var(--purple-bg); }
+
+    /* Grid options */
+    .opts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+    .opt-grid { border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--text-mid); background: rgba(255,255,255,0.9); transition: all .18s; font-family: 'Inter', sans-serif; }
+    .opt-grid:hover { border-color: var(--purple); color: var(--purple); background: var(--purple-bg); }
+    .opt-grid.sel { border-color: var(--purple); border-width: 2px; color: var(--purple); font-weight: 600; background: var(--purple-bg); }
+
+    /* Inputs */
+    .inp-group { margin-bottom: 18px; }
+    .inp-label { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 7px; }
+    .inp { width: 100%; border: 1.5px solid var(--border); border-radius: 10px; padding: 13px 16px; font-size: 16px; font-family: 'Inter', sans-serif; color: var(--text); outline: none; transition: border-color .2s; background: rgba(255,255,255,0.9); }
+    .inp:focus { border-color: var(--purple); }
+    .inp-dollar { position: relative; }
+    .inp-dollar-sym { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-weight: 600; color: var(--text-mid); font-size: 16px; }
+    .inp-dollar .inp { padding-left: 28px; }
+    .inp-pct { position: relative; }
+    .inp-pct-sym { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-weight: 600; color: var(--text-mid); font-size: 16px; }
+    .inp-pct .inp { padding-right: 34px; }
+
+    /* Slider */
+    .slider-wrap { margin-top: 10px; }
+    input[type=range] { width: 100%; -webkit-appearance: none; height: 4px; border-radius: 2px; background: #D8D8EE; outline: none; margin: 8px 0; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--purple); cursor: pointer; box-shadow: 0 2px 8px rgba(91,91,214,.40); }
+    .slider-labels { display: flex; justify-content: space-between; font-size: 11.5px; font-weight: 600; color: var(--text-light); }
+
+    /* Buttons */
+    .btn-continue { width: 100%; background: var(--purple-dark); color: var(--white); border: none; border-radius: 10px; padding: 16px; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all .2s; margin-top: 6px; }
+    .btn-continue:hover { background: var(--purple); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(91,91,214,.30); }
+    .btn-continue.secondary { background: white; color: var(--purple-dark); border: 1.5px solid var(--border); margin-top: 10px; }
+    .btn-continue.secondary:hover { border-color: var(--purple); color: var(--purple); background: var(--purple-bg); }
+    .btn-back { display: block; text-align: center; color: var(--purple); font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 16px; text-decoration: none; }
+    .btn-back:hover { text-decoration: underline; }
+
+    /* Lender cards */
+    .lender-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 18px; }
+    .lender-rate-row { display: flex; justify-content: space-between; gap: 6px; margin: 10px 0 8px; padding: 10px 8px; background: var(--purple-bg); border-radius: 8px; user-select: none; pointer-events: none; }
+    .lender-rate-item { display: flex; flex-direction: column; align-items: center; flex: 1; }
+    .lrf-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
+    .lrf-val { font-size: 16px; font-weight: 800; color: var(--text); margin-top: 3px; filter: blur(5px); }
+    .ty-lender-rates { display: flex; justify-content: space-between; gap: 6px; width: 100%; padding: 12px 10px; background: var(--purple-bg); border-radius: 10px; }
+    .ty-rate-item { display: flex; flex-direction: column; align-items: center; flex: 1; }
+    .ty-rate-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
+    .ty-rate-val { font-size: 18px; font-weight: 800; color: var(--text); margin-top: 4px; }
+    .lender-card { border: 1.5px solid var(--border); border-radius: 10px; padding: 16px 14px; position: relative; transition: border-color .2s; cursor: pointer; background: rgba(255,255,255,0.9); }
+    .lender-card.sel { border-color: var(--purple); border-width: 2px; }
+    .lender-chk { position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; background: var(--purple); border-radius: 4px; display: none; align-items: center; justify-content: center; color: white; font-size: 12px; }
+    .lender-card.sel .lender-chk { display: flex; }
+    .lender-badge { background: white; border-radius: 8px; padding: 10px 8px; text-align: center; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; min-height: 60px; border: 1px solid var(--border); }
+    .lender-badge img { max-width: 130px; max-height: 48px; object-fit: contain; display: block; }
+    .lender-nmls { font-size: 10.5px; color: var(--text-light); margin-bottom: 2px; }
+    .lender-stars { color: var(--gold); font-size: 13px; }
+    .lender-score { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+
+    .consent-text { font-size: 11.5px; color: var(--text-light); line-height: 1.7; margin: 16px 0; }
+    .consent-text a { color: var(--purple); }
+    .show-more-link { color: var(--purple); font-size: 13.5px; font-weight: 600; display: block; text-align: center; margin-bottom: 14px; text-decoration: none; cursor: pointer; }
+
+    /* Contact */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .security-box { display: flex; flex-direction: column; align-items: center; margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(91,91,214,.10); text-align: center; }
+    .security-box p { font-size: 12.5px; color: var(--text-mid); margin-top: 8px; line-height: 1.5; }
+
+    /* Trust bar */
+    .trust-bar { background: rgba(255,255,255,0.90); border-top: 1px solid rgba(91,91,214,.10); border-bottom: 1px solid rgba(91,91,214,.10); padding: 24px 40px; display: flex; justify-content: center; align-items: center; gap: 48px; flex-wrap: wrap; backdrop-filter: blur(4px); }
+    .trust-item { display: flex; align-items: center; gap: 12px; }
+    .trust-item-text { font-size: 12.5px; font-weight: 600; color: var(--text); max-width: 160px; line-height: 1.4; }
+
+    /* Thank you */
+    .ty-page { text-align: center; padding: 10px 0; }
+    .ty-medal { margin-bottom: 20px; display: flex; justify-content: center; }
+    .ty-lenders { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+    .ty-lender-card { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px 20px 20px; background: rgba(255,255,255,0.95); border: 1px solid var(--lborder); border-radius: 18px; flex: 1; min-width: 220px; max-width: 420px; box-shadow: 0 4px 20px rgba(83,73,219,0.07); }
+    .ty-rate-options { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+    .ty-rate-option { display: flex; justify-content: space-between; gap: 6px; width: 100%; padding: 10px 12px; border-radius: 10px; }
+    .ty-rate-option.shade-1 { background: #F0EFFE; }
+    .ty-rate-option.shade-2 { background: #DDD9FC; }
+    .ty-rate-option.shade-3 { background: #C9C2F9; }
+    .ty-lender-logo { display: flex; align-items: center; justify-content: center; min-height: 60px; width: 100%; }
+    .ty-lender-logo img { max-width: 160px; max-height: 60px; object-fit: contain; display: block; }
+    .ty-lender-name { font-size: 14px; font-weight: 700; color: var(--text); text-align: center; line-height: 1.3; }
+    .ty-view-rates { font-size: 14px; font-weight: 700; color: var(--purple); text-decoration: none; cursor: pointer; }
+    .ty-view-rates:hover { text-decoration: underline; }
+    .ty-title { font-size: 28px; font-weight: 800; color: var(--purple-dark); margin-bottom: 12px; }
+    .ty-body { font-size: 15px; color: var(--text-mid); line-height: 1.7; margin-bottom: 28px; }
+    .ty-checklist { background: var(--purple-bg); border-radius: 12px; padding: 22px 28px; margin-bottom: 28px; border: 1px solid rgba(91,91,214,.15); text-align: left; }
+    .ty-checklist h4 { font-size: 13px; font-weight: 700; letter-spacing: .06em; color: var(--purple); margin-bottom: 12px; text-transform: uppercase; }
+    .ty-check { display: flex; align-items: flex-start; gap: 10px; font-size: 16px; color: var(--text-mid); margin-bottom: 8px; line-height: 1.4; }
+    .ty-check:last-child { margin-bottom: 0; }
+    .ty-checkmark { color: var(--purple); font-size: 15px; flex-shrink: 0; }
+
+    .hidden { display: none !important; }
+
+    /* ── LOADER SCREEN ── */
+    .loader-top { display: flex; justify-content: center; margin-bottom: 24px; }
+    .loader-ring { position: relative; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; }
+    .loader-ring::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 4px solid var(--purple-bg); border-top-color: var(--purple); animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-progress-wrap { height: 6px; background: #E0E0F0; border-radius: 100px; overflow: hidden; margin-bottom: 24px; }
+    .loader-progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), #7c73f5); border-radius: 100px; width: 0%; }
+    .loader-steps { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; text-align: left; }
+    .load-item { display: flex; align-items: center; gap: 14px; padding: 13px 16px; border-radius: 12px; transition: background 0.3s, opacity 0.3s; opacity: 0.38; }
+    .load-item.active { background: var(--purple-bg); opacity: 1; }
+    .load-item.done { opacity: 1; }
+    .load-dot { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #D0D0E8; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background 0.3s, border-color 0.3s; }
+    .load-item.active .load-dot { border-color: var(--purple); border-top-color: transparent; animation: spin 0.75s linear infinite; }
+    .load-item.done .load-dot { background: var(--green); border-color: var(--green); animation: none; }
+    .load-item.done .load-dot::after { content: '✓'; font-size: 12px; font-weight: 800; color: #fff; line-height: 1; }
+    .load-text { font-size: 14px; font-weight: 500; color: var(--text-mid); line-height: 1.4; }
+    .load-item.active .load-text { font-weight: 700; color: var(--text); }
+    .load-item.done .load-text { color: var(--text-mid); }
+
+    /* SMS consent checkboxes */
+    .sms-consent-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+    .sms-consent-item input[type=checkbox] { width: 18px; height: 18px; min-width: 18px; accent-color: var(--purple); margin-top: 2px; cursor: pointer; }
+
+    /* OTP verification */
+    .otp-group { display: flex; gap: 12px; justify-content: center; margin: 24px 0 28px; }
+    .otp-inp { width: 64px; height: 72px; border: 1.5px solid var(--border); border-radius: 12px; font-size: 2rem; font-weight: 700; text-align: center; color: var(--text); outline: none; font-family: 'Inter', sans-serif; transition: border-color .2s, box-shadow .2s; background: rgba(255,255,255,0.9); }
+    .otp-inp:focus { border-color: var(--purple); border-width: 2px; box-shadow: 0 0 0 4px rgba(83,73,219,0.1); }
+    .otp-resend { text-align: center; margin-top: 14px; font-size: 13px; color: var(--text-light); }
+    .otp-resend a { color: var(--purple); font-weight: 600; cursor: pointer; }
+    @media (max-width: 640px) {
+      .otp-inp { width: 54px; height: 62px; font-size: 1.7rem; border-radius: 10px; }
+      .otp-group { gap: 10px; }
+    }
+
+    /* ── TABLET ── */
+    @media (max-width: 860px) {
+      .reviews-grid { grid-template-columns: 1fr 1fr; }
+      .prop-type-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; max-width: 560px; }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      /* Header */
+      header { padding: 8px 16px; height: 56px; }
+      .logo-img { height: 38px !important; }
+      .progress-bar-wrap { top: 56px; }
+      #funnel { padding-top: 80px; }
+
+      /* Hero */
+      .hero { padding: 22px 18px 28px; }
+      .hero h1 { font-size: 30px; letter-spacing: -0.8px; margin-bottom: 18px; }
+      .eyebrow { font-size: 0.66rem; margin-bottom: 18px; }
+
+      /* Property type grid – 2-col on mobile */
+      .prop-type-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .prop-type-card { padding: 26px 10px 48px; border-radius: 18px; }
+      .ptc-name { font-size: 0.88rem; }
+      .ptc-desc { font-size: 0.71rem; }
+
+      /* VA rate bar */
+      .va-rate-bar { padding: 10px 14px; gap: 8px 14px; margin-top: 40px; }
+      .va-rate-bar-label { font-size: 14px; }
+      .va-rate-bar-divider { display: none; }
+      .va-rate-bar-stats { gap: 10px; font-size: 14px; }
+      .va-rate-sep { display: none; }
+
+      /* Proof strip */
+      .proof-strip { padding: 0 14px; margin: 16px 0 0; }
+      .proof-inner { grid-template-columns: 1fr; gap: 0; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 14px; border: 1px solid var(--lborder); overflow: hidden; }
+      .proof-item { background: transparent; border: none; border-radius: 0; border-bottom: 1px solid var(--lborder); padding: 12px 14px; gap: 10px; }
+      .proof-item:last-child { border-bottom: none; }
+      .proof-check { width: 22px; height: 22px; font-size: 10px; }
+      .proof-text { font-size: 14px; }
+
+      /* Rates widget */
+      .rates-section { padding: 36px 14px 0; }
+      .rates-header { padding: 13px 16px; }
+      .rates-body { padding: 0 16px 8px; }
+      .rate-big { font-size: 1.85rem; }
+      .rate-row { padding: 16px 0; gap: 8px; }
+      .rate-row-center { display: none; }
+      .rates-savings { margin: 4px 16px 16px; padding: 12px 14px; }
+
+      /* Q&A bubbles */
+      .qa-strip { padding: 36px 14px 0; }
+      .qa-grid { grid-template-columns: 1fr; gap: 16px; }
+
+      /* FAQ */
+      .faq-section { padding: 44px 14px 28px; }
+      .faq-q { padding: 16px 18px; }
+      .faq-a { padding: 0 18px; }
+      .faq-q-text { font-size: 0.88rem; }
+      .section-title { letter-spacing: -0.5px; }
+
+      /* Reviews */
+      .reviews-section { padding: 40px 14px 56px; }
+      #funnel .reviews-section { padding: 8px 12px 28px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .review-platforms { gap: 8px; }
+      .review-platform { padding: 6px 12px 6px 8px; }
+
+      /* Funnel */
+      .funnel-body { padding: 18px 12px 56px; }
+      .step-card { padding: 26px 18px 30px; border-radius: 16px; }
+      .step-card-wide { padding: 26px 16px 30px; }
+      .step-q { font-size: 17px; margin-bottom: 20px; }
+      .step-sub { font-size: 12px; margin-top: -14px; margin-bottom: 18px; }
+
+      /* Option grids */
+      .opt-icon-card { padding: 16px 8px; }
+      .opts-icon.cols3 { grid-template-columns: repeat(2, 1fr); }
+      .opts-icon.cols4 { grid-template-columns: repeat(2, 1fr); }
+      .opt-grid { padding: 13px 8px; }
+      .opt-list { padding: 13px 16px; }
+
+      /* Slider thumb – larger touch target */
+      input[type=range]::-webkit-slider-thumb { width: 26px; height: 26px; }
+      input[type=range]::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: var(--purple); cursor: pointer; }
+
+      /* Lender cards */
+      .lender-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .lender-card { padding: 12px 10px; }
+      .lender-badge { min-height: 48px; padding: 8px 6px; }
+      .lender-badge img { max-width: 90px; max-height: 36px; }
+      .lender-nmls { font-size: 9.5px; }
+
+      /* Contact form */
+      .form-row { grid-template-columns: 1fr; }
+      .security-box { margin-top: 20px; padding-top: 16px; }
+      .security-box p { font-size: 11.5px; }
+
+      /* Trust bar */
+      .trust-bar { gap: 16px; padding: 16px 18px; }
+
+      /* Footer */
+      footer { padding: 24px 16px 20px; }
+      .footer-links { gap: 16px; }
+      .footer-bottom { flex-direction: column; gap: 12px; }
+      .footer-legal { text-align: left; max-width: 100%; font-size: 11px; }
+
+      /* Misc */
+      .value-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── SMALL PHONES ── */
+    @media (max-width: 390px) {
+      .hero h1 { font-size: 26px; }
+      .lender-grid { grid-template-columns: 1fr; }
+      .step-card { padding: 22px 14px 26px; }
+    }
+
+    /* Social proof popup */
+    #proof-notif {
+      position: fixed; bottom: 24px; left: 24px; z-index: 9999;
+      background: #fff; border: 1.5px solid var(--lborder);
+      border-radius: 16px; box-shadow: 0 8px 36px rgba(0,0,0,0.13);
+      padding: 14px 18px; display: flex; align-items: center; gap: 12px;
+      max-width: 290px;
+      transform: translateY(calc(100% + 40px)); opacity: 0;
+      transition: transform 0.48s cubic-bezier(0.34,1.56,0.64,1), opacity 0.35s ease;
+      pointer-events: none;
+    }
+    #proof-notif.visible { transform: translateY(0); opacity: 1; }
+    .pn-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--primary-lt); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.15rem; }
+    .pn-body { display: flex; flex-direction: column; gap: 3px; }
+    .pn-label { font-size: 0.68rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.07em; }
+    .pn-msg { font-size: 0.83rem; font-weight: 600; color: var(--ink); line-height: 1.35; }
+  </style>
+</head>
+<body>
+
+<!-- ══ SVG ICON LIBRARY (hidden) ══ -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+
+    <!-- Single Family Home -->
+    <symbol id="icon-house" viewBox="0 0 64 64">
+      <rect x="43" y="13" width="7" height="15" rx="1.5" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <path d="M7 30 L32 8 L57 30 Z" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2" stroke-linejoin="round"/>
+      <line x1="4" y1="30" x2="60" y2="30" stroke="#5B5BD6" stroke-width="2" stroke-linecap="round"/>
+      <rect x="11" y="30" width="42" height="26" rx="1" fill="white" stroke="#5B5BD6" stroke-width="2"/>
+      <rect x="14" y="34" width="12" height="10" rx="1.5" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <line x1="20" y1="34" x2="20" y2="44" stroke="#5B5BD6" stroke-width="1" stroke-linecap="round"/>
+      <line x1="14" y1="39" x2="26" y2="39" stroke="#5B5BD6" stroke-width="1" stroke-linecap="round"/>
+      <rect x="38" y="34" width="12" height="10" rx="1.5" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <line x1="44" y1="34" x2="44" y2="44" stroke="#5B5BD6" stroke-width="1" stroke-linecap="round"/>
+      <line x1="38" y1="39" x2="50" y2="39" stroke="#5B5BD6" stroke-width="1" stroke-linecap="round"/>
+      <path d="M27 56 L27 44 Q32 40 37 44 L37 56" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5" stroke-linejoin="round"/>
+      <circle cx="35.5" cy="50" r="1.5" fill="#5B5BD6"/>
+    </symbol>
+
+    <!-- Townhome -->
+    <symbol id="icon-townhome" viewBox="0 0 64 64">
+      <path d="M4 32 L18 14 L32 32 Z" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M32 32 L46 11 L60 32 Z" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect x="4" y="32" width="28" height="24" fill="white" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="32" y="32" width="28" height="24" fill="white" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="7" y="36" width="10" height="8" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <line x1="12" y1="36" x2="12" y2="44" stroke="#5B5BD6" stroke-width="1" stroke-linecap="round"/>
+      <rect x="20" y="44" width="9" height="12" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <circle cx="27.5" cy="50" r="1" fill="#5B5BD6"/>
+      <rect x="35" y="36" width="10" height="8" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <line x1="40" y1="36" x2="40" y2="44" stroke="#5B5BD6" stroke-width="1" stroke-linecap="round"/>
+      <rect x="47" y="44" width="9" height="12" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <circle cx="54.5" cy="50" r="1" fill="#5B5BD6"/>
+    </symbol>
+
+    <!-- Condominium -->
+    <symbol id="icon-condo" viewBox="0 0 64 64">
+      <rect x="12" y="8" width="40" height="50" rx="2" fill="white" stroke="#5B5BD6" stroke-width="2"/>
+      <rect x="12" y="8" width="40" height="8" rx="2" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="4" y="22" width="10" height="36" rx="1" fill="#F0F0FA" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="50" y="22" width="10" height="36" rx="1" fill="#F0F0FA" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="17" y="19" width="8" height="7" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="28" y="19" width="8" height="7" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="39" y="19" width="8" height="7" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="17" y="30" width="8" height="7" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="28" y="30" width="8" height="7" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="39" y="30" width="8" height="7" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="17" y="41" width="8" height="7" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="28" y="41" width="8" height="7" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="39" y="41" width="8" height="7" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="24" y="51" width="16" height="7" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+    </symbol>
+
+    <!-- Multi-Family -->
+    <symbol id="icon-multifamily" viewBox="0 0 64 64">
+      <rect x="4" y="20" width="56" height="38" rx="2" fill="white" stroke="#5B5BD6" stroke-width="2"/>
+      <rect x="4" y="20" width="56" height="7" rx="2" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <line x1="32" y1="27" x2="32" y2="58" stroke="#5B5BD6" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+      <rect x="8" y="30" width="11" height="9" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <line x1="13.5" y1="30" x2="13.5" y2="39" stroke="#5B5BD6" stroke-width="1" stroke-linecap="round"/>
+      <rect x="22" y="30" width="8" height="9" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="34" y="30" width="8" height="9" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="45" y="30" width="11" height="9" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <line x1="50.5" y1="30" x2="50.5" y2="39" stroke="#5B5BD6" stroke-width="1" stroke-linecap="round"/>
+      <line x1="6" y1="43" x2="30" y2="43" stroke="#5B5BD6" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <line x1="34" y1="43" x2="58" y2="43" stroke="#5B5BD6" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <rect x="9" y="47" width="14" height="11" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <circle cx="21" cy="52.5" r="1.5" fill="#5B5BD6"/>
+      <rect x="41" y="47" width="14" height="11" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <circle cx="43" cy="52.5" r="1.5" fill="#5B5BD6"/>
+    </symbol>
+
+    <!-- Primary Residence (house + heart) -->
+    <symbol id="icon-primary" viewBox="0 0 64 64">
+      <path d="M8 30 L32 10 L56 30" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="12" y="30" width="40" height="26" rx="1" fill="white" stroke="#5B5BD6" stroke-width="2"/>
+      <rect x="15" y="34" width="11" height="9" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <line x1="20.5" y1="34" x2="20.5" y2="43" stroke="#5B5BD6" stroke-width="1"/>
+      <line x1="15" y1="38.5" x2="26" y2="38.5" stroke="#5B5BD6" stroke-width="1"/>
+      <rect x="38" y="34" width="11" height="9" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <line x1="43.5" y1="34" x2="43.5" y2="43" stroke="#5B5BD6" stroke-width="1"/>
+      <line x1="38" y1="38.5" x2="49" y2="38.5" stroke="#5B5BD6" stroke-width="1"/>
+      <rect x="26" y="43" width="12" height="13" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <path d="M32 26 C32 26 26 21.5 26 18.5 C26 16.2 28.2 15 30.5 17 L32 18.5 L33.5 17 C35.8 15 38 16.2 38 18.5 C38 21.5 32 26 32 26Z" fill="#5B5BD6"/>
+    </symbol>
+
+    <!-- Second Home (house + sun) -->
+    <symbol id="icon-secondhome" viewBox="0 0 64 64">
+      <circle cx="50" cy="13" r="7" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="50" y1="3" x2="50" y2="1" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+      <line x1="57" y1="6" x2="59" y2="4" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+      <line x1="60" y1="13" x2="62" y2="13" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+      <line x1="57" y1="20" x2="59" y2="22" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+      <line x1="43" y1="6" x2="41" y2="4" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+      <path d="M6 32 L28 12 L50 32" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="10" y="32" width="38" height="24" rx="1" fill="white" stroke="#5B5BD6" stroke-width="2"/>
+      <rect x="13" y="36" width="10" height="8" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <line x1="18" y1="36" x2="18" y2="44" stroke="#5B5BD6" stroke-width="1"/>
+      <line x1="13" y1="40" x2="23" y2="40" stroke="#5B5BD6" stroke-width="1"/>
+      <rect x="26" y="40" width="12" height="16" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <circle cx="36" cy="48" r="1.5" fill="#5B5BD6"/>
+      <rect x="39" y="36" width="6" height="8" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+    </symbol>
+
+    <!-- Investment/Rental (house + coin) -->
+    <symbol id="icon-investment" viewBox="0 0 64 64">
+      <path d="M6 31 L29 10 L52 31" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="10" y="31" width="38" height="25" rx="1" fill="white" stroke="#5B5BD6" stroke-width="2"/>
+      <rect x="13" y="35" width="10" height="8" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <line x1="18" y1="35" x2="18" y2="43" stroke="#5B5BD6" stroke-width="1"/>
+      <line x1="13" y1="39" x2="23" y2="39" stroke="#5B5BD6" stroke-width="1"/>
+      <rect x="25" y="40" width="12" height="16" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="35" y="35" width="10" height="8" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <circle cx="50" cy="16" r="10" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+      <text x="50" y="20.5" font-family="Arial,sans-serif" font-size="11" font-weight="800" fill="#92400E" text-anchor="middle">$</text>
+      <path d="M40 24 Q44 20 48 22" stroke="#F59E0B" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Yes (check circle) -->
+    <symbol id="icon-yes" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="22" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2"/>
+      <path d="M14 24 L20 31 L34 17" stroke="#5B5BD6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </symbol>
+
+    <!-- No (X circle) -->
+    <symbol id="icon-no" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="22" fill="#F5F5F5" stroke="#CCCCCC" stroke-width="2"/>
+      <line x1="16" y1="16" x2="32" y2="32" stroke="#999" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="32" y1="16" x2="16" y2="32" stroke="#999" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Value prop: Matching (target) -->
+    <symbol id="icon-target" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="28" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2"/>
+      <circle cx="32" cy="32" r="19" fill="white" stroke="#5B5BD6" stroke-width="1.5"/>
+      <circle cx="32" cy="32" r="10" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <circle cx="32" cy="32" r="4" fill="#5B5BD6"/>
+      <line x1="32" y1="2" x2="32" y2="10" stroke="#5B5BD6" stroke-width="2" stroke-linecap="round"/>
+      <line x1="32" y1="54" x2="32" y2="62" stroke="#5B5BD6" stroke-width="2" stroke-linecap="round"/>
+      <line x1="2" y1="32" x2="10" y2="32" stroke="#5B5BD6" stroke-width="2" stroke-linecap="round"/>
+      <line x1="54" y1="32" x2="62" y2="32" stroke="#5B5BD6" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Value prop: Rates (tag) -->
+    <symbol id="icon-rates" viewBox="0 0 64 64">
+      <rect x="6" y="16" width="36" height="36" rx="6" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2" transform="rotate(-10 24 34)"/>
+      <circle cx="16" cy="20" r="3" fill="#5B5BD6"/>
+      <line x1="20" y1="34" x2="36" y2="18" stroke="#5B5BD6" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="22" cy="38" r="3.5" fill="none" stroke="#5B5BD6" stroke-width="2"/>
+      <circle cx="34" cy="22" r="3.5" fill="#5B5BD6"/>
+      <circle cx="50" cy="18" r="10" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+      <text x="50" y="22.5" font-family="Arial" font-size="11" font-weight="800" fill="#92400E" text-anchor="middle">%</text>
+    </symbol>
+
+    <!-- Value prop: Shield secure -->
+    <symbol id="icon-shield" viewBox="0 0 64 64">
+      <path d="M32 4 L54 14 L54 34 C54 48 32 60 32 60 C32 60 10 48 10 34 L10 14 Z" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M32 12 L46 19 L46 33 C46 42 32 50 32 50 C32 50 18 42 18 33 L18 19 Z" fill="white" stroke="#5B5BD6" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M23 32 L29 38 L41 26" stroke="#5B5BD6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </symbol>
+
+    <!-- Trust bar: Sparkle/match -->
+    <symbol id="icon-sparkle" viewBox="0 0 48 48">
+      <path d="M24 4 L26.5 20.5 L43 18 L28.5 26.5 L43 43 L24 31 L5 43 L19.5 26.5 L5 18 L21.5 20.5 Z" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5" stroke-linejoin="round"/>
+      <circle cx="24" cy="24" r="5" fill="#5B5BD6"/>
+    </symbol>
+
+    <!-- Trust bar: Lock -->
+    <symbol id="icon-lock" viewBox="0 0 48 48">
+      <rect x="8" y="22" width="32" height="22" rx="4" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2"/>
+      <path d="M14 22 L14 14 C14 7.4 34 7.4 34 14 L34 22" stroke="#5B5BD6" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <circle cx="24" cy="33" r="4" fill="#5B5BD6"/>
+      <line x1="24" y1="37" x2="24" y2="41" stroke="#5B5BD6" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Trust bar: Users -->
+    <symbol id="icon-users" viewBox="0 0 48 48">
+      <circle cx="18" cy="14" r="7" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2"/>
+      <path d="M4 38 C4 28 32 28 32 38" stroke="#5B5BD6" stroke-width="2" fill="#E8E8FC" stroke-linecap="round"/>
+      <circle cx="34" cy="13" r="5.5" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <path d="M30 36 C30 29 46 29 46 36" stroke="#5B5BD6" stroke-width="2" fill="#C9C9F3" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Loan type: Purchase -->
+    <symbol id="icon-purchase" viewBox="0 0 48 48">
+      <path d="M6 24 L24 6 L42 24" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="10" y="24" width="28" height="20" rx="1" fill="white" stroke="#5B5BD6" stroke-width="2"/>
+      <rect x="14" y="28" width="8" height="7" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="26" y="33" width="8" height="11" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <!-- Key -->
+      <circle cx="38" cy="16" r="5" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="42" y1="20" x2="46" y2="24" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Loan type: Refinance -->
+    <symbol id="icon-refinance" viewBox="0 0 48 48">
+      <path d="M6 24 L24 6 L42 24" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2" stroke-linejoin="round"/>
+      <rect x="10" y="24" width="28" height="20" rx="1" fill="white" stroke="#5B5BD6" stroke-width="2"/>
+      <rect x="14" y="28" width="8" height="7" rx="1" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5"/>
+      <rect x="26" y="33" width="8" height="11" rx="1" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5"/>
+      <!-- Refresh arrows -->
+      <path d="M33 10 A8 8 0 1 1 26 6" stroke="#5B5BD6" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <polygon points="26,2 26,10 34,6" fill="#5B5BD6"/>
+    </symbol>
+
+    <!-- Review avatar 1 -->
+    <symbol id="icon-avatar1" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="20" fill="#C9C9F3"/>
+      <circle cx="20" cy="16" r="7" fill="#8484D8"/>
+      <path d="M6 36 C6 26 34 26 34 36" fill="#8484D8"/>
+    </symbol>
+
+    <!-- Review avatar 2 -->
+    <symbol id="icon-avatar2" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="20" fill="#DDDDFB"/>
+      <circle cx="20" cy="16" r="7" fill="#A5A5E8"/>
+      <path d="M6 36 C6 26 34 26 34 36" fill="#A5A5E8"/>
+    </symbol>
+
+    <!-- Review avatar 3 -->
+    <symbol id="icon-avatar3" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="20" fill="#E8E8FC"/>
+      <circle cx="20" cy="16" r="7" fill="#7070CC"/>
+      <path d="M6 36 C6 26 34 26 34 36" fill="#7070CC"/>
+    </symbol>
+
+    <!-- Loan program icons -->
+    <symbol id="icon-firsttime" viewBox="0 0 48 48">
+      <path d="M24 4 L28 16 L42 16 L31 24 L35 38 L24 30 L13 38 L17 24 L6 16 L20 16 Z" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="1.5" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-veteran" viewBox="0 0 48 48">
+      <path d="M24 4 L30 16 L44 16 L33 26 L37 40 L24 32 L11 40 L15 26 L4 16 L18 16 Z" fill="#C9C9F3" stroke="#5B5BD6" stroke-width="1.5" stroke-linejoin="round"/>
+      <rect x="18" y="40" width="12" height="5" rx="1" fill="#5B5BD6"/>
+      <rect x="20" y="45" width="8" height="3" fill="#4040A0"/>
+    </symbol>
+
+    <symbol id="icon-fha" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="20" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2"/>
+      <text x="24" y="29" font-family="Arial" font-size="14" font-weight="800" fill="#5B5BD6" text-anchor="middle">%</text>
+    </symbol>
+
+    <symbol id="icon-conventional" viewBox="0 0 48 48">
+      <rect x="6" y="10" width="36" height="28" rx="4" fill="#E8E8FC" stroke="#5B5BD6" stroke-width="2"/>
+      <line x1="6" y1="18" x2="42" y2="18" stroke="#5B5BD6" stroke-width="1.5"/>
+      <line x1="14" y1="26" x2="22" y2="26" stroke="#5B5BD6" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="14" y1="30" x2="28" y2="30" stroke="#5B5BD6" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+
+  </defs>
+</svg>
+<!-- ══ END ICON LIBRARY ══ -->
+
+<!-- ══════════════ HEADER ══════════════ -->
+<header>
+  <img class="logo-img" src="VArateslogo.png" alt="VArates.now" onclick="showLanding()" style="height:52px;">
+</header>
+
+<!-- ══════════════ LANDING ══════════════ -->
+<div id="landing">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow fade-up">Live rates · No credit pull</div>
+    <h1 class="fade-up">Check VA Cashout Loan Qualifications with Top VA Refinance Lenders.</h1>
+    <p class="hero-sub fade-up">Real offers from 40+ lenders, matched to your profile in under 3 minutes. Zero obligation, zero impact on your score.</p>
+
+    <div class="prop-type-intro fade-up">
+      <div class="prop-type-sublabel">What type of property are you refinancing?</div>
+      <div class="prop-type-grid">
+        <button class="prop-type-card" onclick="selectPropertyType(this,'Single Family Home')">
+          <div class="ptc-icon"><svg class="svg-icon svg-icon-lg"><use href="#icon-house"/></svg></div>
+          <div class="ptc-name">Single Family Home</div>
+          <div class="ptc-desc">Detached house on its own lot</div>
+          <div class="ptc-cta"><span class="ptc-cta-text">Get my rates</span><span class="ptc-cta-arrow">→</span></div>
+        </button>
+        <button class="prop-type-card" onclick="selectPropertyType(this,'Townhome')">
+          <div class="ptc-icon"><svg class="svg-icon svg-icon-lg"><use href="#icon-townhome"/></svg></div>
+          <div class="ptc-name">Townhome</div>
+          <div class="ptc-desc">Multi-floor attached home</div>
+          <div class="ptc-cta"><span class="ptc-cta-text">Get my rates</span><span class="ptc-cta-arrow">→</span></div>
+        </button>
+        <button class="prop-type-card" onclick="selectPropertyType(this,'Condominium')">
+          <div class="ptc-icon"><svg class="svg-icon svg-icon-lg"><use href="#icon-condo"/></svg></div>
+          <div class="ptc-name">Condominium</div>
+          <div class="ptc-desc">Unit in a shared building</div>
+          <div class="ptc-cta"><span class="ptc-cta-text">Get my rates</span><span class="ptc-cta-arrow">→</span></div>
+        </button>
+        <button class="prop-type-card" onclick="selectPropertyType(this,'Multi-Family Home')">
+          <div class="ptc-icon"><svg class="svg-icon svg-icon-lg"><use href="#icon-multifamily"/></svg></div>
+          <div class="ptc-name">Multi-Family Home</div>
+          <div class="ptc-desc">2–4 unit investment property</div>
+          <div class="ptc-cta"><span class="ptc-cta-text">Get my rates</span><span class="ptc-cta-arrow">→</span></div>
+        </button>
+      </div>
+    </div>
+
+    <!-- VA Rate Bar -->
+    <div class="va-rate-bar fade-up">
+      <span class="va-rate-bar-label">Today's VA 30-Yr Fixed Rate</span>
+      <div class="va-rate-bar-divider"></div>
+      <div class="va-rate-bar-stats">
+        <span>Top lender offers: <span class="va-rate-green">5.70%</span></span>
+        <img src="american-flag.png" alt="US" style="width:20px;height:14px;object-fit:cover;border-radius:2px;flex-shrink:0;">
+        <span>National average: <strong>6.39%</strong></span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Q&A CHAT BUBBLES -->
+  <div class="qa-strip fade-up">
+    <div class="qa-grid">
+      <div class="qa-card">
+        <div class="qa-bubble qa-q">Can I Get cash out using my VA Loan?</div>
+        <div class="qa-bubble qa-a">Yes, a VA Cash-Out Refinance allows you access to home equity as cash.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-bubble qa-q">Can I use my VA Cash-Out Refinance to pay off debt?</div>
+        <div class="qa-bubble qa-a">Yes. Some veterans use cash out to pay off high-interest debt.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-bubble qa-q">Do I need perfect credit to qualify for a VA Cash-Out Refinance?</div>
+        <div class="qa-bubble qa-a">No. Credit requirements vary by lender, but VA loans are often more flexible.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="faq-section fade-up">
+    <div class="section-label">Got questions?</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Can I refinance a non-VA loan into a VA loan?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Yes. Eligible borrowers can refinance a conventional or FHA loan into a VA loan through a VA Cash-Out Refinance.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Do I need an appraisal for a VA Cash-Out Refinance?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">In most cases, yes. An appraisal is typically required to determine your home's current value.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">What is the difference between a VA IRRRL and a VA Cash-Out Refinance?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">A VA IRRRL lowers your rate or payment, while a VA Cash-Out Refinance lets you access home equity.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">How long does a VA cash out refinance take?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Timelines vary, but many VA refinances close within 30–45 days.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Will I need to pay mortgage insurance on a VA Cash-Out Refinance?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">No. VA loans do not require monthly mortgage insurance.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Are VA refinance rates lower than conventional refinance rates?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">VA refinance rates are often competitive and may be lower than conventional options for qualified borrowers.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE -->
+  <div class="article-section">
+    <div class="article-inner">
+      <h2 class="article-title">VA IRRRL vs. Cash-Out: Which Refinance Option Is Right for You?</h2>
+      <div class="article-kp">
+        <p><strong>Key points:</strong></p>
+        <p>The VA guarantees two different refinance products: an interest rate reduction refinance loan (IRRRL) and a cash-out refinance.</p>
+        <p>The IRRRL is the VA's streamline refinance, and it lets current VA borrowers refi with less paperwork.</p>
+        <p>The cash-out refinance is available to any eligible veteran or service member, even if they don't currently have a VA loan.</p>
+        <p>Both kinds of VA refinances require most borrowers to pay the VA funding fee.</p>
+      </div>
+      <div class="article-body">
+        <p>Refinancing might make it sound like you adjust the terms of your current mortgage. But that's not actually how it works. When you refinance a mortgage, you get an entirely new mortgage. You then use part of the money from the new loan to pay off your old loan.</p>
+        <p>That replacement gives you some options. Even if you don't currently have a VA home loan, you could use a refinance to get into a mortgage that's backed by the Department of Veterans Affairs (VA). And if you currently have a VA-backed mortgage, refinancing might be easier than you think.</p>
+        <p>All of that is true because the VA guarantees two types of refinances: interest rate reduction refinance loans (IRRRLs) and cash-out refinances. Understanding your choices here helps you pick the best path forward for yourself.</p>
+
+        <h3>The two types of VA refis: IRRRL vs. cash-out</h3>
+        <p>Getting a new mortgage backed by the VA comes with some upside. You won't have to worry about private mortgage insurance (PMI) even if you have less than 20% equity in your house. In fact, some lenders will let you refinance up to 100% of your home's value (for comparison, conventional refis typically cap out at 80–85%). And you can generally get a lower interest rate if you refinance with a VA loan.</p>
+        <p>The specific ways the refinance benefits you hinge on the type of new loan you get. Let's look more closely at your two options from the VA: IRRRL vs. cash-out refinancing.</p>
+
+        <h3>Interest rate reduction refinance loan (streamline refi)</h3>
+        <p>The VA offers this kind of refinancing with one goal: to help current VA borrowers realize a net tangible benefit with less paperwork than a typical refi requires.</p>
+        <p>Also called a streamline refinance, the IRRRL allows you to get a new mortgage without getting — or paying for — a new appraisal or going through all the rigors of full credit underwriting. (That said, each individual lender gets to decide about their process for IRRRL underwriting. The lender might require you to provide some documentation or get a hard credit check.)</p>
+        <p>The key thing about an IRRRL is that it has to result in some kind of net tangible benefit for you. The VA backs these kinds of refinances if you can:</p>
+        <ul>
+          <li>Get a lower interest rate</li>
+          <li>Move from an adjustable-rate mortgage (ARM) into a fixed-rate loan, stabilizing your monthly payments</li>
+          <li>Shorten your loan term so pay less in interest overall</li>
+        </ul>
+        <p>The other main caveat is that your new mortgage amount can't exceed the balance of the loan you're refinancing (i.e., you can't get cash out). The only reason the VA lets you go over with an IRRRL is in the case of:</p>
+        <ul>
+          <li>Allowable lender fees/charges</li>
+          <li>Up to two discount points</li>
+          <li>The cost of up to $6,000 in energy efficient improvements</li>
+          <li>The VA funding fee</li>
+        </ul>
+        <p>There are three main benefits of an IRRRL vs. a cash-out refinance. They are:</p>
+        <ul>
+          <li>Less paperwork</li>
+          <li>A lower VA funding fee (0.5%)</li>
+          <li>The ability to refinance even if you no longer live in the home (as long as you can certify that you once lived there)</li>
+        </ul>
+
+        <h3>Cash-out refinance (broadly applicable refi)</h3>
+        <p>Maybe because your refinance won't result in a lower interest rate or you're looking for a way to cash out some equity. You still have a path forward. The VA also guarantees what it calls cash-out refinances.</p>
+        <p>That name is kind of misleading, though. To clear it up, it helps to know that the VA categorizes these refis into two groups:</p>
+        <ul>
+          <li><strong>Type I cash-out refinance:</strong> With this type, your new loan amount doesn't exceed the payoff amount of your old mortgage. You can use a Type I cash-out refi to refinance any kind of mortgage into a VA loan without liquidating equity.</li>
+          <li><strong>Type II cash-out refinance:</strong> This is the typical cash-out refi, where you get a new mortgage with a bigger balance, then pocket the difference. This gives you a way to turn the equity you have in your house into money you can spend.</li>
+        </ul>
+        <p>With a VA cash-out refinance, you have to live at the property.</p>
+        <p>The big upside of this kind of VA-backed refi is that you can use it:</p>
+        <ul>
+          <li>To cash out some of your equity</li>
+          <li>Even if you don't currently have a VA loan (as long as you can get a certificate of eligibility [COE])</li>
+          <li>To refinance your mortgage if you don't otherwise qualify for an IRRRL</li>
+        </ul>
+        <p>The big downside of a VA cash-out refinance vs. an IRRRL is the cost. Specifically, the VA funding fee is higher. If it's your first time using this kind of loan, your funding fee equals 2.15% of the total loan amount. If you've used it before, the VA funding fee jumps to 3.3%.</p>
+
+        <h3>VA IRRRL vs. cash-out refinance: Deciding which is best for you</h3>
+        <p>With a better understanding of the two types of VA-backed refinances, you may have a general sense for which fits your situation. Still, asking a few follow-up questions often helps to provide you with added clarity. If you want to dig deeper into all of this, the VA has a handbook for lenders about refinancing loans. While you're not its target audience, that document has a lot of info about what's required for each type of VA refinance.</p>
+
+        <div class="va-wrapper">
+          <table class="va-table">
+            <caption>VA IRRRL vs VA Cash-Out Refinance Eligibility and Feature Comparison</caption>
+            <thead>
+              <tr>
+                <th scope="col">Can You Get a Loan If…</th>
+                <th scope="col">VA IRRRL</th>
+                <th scope="col">VA Cash-Out Refinance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">…you currently have a VA loan?</th>
+                <td class="yes">Yes</td>
+                <td class="yes">Yes</td>
+              </tr>
+              <tr>
+                <th scope="row">…you currently have a conventional, FHA, or USDA loan?</th>
+                <td class="no">No</td>
+                <td class="yes">Yes</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want to skip the appraisal?</th>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want a lower VA funding fee?</th>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want to cash out equity from your home?</th>
+                <td class="no">No</td>
+                <td class="yes">Yes</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want a loan amount equal to 100% of your current property value?</th>
+                <td class="no">No</td>
+                <td class="yes">Yes</td>
+              </tr>
+              <tr>
+                <th scope="row">…you no longer live in the property but once did?</th>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want to skip credit underwriting?</th>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="va-note">
+            <strong>Important:</strong> A VA IRRRL is designed for simplifying and lowering the rate on an existing VA loan, while a VA cash-out refinance is intended for accessing home equity or converting non-VA loans into VA financing.
+          </div>
+        </div>
+
+        <p>Or, if you'd rather talk it through with a person, you can start exploring your options with lenders that offer VA refinances. We have rate tables showcasing today's interest rates for both IRRRLs and cash-out refinances. The loan officers at any of those lenders should be able to help you figure out which type of VA refi best matches your needs.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-legal" style="text-align:left;max-width:100%;font-size:11.5px;line-height:1.75;color:var(--text-light);margin-bottom:20px;">
+      <p style="margin-bottom:12px;">varates.now and rates.now are not mortgage lenders or brokers. We are a loan education and comparison network that helps Veterans and military families understand their VA home loan benefits and compare offers from multiple VA-approved lenders side by side. We do not originate loans, make credit decisions, or issue approvals. All rates, fees, terms, and loan decisions are provided solely by participating lenders.</p>
+      <p>varates.now and rates.now are not affiliated with the U.S. Department of Veterans Affairs (VA), the Department of Defense (DoD), or any government agency. Information on these sites is provided for educational purposes only and should not be considered legal, financial, or tax advice. Official VA resources are available at va.gov.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Your California Rights</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Cookie Settings</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════ FUNNEL ══════════════ -->
+<div id="funnel">
+
+  <div class="progress-bar-wrap">
+    <div class="progress-track"><div class="progress-fill" id="pbar" style="width:4%"></div></div>
+    <div class="progress-pct" id="ppct">4% complete</div>
+  </div>
+
+  <div class="funnel-body" id="funnel-body">
+
+    <!-- ─── STEP 1: ZIP ─── -->
+    <div class="step-card" id="s1">
+      <h2 class="step-q">Where is the property you are purchasing?</h2>
+      <div class="inp-group">
+        <label class="inp-label">ZIP Code</label>
+        <input class="inp" type="text" id="zip" placeholder="e.g. 90210" maxlength="5" inputmode="numeric">
+      </div>
+      <button class="btn-continue" onclick="go(3)">Continue</button>
+      <a class="btn-back" onclick="exitFunnel()">Back</a>
+    </div>
+
+    <!-- ─── STEP 3: PROPERTY USE ─── -->
+    <div class="step-card hidden" id="s3">
+      <h2 class="step-q">How will this property be used?</h2>
+      <div class="opts-icon cols3">
+        <div class="opt-icon-card" onclick="pick(this,'s3','rs4')">
+          <div class="oi"><svg class="svg-icon svg-icon-lg"><use href="#icon-primary"/></svg></div>
+          <span class="ol">Primary Residence</span>
+        </div>
+        <div class="opt-icon-card" onclick="pick(this,'s3','rs4')">
+          <div class="oi"><svg class="svg-icon svg-icon-lg"><use href="#icon-secondhome"/></svg></div>
+          <span class="ol">Second Home</span>
+        </div>
+        <div class="opt-icon-card" onclick="pick(this,'s3','rs4')">
+          <div class="oi"><svg class="svg-icon svg-icon-lg"><use href="#icon-investment"/></svg></div>
+          <span class="ol">Investment / Rental</span>
+        </div>
+      </div>
+      <a class="btn-back" onclick="go(1)">Back</a>
+    </div>
+
+    <!-- ─── STEP rs4: ESTIMATED PROPERTY VALUE ─── -->
+    <div class="step-card hidden" id="rs4">
+      <h2 class="step-q">What is your estimated property value?</h2>
+      <div class="inp-group">
+        <div class="inp-dollar">
+          <span class="inp-dollar-sym">$</span>
+          <input class="inp" type="text" id="prop-val" value="500,000">
+        </div>
+        <div class="slider-wrap">
+          <input type="range" id="prop-range" min="80000" max="2000000" value="500000" step="10000"
+                 oninput="syncSlider('prop-range','prop-val')">
+          <div class="slider-labels"><span>$80K</span><span>$2M+</span></div>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="go('rs5')">Continue</button>
+      <a class="btn-back" onclick="go(3)">Back</a>
+    </div>
+
+    <!-- ─── STEP rs5: REMAINING MORTGAGE BALANCE ─── -->
+    <div class="step-card hidden" id="rs5">
+      <h2 class="step-q">What's the remaining balance on the mortgage?</h2>
+      <div class="inp-group">
+        <div style="text-align:center;font-size:1.5rem;font-weight:700;color:var(--purple);margin-bottom:8px;" id="rb-pct-label">60%</div>
+        <div class="inp-dollar">
+          <span class="inp-dollar-sym">$</span>
+          <input class="inp" type="text" id="rb-dollar-val" value="300,000" readonly>
+        </div>
+        <div class="slider-wrap">
+          <input type="range" id="rb-range" min="0" max="100" value="60" step="1"
+                 oninput="syncRemainingBalance()">
+          <div class="slider-labels"><span>0%</span><span>100%</span></div>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="go('rs6')">Continue</button>
+      <a class="btn-back" onclick="go('rs4')">Back</a>
+    </div>
+
+    <!-- ─── STEP rs6: CURRENT INTEREST RATE ─── -->
+    <div class="step-card hidden" id="rs6">
+      <h2 class="step-q">What is your current interest rate?</h2>
+      <div class="inp-group">
+        <div class="inp-pct">
+          <input class="inp" type="text" id="ir-val" value="6.50">
+          <span class="inp-pct-sym">%</span>
+        </div>
+        <div class="slider-wrap">
+          <input type="range" id="ir-range" min="0" max="12" value="6.5" step="0.125"
+                 oninput="syncInterestRate()">
+          <div class="slider-labels"><span>0%</span><span>12%+</span></div>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="go('rs7')">Continue</button>
+      <a class="btn-back" onclick="go('rs5')">Back</a>
+    </div>
+
+    <!-- ─── STEP rs7: SECOND MORTGAGE ─── -->
+    <div class="step-card hidden" id="rs7">
+      <h2 class="step-q">Do you have a second mortgage?</h2>
+      <div class="opts-yn">
+        <div class="opt-yn" onclick="pick(this,'rs7','rs8')">
+          <svg class="svg-icon svg-icon-md"><use href="#icon-yes"/></svg>
+          <span class="yn-lbl">Yes</span>
+        </div>
+        <div class="opt-yn" onclick="pick(this,'rs7','rs8')">
+          <svg class="svg-icon svg-icon-md"><use href="#icon-no"/></svg>
+          <span class="yn-lbl">No</span>
+        </div>
+      </div>
+      <a class="btn-back" onclick="go('rs6')">Back</a>
+    </div>
+
+    <!-- ─── STEP rs8: ADDITIONAL CASH ─── -->
+    <div class="step-card hidden" id="rs8">
+      <h2 class="step-q">Would you like to borrow additional cash?</h2>
+      <div class="inp-group">
+        <div class="inp-dollar">
+          <span class="inp-dollar-sym">$</span>
+          <input class="inp" type="text" id="cash-val" value="0">
+        </div>
+        <div class="slider-wrap">
+          <input type="range" id="cash-range" min="0" max="100000" value="0" step="5000"
+                 oninput="syncSlider('cash-range','cash-val')">
+          <div class="slider-labels"><span>$0</span><span>$100K+</span></div>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="go('s12b')">Continue</button>
+      <a class="btn-back" onclick="go('rs7')">Back</a>
+    </div>
+
+    <!-- ─── STEP 8: CREDIT SCORE ─── -->
+    <div class="step-card hidden" id="s8">
+      <h2 class="step-q">What's your estimated credit score?</h2>
+      <div class="inp-group">
+        <div style="text-align:center;font-size:2.2rem;font-weight:800;color:var(--purple);margin-bottom:4px;" id="cs-display">720</div>
+        <div style="text-align:center;font-size:0.8rem;color:var(--slate);margin-bottom:16px;" id="cs-rating">Good</div>
+        <div class="slider-wrap">
+          <input type="range" id="cs-range" min="560" max="850" value="720" step="1"
+                 oninput="syncCreditScore()">
+          <div class="slider-labels"><span>560</span><span>850</span></div>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="go(9)">Continue</button>
+      <a class="btn-back" onclick="go('s12b')">Back</a>
+    </div>
+
+    <!-- ─── STEP 9: EMPLOYMENT ─── -->
+    <div class="step-card hidden" id="s9">
+      <h2 class="step-q">What's your employment status?</h2>
+      <div class="opts-grid">
+        <button class="opt-grid" onclick="pick(this,'s9',10)">Employed</button>
+        <button class="opt-grid" onclick="pick(this,'s9',10)">Not Employed</button>
+        <button class="opt-grid" onclick="pick(this,'s9',10)">Self Employed</button>
+        <button class="opt-grid" onclick="pick(this,'s9',10)">Military</button>
+        <button class="opt-grid" onclick="pick(this,'s9',10)">Retired</button>
+        <button class="opt-grid" onclick="pick(this,'s9',10)">Other</button>
+      </div>
+      <a class="btn-back" onclick="go(8)">Back</a>
+    </div>
+
+    <!-- ─── STEP 10: BRANCH OF SERVICE ─── -->
+    <div class="step-card hidden" id="s10">
+      <h2 class="step-q">What is your branch of service?</h2>
+      <div class="opts-icon cols3">
+        <div class="opt-icon-card" onclick="pick(this,'s10',11)">
+          <div class="oi" style="font-size:2rem;">🪖</div>
+          <span class="ol">Army</span>
+        </div>
+        <div class="opt-icon-card" onclick="pick(this,'s10',11)">
+          <div class="oi" style="font-size:2rem;">⚓</div>
+          <span class="ol">Navy</span>
+        </div>
+        <div class="opt-icon-card" onclick="pick(this,'s10',11)">
+          <div class="oi" style="font-size:2rem;">✈️</div>
+          <span class="ol">Air Force</span>
+        </div>
+        <div class="opt-icon-card" onclick="pick(this,'s10',11)">
+          <div class="oi" style="font-size:2rem;">🦅</div>
+          <span class="ol">Marines</span>
+        </div>
+        <div class="opt-icon-card" onclick="pick(this,'s10',11)">
+          <div class="oi" style="font-size:2rem;">🚢</div>
+          <span class="ol">Coast Guard</span>
+        </div>
+        <div class="opt-icon-card" onclick="pick(this,'s10',11)">
+          <div class="oi" style="font-size:2rem;">🚀</div>
+          <span class="ol">Space Force</span>
+        </div>
+        <div class="opt-icon-card" onclick="pick(this,'s10',11)" style="grid-column: 1 / -1; padding: 14px 12px;">
+          <span class="ol">I Did Not Serve</span>
+        </div>
+      </div>
+      <a class="btn-back" onclick="go(9)">Back</a>
+    </div>
+
+    <!-- ─── STEP 11: BANKRUPTCY ─── -->
+    <div class="step-card hidden" id="s11">
+      <h2 class="step-q">Have you filed for bankruptcy or foreclosure in the last four years?</h2>
+      <div class="opts-yn">
+        <div class="opt-yn" onclick="pick(this,'s11',12)">
+          <svg class="svg-icon svg-icon-md"><use href="#icon-yes"/></svg>
+          <span class="yn-lbl">Yes</span>
+        </div>
+        <div class="opt-yn" onclick="pick(this,'s11',12)">
+          <svg class="svg-icon svg-icon-md"><use href="#icon-no"/></svg>
+          <span class="yn-lbl">No</span>
+        </div>
+      </div>
+      <a class="btn-back" onclick="go(10)">Back</a>
+    </div>
+
+    <!-- ─── STEP 12: ANNUAL INCOME ─── -->
+    <div class="step-card hidden" id="s12">
+      <h2 class="step-q">What is the gross annual income of the borrower(s)?</h2>
+      <div class="inp-group">
+        <div class="inp-dollar">
+          <span class="inp-dollar-sym">$</span>
+          <input class="inp" type="text" id="income-val" value="85,000">
+        </div>
+        <div class="slider-wrap">
+          <input type="range" id="income-range" min="0" max="500000" value="85000" step="5000"
+                 oninput="syncSlider('income-range','income-val')">
+          <div class="slider-labels"><span>$0</span><span>$500K+</span></div>
+        </div>
+      </div>
+      <button class="btn-continue" onclick="go('sload')">Continue</button>
+      <a class="btn-back" onclick="go(11)">Back</a>
+    </div>
+
+    <!-- ─── STEP 12b: LATE PAYMENTS ─── -->
+    <div class="step-card hidden" id="s12b">
+      <h2 class="step-q">Any 30 day late mortgage payments in the last 12 months?</h2>
+      <div class="opts-list">
+        <div class="opt-list" onclick="pick(this,'s12b',8)">No</div>
+        <div class="opt-list" onclick="pick(this,'s12b',8)">Yes, 1 time</div>
+        <div class="opt-list" onclick="pick(this,'s12b',8)">Yes, 2+ times</div>
+      </div>
+      <a class="btn-back" onclick="go('rs8')">Back</a>
+    </div>
+
+    <!-- ─── STEP LOAD: FINDING MATCHES ─── -->
+    <div class="step-card hidden" id="sload">
+      <div class="loader-top">
+        <div class="loader-ring">
+          <svg class="svg-icon svg-icon-md"><use href="#icon-sparkle"/></svg>
+        </div>
+      </div>
+      <div class="loader-progress-wrap">
+        <div class="loader-progress-fill" id="loader-bar"></div>
+      </div>
+      <h2 class="step-q" style="margin-bottom:20px;">Finding Your Best Mortgage Match</h2>
+      <div class="loader-steps">
+        <div class="load-item" id="li1"><span class="load-dot"></span><span class="load-text">Analyzing your loan preferences.</span></div>
+        <div class="load-item" id="li2"><span class="load-dot"></span><span class="load-text">Scoring lender and rate compatibility.</span></div>
+        <div class="load-item" id="li3"><span class="load-dot"></span><span class="load-text">Matching you with the best available mortgage options.</span></div>
+        <div class="load-item" id="li4"><span class="load-dot"></span><span class="load-text">Finalizing your lender match</span></div>
+      </div>
+      <a class="btn-back" style="margin-top:24px;" onclick="cancelLoader()">Back</a>
+    </div>
+
+    <!-- ─── STEP 13: LENDER MATCHES ─── -->
+    <div class="step-card hidden" id="s13">
+      <h2 class="step-q">These offers match your search criteria</h2>
+      <p class="step-sub">Request quotes from these top lenders. Free — no impact to your credit score.</p>
+      <div class="lender-grid" id="lender-grid">
+        <div class="lender-card" onclick="toggleLender(this)"
+          data-rate="6.125%" data-apr="6.38%" data-points="0.5"
+          data-rate1="6.125%" data-apr1="6.38%" data-pts1="2"
+          data-rate2="6.250%" data-apr2="6.45%" data-pts2="1"
+          data-rate3="6.375%" data-apr3="6.52%" data-pts3="0">
+          <div class="lender-chk">✓</div>
+          <div class="lender-badge"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div>
+          <div class="lender-rate-row">
+            <div class="lender-rate-item"><div class="lrf-label">Rate</div><div class="lrf-val">6.125%</div></div>
+            <div class="lender-rate-item"><div class="lrf-label">APR</div><div class="lrf-val">6.38%</div></div>
+            <div class="lender-rate-item"><div class="lrf-label">Points</div><div class="lrf-val">0.5</div></div>
+          </div>
+          <div class="lender-nmls">NMLS #1707502</div>
+          <div class="lender-stars">★★★★★</div>
+          <div class="lender-score">4.97 (2,841 reviews)</div>
+        </div>
+        <div class="lender-card" onclick="toggleLender(this)"
+          data-rate="6.250%" data-apr="6.49%" data-points="0.625"
+          data-rate1="6.250%" data-apr1="6.49%" data-pts1="2"
+          data-rate2="6.375%" data-apr2="6.55%" data-pts2="1"
+          data-rate3="6.500%" data-apr3="6.63%" data-pts3="0">
+          <div class="lender-chk">✓</div>
+          <div class="lender-badge"><img src="better-mortgage-logo.svg" alt="Better Mortgage"></div>
+          <div class="lender-rate-row">
+            <div class="lender-rate-item"><div class="lrf-label">Rate</div><div class="lrf-val">6.250%</div></div>
+            <div class="lender-rate-item"><div class="lrf-label">APR</div><div class="lrf-val">6.49%</div></div>
+            <div class="lender-rate-item"><div class="lrf-label">Points</div><div class="lrf-val">0.625</div></div>
+          </div>
+          <div class="lender-nmls">NMLS #330511</div>
+          <div class="lender-stars">★★★★★</div>
+          <div class="lender-score">4.76 (3,241 reviews)</div>
+        </div>
+      </div>
+<button class="btn-continue" onclick="continueWithOffers('all')">Continue with both offers</button>
+      <button class="btn-continue secondary" onclick="continueWithOffers(1)">Continue with first offer</button>
+      <a class="btn-back" onclick="go(12)">Back</a>
+    </div>
+
+
+    <!-- ─── STEP 14: CONTACT ─── -->
+    <div class="step-card hidden" id="s14">
+      <h2 class="step-q">Where should we send your quote(s)?</h2>
+      <p class="step-sub">Your personalized mortgage offers will be delivered here</p>
+      <div class="form-row">
+        <div class="inp-group" style="margin-bottom:0;"><label class="inp-label">First Name</label><input class="inp" type="text" placeholder="John"></div>
+        <div class="inp-group" style="margin-bottom:0;"><label class="inp-label">Last Name</label><input class="inp" type="text" placeholder="Doe"></div>
+      </div>
+      <div class="inp-group"><label class="inp-label">Email Address</label><input class="inp" type="email" placeholder="john.doe@email.com"></div>
+      <div class="inp-group"><label class="inp-label">Phone Number</label><input class="inp" type="tel" placeholder="(  )   -    "></div>
+      <label class="sms-consent-item">
+        <input type="checkbox" id="sms-consent-1">
+        <span class="consent-text" style="margin:0;">I agree to receive text messages regarding mortgage rate updates, loan information, and related services. Message and data rates may apply. Reply STOP to unsubscribe.</span>
+      </label>
+      <label class="sms-consent-item">
+        <input type="checkbox" id="sms-consent-2">
+        <span class="consent-text" style="margin:0;">By checking the box and clicking "Continue," I agree to the following: I provide my express consent to receive emails, notifications, calls (including auto-dialed or pre-recorded/artificial voice calls), and text messages related to mortgage quotes from selected lenders and their agents at the email address and/or phone number(s) I provided, including wireless numbers, even if listed on a do-not-call registry. I understand that message and data rates may apply, that my consent is not a condition of purchasing any goods or services, and that I may revoke my consent at any time.</span>
+      </label>
+      <button class="btn-continue" onclick="go('sotp')">Agree and Continue</button>
+      <a class="btn-back" onclick="go(13)">Back</a>
+      <div class="security-box">
+        <svg class="svg-icon svg-icon-md"><use href="#icon-lock"/></svg>
+        <p>Your security is our top priority. We use advanced encryption technology<br>to keep your personal information safe.</p>
+      </div>
+    </div>
+
+    <!-- ─── STEP 15: THANK YOU ─── -->
+    <div class="step-card step-card-wide hidden" id="s15">
+      <div class="ty-page">
+        <div class="ty-medal">
+          <svg class="svg-icon svg-icon-xl"><use href="#icon-sparkle"/></svg>
+        </div>
+        <div class="ty-title">You're all set!</div>
+        <p class="ty-body">Your selected lenders are ready to compete for your business. Review their offers below.</p>
+        <div class="ty-lenders" id="ty-lenders"></div>
+        <div class="ty-checklist">
+          <h4>What happens next</h4>
+          <div class="ty-check"><span class="ty-checkmark">●</span> Lenders review your profile</div>
+          <div class="ty-check"><span class="ty-checkmark">●</span> Check out your custom offers below</div>
+          <div class="ty-check"><span class="ty-checkmark">●</span> Compare, choose, and close on your best offer</div>
+        </div>
+        <a class="btn-back" onclick="exitFunnel()">Back to Home</a>
+      </div>
+    </div>
+
+
+    <!-- ─── STEP OTP: VERIFY PHONE ─── -->
+    <div class="step-card hidden" id="sotp">
+      <h2 class="step-q">Verify your phone number</h2>
+      <p class="step-sub">We sent a 4-digit code to the phone number you provided. Enter it below.</p>
+      <div class="otp-group" id="otp-group">
+        <input class="otp-inp" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="one-time-code">
+        <input class="otp-inp" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+        <input class="otp-inp" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+        <input class="otp-inp" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+      </div>
+      <button class="btn-continue" onclick="go(15)">Verify &amp; Continue</button>
+      <a class="btn-back" onclick="go(14)">Back</a>
+      <div class="otp-resend">Didn't receive it? <a onclick="void(0)">Resend code</a></div>
+    </div>
+
+  </div><!-- /funnel-body -->
+
+  <!-- Reviews (in funnel) -->
+  <section class="reviews-section">
+    <div class="section-label" style="display:none;">What customers say</div>
+    <h2 class="section-title" style="font-size:1.6rem;margin-bottom:28px;">Lender Partner Reviews</h2>
+
+    <div class="review-platforms">
+      <div class="review-platform">
+        <div class="platform-icon g">G</div>
+        <div>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span class="platform-score">4.5</span>
+            <span class="platform-stars">★★★★½</span>
+          </div>
+          <div class="platform-count">1,030 reviews</div>
+        </div>
+      </div>
+      <div class="review-platform">
+        <div class="platform-icon z">Z</div>
+        <div>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span class="platform-score">4.5</span>
+            <span class="platform-stars">★★★★½</span>
+          </div>
+          <div class="platform-count">1,030 reviews</div>
+        </div>
+      </div>
+      <div class="review-platform">
+        <div class="platform-icon x">X</div>
+        <div>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span class="platform-score">4.5</span>
+            <span class="platform-stars">★★★★½</span>
+          </div>
+          <div class="platform-count">1,030 reviews</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">P</div>
+          <div class="review-meta">
+            <div class="review-name">Philip Dillard</div>
+            <div class="review-date">4 days ago</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto;">★★★★★</div>
+        </div>
+        <div class="review-body">Very prompt service! Rates.now kept everyone informed throughout the process. Approval was super quick and the loan was funded faster than I expected. Highly recommend.</div>
+        <div class="review-footer">
+          <span class="review-footer-text">Posted on</span>
+          <div class="review-platform-dot g">G</div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">S</div>
+          <div class="review-meta">
+            <div class="review-name">Sandra Chen</div>
+            <div class="review-date">1 week ago</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto;">★★★★★</div>
+        </div>
+        <div class="review-body">Found a rate 0.4% lower than my bank offered. The whole process was clear and transparent — no surprise fees. The matched lender was responsive and professional.</div>
+        <div class="review-footer">
+          <span class="review-footer-text">Posted on</span>
+          <div class="review-platform-dot z">Z</div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">D</div>
+          <div class="review-meta">
+            <div class="review-name">David Reyes</div>
+            <div class="review-date">2 weeks ago</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto;">★★★★★</div>
+        </div>
+        <div class="review-body">Compared 3 lenders through rates.now and saved over $280/month on my refinance. The platform is intuitive and the whole experience was stress-free.</div>
+        <div class="review-footer">
+          <span class="review-footer-text">Posted on</span>
+          <div class="review-platform-dot x">X</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ (funnel) -->
+  <section class="faq-section" style="padding-top:40px;">
+    <div class="section-label">Got questions?</div>
+    <h2 class="section-title" style="font-size:1.6rem;margin-bottom:24px;">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Can I refinance a non-VA loan into a VA loan?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Yes. Eligible borrowers can refinance a conventional or FHA loan into a VA loan through a VA Cash-Out Refinance.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Do I need an appraisal for a VA Cash-Out Refinance?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">In most cases, yes. An appraisal is typically required to determine your home's current value.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">What is the difference between a VA IRRRL and a VA Cash-Out Refinance?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">A VA IRRRL lowers your rate or payment, while a VA Cash-Out Refinance lets you access home equity.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">How long does a VA cash out refinance take?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Timelines vary, but many VA refinances close within 30–45 days.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Will I need to pay mortgage insurance on a VA Cash-Out Refinance?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">No. VA loans do not require monthly mortgage insurance.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Are VA refinance rates lower than conventional refinance rates?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">VA refinance rates are often competitive and may be lower than conventional options for qualified borrowers.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (funnel) -->
+  <footer>
+    <div class="footer-links">
+      <a href="#">About Lender</a><a href="#">License Information</a><a href="#">Privacy Policy</a>
+      <a href="#">Your California Rights</a><a href="#">Terms of Use</a><a href="#">Cookie Settings</a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-company">
+        <div class="eho-badge">EQUAL<br>HOUSING<br>OPPTY</div>
+        <div><div class="footer-company-name">Rates,Now</div><div class="footer-nmls">NMLS #473163</div></div>
+      </div>
+      <div class="footer-legal">Rates,Now is a licensed mortgage lender. To access license information visit <a href="#">this page.</a></div>
+    </div>
+  </footer>
+
+</div><!-- /funnel -->
+
+<script>
+  let curStep = 1;
+  let propertyType = '';
+  const progress = { 1:4, 3:11, 'rs4':18, 'rs5':25, 'rs6':32, 'rs7':38, 'rs8':44, 's12b':51, 8:58, 9:64, 10:69, 11:74, 12:80, 'sload':85, 13:89, 14:93, 'sotp':97, 15:100 };
+
+  function selectPropertyType(el, type) {
+    propertyType = type;
+    beginFunnel();
+  }
+
+  function beginFunnel() {
+    document.getElementById('landing').style.display = 'none';
+    document.getElementById('funnel').classList.add('active');
+    go(1);
+  }
+  function exitFunnel() {
+    document.getElementById('funnel').classList.remove('active');
+    document.getElementById('landing').style.display = 'block';
+    window.scrollTo(0,0);
+  }
+  function showLanding() { exitFunnel(); }
+
+  function go(step) {
+    const prevId = (typeof curStep === 'number') ? 's'+curStep : curStep;
+    const nextId = (typeof step === 'number') ? 's'+step : step;
+    const prev = document.getElementById(prevId);
+    if (prev) prev.classList.add('hidden');
+    curStep = step;
+    const next = document.getElementById(nextId);
+    if (next) {
+      next.classList.remove('hidden');
+      next.style.animation = 'none';
+      void next.offsetWidth;
+      next.style.animation = '';
+    }
+    const pct = progress[step] || 100;
+    document.getElementById('pbar').style.width = pct+'%';
+    document.getElementById('ppct').textContent = pct+'% complete';
+    if (nextId === 'rs5') syncRemainingBalance();
+    if (step === 15) buildTyLenders();
+    if (nextId === 'sload') startLoader();
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  function pick(el, stepId, next) {
+    el.parentElement.querySelectorAll('.opt-icon-card,.opt-yn,.opt-list,.opt-grid').forEach(b => b.classList.remove('sel'));
+    el.classList.add('sel');
+    setTimeout(() => go(next), 280);
+  }
+
+  function pickPropertyUse(el) {
+    el.parentElement.querySelectorAll('.opt-icon-card').forEach(b => b.classList.remove('sel'));
+    el.classList.add('sel');
+    setTimeout(() => go(4), 280);
+  }
+
+  function toggleLender(card) { card.classList.toggle('sel'); }
+
+  function showMoreQuotes() {
+    document.querySelectorAll('#lender-grid .lender-card.hidden').forEach(c => c.classList.remove('hidden'));
+    const btn = document.getElementById('show-more-btn');
+    if (btn) btn.style.display = 'none';
+  }
+
+  function syncSlider(rangeId, displayId) {
+    const v = document.getElementById(rangeId).value;
+    document.getElementById(displayId).value = parseInt(v).toLocaleString('en-US');
+  }
+
+  function syncCreditScore() {
+    const score = parseInt(document.getElementById('cs-range').value);
+    document.getElementById('cs-display').textContent = score;
+    let rating = 'Fair';
+    if (score >= 800) rating = 'Exceptional';
+    else if (score >= 740) rating = 'Very Good';
+    else if (score >= 670) rating = 'Good';
+    else if (score >= 580) rating = 'Fair';
+    else rating = 'Poor';
+    document.getElementById('cs-rating').textContent = rating;
+  }
+
+  function syncDownPayment() {
+    const pct = parseInt(document.getElementById('dp-range').value);
+    document.getElementById('dp-pct-label').textContent = pct + '%';
+    const priceStr = (document.getElementById('price-val').value || '500000').replace(/,/g, '');
+    const price = parseInt(priceStr) || 540000;
+    const dollars = Math.round(price * pct / 100);
+    document.getElementById('dp-dollar-val').value = dollars.toLocaleString('en-US');
+  }
+
+  function syncRemainingBalance() {
+    const pct = parseInt(document.getElementById('rb-range').value);
+    document.getElementById('rb-pct-label').textContent = pct + '%';
+    const priceStr = (document.getElementById('prop-val').value || '500000').replace(/,/g, '');
+    const price = parseInt(priceStr) || 500000;
+    const dollars = Math.round(price * pct / 100);
+    document.getElementById('rb-dollar-val').value = dollars.toLocaleString('en-US');
+  }
+
+  function syncInterestRate() {
+    const rate = parseFloat(document.getElementById('ir-range').value).toFixed(2);
+    document.getElementById('ir-val').value = rate;
+  }
+
+  let _loaderTimers = [];
+
+  function startLoader() {
+    _loaderTimers.forEach(clearTimeout);
+    _loaderTimers = [];
+    [1,2,3,4].forEach(i => { const el = document.getElementById('li'+i); el.classList.remove('active','done'); });
+    const bar = document.getElementById('loader-bar');
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+    // Start progress bar over 10s
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        bar.style.transition = 'width 10s linear';
+        bar.style.width = '100%';
+      });
+    });
+    document.getElementById('li1').classList.add('active');
+    _loaderTimers.push(setTimeout(() => { document.getElementById('li1').classList.replace('active','done'); document.getElementById('li2').classList.add('active'); }, 2000));
+    _loaderTimers.push(setTimeout(() => { document.getElementById('li2').classList.replace('active','done'); document.getElementById('li3').classList.add('active'); }, 4500));
+    _loaderTimers.push(setTimeout(() => { document.getElementById('li3').classList.replace('active','done'); document.getElementById('li4').classList.add('active'); }, 7200));
+    _loaderTimers.push(setTimeout(() => { document.getElementById('li4').classList.replace('active','done'); go(13); }, 10000));
+  }
+
+  function cancelLoader() {
+    _loaderTimers.forEach(clearTimeout);
+    _loaderTimers = [];
+    go(12);
+  }
+
+  function continueWithOffers(count) {
+    const cards = [...document.querySelectorAll('#lender-grid .lender-card:not(.hidden)')];
+    cards.forEach(c => c.classList.remove('sel'));
+    (count === 1 ? cards.slice(0, 1) : cards).forEach(c => c.classList.add('sel'));
+    go(14);
+  }
+
+  function buildTyLenders() {
+    const selected = [...document.querySelectorAll('#lender-grid .lender-card.sel')];
+    const container = document.getElementById('ty-lenders');
+    if (!selected.length) { container.innerHTML = ''; return; }
+    container.innerHTML = selected.map(card => {
+      const badge = card.querySelector('.lender-badge');
+      const img = badge ? badge.querySelector('img') : null;
+      let logoHtml;
+      if (img) {
+        logoHtml = `<div class="ty-lender-logo"><img src="${img.getAttribute('src')}" alt="${img.getAttribute('alt') || ''}"></div>`;
+      } else {
+        const name = badge ? badge.textContent.trim() : '';
+        logoHtml = `<div class="ty-lender-logo"><span class="ty-lender-name">${name}</span></div>`;
+      }
+      const opts = [
+        { rate: card.dataset.rate1||'—', apr: card.dataset.apr1||'—', pts: card.dataset.pts1||'—', shade: 'shade-1' },
+        { rate: card.dataset.rate2||'—', apr: card.dataset.apr2||'—', pts: card.dataset.pts2||'—', shade: 'shade-2' },
+        { rate: card.dataset.rate3||'—', apr: card.dataset.apr3||'—', pts: card.dataset.pts3||'—', shade: 'shade-3' },
+      ];
+      const rateRow = o => `<div class="ty-rate-option ${o.shade}"><div class="ty-rate-item"><div class="ty-rate-lbl">Rate</div><div class="ty-rate-val">${o.rate}</div></div><div class="ty-rate-item"><div class="ty-rate-lbl">APR</div><div class="ty-rate-val">${o.apr}</div></div><div class="ty-rate-item"><div class="ty-rate-lbl">Points</div><div class="ty-rate-val">${o.pts}</div></div></div>`;
+      const ratesHtml = `<div class="ty-rate-options">${opts.map(rateRow).join('')}</div>`;
+      return `<div class="ty-lender-card">${logoHtml}${ratesHtml}<button class="btn-continue secondary" style="margin-top:0;color:#5349DB;border-color:#5349DB">View Full Rates &amp; Fees</button></div>`;
+    }).join('');
+  }
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Inject lender logo into all review footers
+  document.querySelectorAll('.review-footer').forEach(function(footer) {
+    var right = document.createElement('div');
+    right.className = 'review-footer-right';
+    while (footer.firstChild) right.appendChild(footer.firstChild);
+    var logo = document.createElement('img');
+    logo.src = 'strong-home-mortgage-logo.webp';
+    logo.alt = 'Strong Home Mortgage';
+    logo.className = 'review-lender-logo';
+    footer.appendChild(logo);
+    footer.appendChild(right);
+  });
+
+  // Social proof popup
+  const _proofNotifs = [
+    { name: 'Jimmy K.',   city: 'Miami',       mins: 32 },
+    { name: 'Sarah M.',   city: 'Houston',     mins: 17 },
+    { name: 'Carlos R.',  city: 'San Diego',   mins: 44 },
+    { name: 'Linda T.',   city: 'Phoenix',     mins: 8  },
+    { name: 'Marcus W.',  city: 'Atlanta',     mins: 51 },
+    { name: 'Priya N.',   city: 'Dallas',      mins: 23 },
+    { name: 'Derek H.',   city: 'Tampa',       mins: 6  },
+    { name: 'Tanya B.',   city: 'Las Vegas',   mins: 38 },
+    { name: 'Kevin L.',   city: 'Denver',      mins: 14 },
+    { name: 'Rachel S.',  city: 'Charlotte',   mins: 27 },
+  ];
+  let _proofIdx = 0;
+  function _showProofNotif() {
+    const popup = document.getElementById('proof-notif');
+    const n = _proofNotifs[_proofIdx % _proofNotifs.length];
+    _proofIdx++;
+    document.getElementById('pn-msg').textContent = n.name + ' in ' + n.city + ' got a rate ' + n.mins + ' minutes ago';
+    popup.classList.add('visible');
+    setTimeout(function() {
+      popup.classList.remove('visible');
+      setTimeout(_showProofNotif, 3000);
+    }, 5000);
+  }
+  setTimeout(_showProofNotif, 3000);
+
+  // OTP input: auto-advance and backspace navigation
+  document.addEventListener('input', function(e) {
+    if (!e.target.classList.contains('otp-inp')) return;
+    const inputs = [...document.querySelectorAll('#otp-group .otp-inp')];
+    const idx = inputs.indexOf(e.target);
+    // Allow only digits
+    e.target.value = e.target.value.replace(/\D/g, '').slice(-1);
+    if (e.target.value && idx < inputs.length - 1) inputs[idx + 1].focus();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (!e.target.classList.contains('otp-inp')) return;
+    const inputs = [...document.querySelectorAll('#otp-group .otp-inp')];
+    const idx = inputs.indexOf(e.target);
+    if (e.key === 'Backspace' && !e.target.value && idx > 0) inputs[idx - 1].focus();
+    if (e.key === 'ArrowLeft' && idx > 0) { e.preventDefault(); inputs[idx - 1].focus(); }
+    if (e.key === 'ArrowRight' && idx < inputs.length - 1) { e.preventDefault(); inputs[idx + 1].focus(); }
+  });
+</script>
+
+<!-- Social proof popup -->
+<div id="proof-notif">
+  <div class="pn-icon">🏠</div>
+  <div class="pn-body">
+    <div class="pn-label">Just now</div>
+    <div class="pn-msg" id="pn-msg"></div>
+  </div>
+</div>
+</body>
+</html>
