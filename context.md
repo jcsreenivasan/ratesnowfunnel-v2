@@ -1,91 +1,140 @@
-# ratesnowfunnel — Project Context
+# ratesnowfunnel-v2 — Project Context
 
 ## What this is
-A single-file HTML/CSS/JS prototype of a multi-step mortgage rate comparison funnel for the brand **Rates,Now**. Target audience is general mortgage seekers (veterans are welcome but content is generic). No build tools, no frameworks, no backend.
+A single-file HTML/CSS/JS lead-generation funnel for the brand **VArates.now**, targeting U.S. military veterans seeking a **VA Cash-Out Refinance**. No build tools, no framework, no backend. Everything lives in `index.html`.
 
-## Files
+## Repository & Deployment
+- **GitHub:** https://github.com/jcsreenivasan/ratesnowfunnel-v2
+- **Active branch:** `experiment1-homepage` (CRO experiment variant)
+- **Live Vercel URL:** https://ratesnowfunnel-v2-ratesnowfunnel-ca.vercel.app
+- **Vercel project:** `ratesnowfunnel-v2-ratesnowfunnel-cashout-v2` (team: `jcsreenivasans-projects`)
+- **Deploy command** (manual — Vercel does NOT auto-deploy from GitHub push):
+  ```bash
+  /tmp/vercel-local/node_modules/.bin/vercel --prod
+  ```
+  Run from: `/Users/sreenivasanjayachandrabalaji/Desktop/claudework/ratesnowfunnel-v4-cro/ratesnowfunnel-v2-ratesnowfunnel-cashout-v2`
+
+  If `/tmp/vercel-local` is missing, reinstall:
+  ```bash
+  mkdir -p /tmp/gh_install && curl -sL https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_macOS_arm64.zip -o /tmp/gh_install/gh.zip && unzip -q -o /tmp/gh_install/gh.zip -d /tmp/gh_install/
+  npm install --prefix /tmp/vercel-local vercel --cache /tmp/npm-cache
+  ```
+
+  The `gh` CLI (for git push auth) also lives in `/tmp` and may need reinstalling:
+  ```bash
+  mkdir -p /tmp/gh_install && curl -sL https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_macOS_arm64.zip -o /tmp/gh_install/gh.zip && unzip -q -o /tmp/gh_install/gh.zip -d /tmp/gh_install/
+  ```
+
+## File Structure
 | File | Description |
 |------|-------------|
-| `index.html` | The entire prototype — all HTML, CSS, JS in one file (~1260 lines) |
-| `logo.png` | rates.now logo (copied from Downloads/ratesnlogo.png) |
-| `ca.png` | Camouflage background image (light gray/white camo, fixed to body) |
-| `Screenshots/` | Reference Bankrate funnel screenshots (source of structure/content) |
+| `index.html` | Entire app — all HTML, CSS, JS (~1300 lines) |
+| `VArateslogo.png` | Header logo |
+| `ca.png` | Camouflage background texture (body background) |
+| `veterana.png` | Hero image (desktop) |
+| `veterana2.png` | Hero image (desktop alternate) |
+| `veterana-mobile.png` | Hero image (mobile, used via `<picture>`) |
+| `american-flag.png` | Small flag icon in rate bar |
+| `veterans-united-logo.png` | Lender logo (s13) |
+| `better-mortgage-logo.svg` | Lender logo (s13) |
+| `rocket-logo.png` | Lender logo (s13) |
+| `strong-home-mortgage-logo.webp` | Lender logo (s13) |
+| `shm-logo.png` | Lender logo |
+| `lender3-logo.svg` | Lender logo |
+| `farmers-bank-logo.svg` | Lender logo |
+| `armed-forces-logo.svg` | Military branding |
+| `.vercel/project.json` | Vercel project ID + org ID |
+| `CLAUDE.md` | Claude Code guidance file |
+| `context.md` | This file |
 
-## Brand / Design
-- **Colors:** Purple `#5B5BD6`, Dark purple `#1E1B4B`, Gold `#F59E0B`, White `#FFFFFF`
-- **Background:** `ca.png` camo image, `background-attachment: fixed`, covers all pages
-- **Panels:** `background: rgba(255,255,255,0.94)` + `backdrop-filter: blur(8px)` for frosted glass effect
-- **Font:** Inter (Google Fonts CDN)
+## `index.html` Architecture
+Three logical sections in order:
+1. `<style>` — all CSS (~700 lines)
+2. `<body>` — SVG icon library, then landing page (`#landing`), then funnel (`#funnel`)
+3. `<script>` — all JS at the bottom (~130 lines)
 
-## Funnel Flow (14 steps)
-| Step | ID | Content |
-|------|----|---------|
-| 1 | s1 | ZIP code |
-| 2 | s2 | Property type (4 icon cards) |
-| 3 | s3 | Property use (3 icon cards) |
-| 4 | s4 | First-time buyer Yes/No |
-| 5 | s5 | Homebuying stage (4 list options) |
-| 6 | s6 | Purchase price (slider) |
-| 7 | s7 | Down payment (3 list options) |
-| 8 | s8 | Credit score (10-option grid) |
-| 9 | s9 | Employment status (6-option grid) |
-| 10 | s10 | Bankruptcy / foreclosure Yes/No |
-| 11 | s11 | Annual income (slider) |
-| 12 | s12 | Lender matches (3 cards + 3 hidden extras via Show more) |
-| 13 | s13 | Contact info form |
-| 14 | s14 | Thank you / confirmation |
+## Landing Page (`id="landing"`)
+Shown on load. Contains:
+1. **Fixed header** — VArates logo (centered desktop, left-aligned mobile), height 64px desktop / 56px mobile
+2. **Hero section** (`.hero`) — full-bleed banner image with overlay, eyebrow badge, h1, subtext
+3. **Property type selector** (`.prop-type-grid`) — 4 cards (Single Family, Townhome, Condo, Multi-Family); clicking any begins the funnel
+4. **VA Rate Bar** — "Today's VA 30-Yr Fixed Rate: 5.70% vs national avg 6.39%"
+5. **Q&A chat bubbles** — 3 cards with common VA Cash-Out questions
+6. **FAQ accordion**
+7. **Reviews section** — Google / Zillow / X ratings + 3 review cards
+8. **Article section** — "VA IRRRL vs. Cash-Out Refinance" educational content
+9. **Footer**
 
-## Key JS Patterns
+## Funnel (`id="funnel"`)
+Hidden until a property type card is clicked (`beginFunnel()`). Steps:
+
+| Step ID | Question |
+|---------|----------|
+| s1 | ZIP code |
+| s3 | Property use (Primary / Second Home / Investment) |
+| rs4 | Estimated property value (slider $80K–$2M) |
+| rs5 | Remaining mortgage balance (slider, 0–100%) |
+| rs6 | Current interest rate (slider 0–12%) |
+| rs7 | Second mortgage? (Yes/No) |
+| rs8 | Additional cash needed (slider $0–$100K) |
+| s12b | Any 30-day late payments in last 12 months? |
+| s8 | Credit score (slider 560–850) |
+| s9 | Employment status (grid) |
+| s10 | Branch of service (icon grid) |
+| s11 | Bankruptcy/foreclosure? (Yes/No) |
+| s12 | Annual income (slider $0–$500K) |
+| sload | Animated lender-matching loader |
+| s13 | Lender matches — "You have 8 mortgage offers that are ready for review!" |
+| s14 | Contact form (name, phone — email removed) |
+| sotp | OTP phone verification (UI-only, no real SMS) |
+| s15 | Thank you page |
+
+Flow: Landing → s1 → s3 → rs4 → rs5 → rs6 → rs7 → rs8 → s12b → s8 → s9 → s10 → s11 → s12 → sload → s13 → s14 → sotp → s15
+
+## Key JS Functions
 ```js
-// Navigation
-go(stepNumber)        // hide current, show target step
-pick(el, stepId, next) // select option, auto-advance after 280ms delay
-exitFunnel()          // return to landing page
-beginFunnel()         // hide landing, show funnel at s1
-
-// Progress bar
-const progress = { 1:4, 2:15, ... 14:100 }  // step → % complete
-
-// Lenders
-toggleLender(card)    // toggle .sel class on lender card
-showMoreQuotes()      // reveal 3 hidden extra lender cards in #lender-grid, hide #show-more-btn
+go(step)                        // navigate to step (number → 's'+n, or string for named steps)
+pick(el, stepId, next)          // select option, auto-advance after 280ms
+selectPropertyType(el, type)    // store propertyType, call beginFunnel()
+beginFunnel()                   // hide landing, activate funnel, go to s1
+showLanding() / exitFunnel()    // return to landing page
+syncSlider() / syncCreditScore() / syncRemainingBalance() / syncInterestRate() // slider display
+cancelLoader()                  // cancel sload screen
+continueWithOffers()            // advance from s13
+buildTyLenders()                // build thank-you lender results
 ```
 
-## SVG Icon Library
-All icons are defined once as `<symbol>` elements in a hidden `<svg>` at the top of `<body>`, then referenced with `<use href="#icon-name"/>`. Icon IDs:
-- Property types: `icon-house`, `icon-townhome`, `icon-condo`, `icon-multifamily`
-- Property use: `icon-primary`, `icon-secondhome`, `icon-investment`
-- Yes/No: `icon-yes`, `icon-no`
-- Value props: `icon-target`, `icon-rates`, `icon-shield`
-- Trust/UI: `icon-sparkle`, `icon-lock`, `icon-users`
-- Landing buttons: `icon-purchase`, `icon-refinance`
-- Avatars: `icon-avatar1`, `icon-avatar2`, `icon-avatar3`
-- Loan programs (unused in flow, kept in defs): `icon-firsttime`, `icon-veteran`, `icon-fha`, `icon-conventional`
+## CSS Design Tokens
+```css
+--primary:    #5349DB   (main purple)
+--purple:     #5B5BD6
+--purple-dark:#1E1B4B
+--primary-lt: #ece9ff   (light purple tint)
+--green:      #16a25b
+--green-lt:   #d6f4e6
+--gold:       #F59E0B
+--ink:        #0f0e1a   (near-black text)
+--slate:      #6b6b8a   (secondary text)
+--radius:     20px
+```
 
-## Sections on Landing Page
-1. Hero (loan type selector → begins funnel)
-2. Rate bar (today's 30yr fixed rate display)
-3. Media strip (featured by WSJ, Forbes, etc.)
-4. Value props grid (3 cards)
-5. FAQ accordion
-6. Reviews (Google/Zillow/X ratings + 3 review cards)
-7. Footer
+## Responsive Breakpoints
+| Breakpoint | Applies to |
+|------------|------------|
+| `≤860px` | Tablet — prop-type-grid 2-col, reviews 2-col |
+| `≤640px` | Mobile — full mobile layout (see below) |
+| `≤390px` | Small phones — hero h1 26px, lender grid 1-col |
 
-## Sections Below Each Funnel Step
-- Reviews section (same as landing)
-- FAQ accordion (condensed version)
-- Footer
+## Mobile-Specific Layout Notes (≤640px)
+- **Header:** 56px tall, logo left-aligned
+- **#landing:** `padding-top: 56px` (matches mobile header height)
+- **Hero section:** `padding: 0 18px 28px` (no top padding — image sits flush below header)
+- **Hero banner image:** Full-bleed edge-to-edge (`width: calc(100%+36px); margin: 0 -18px 24px`), no border-radius, height 163px, black overlay retained, h1 and subtext in white over the image
+- **s13 heading:** Font-size overridden to 22px (`!important`) to fit "You have 8 mortgage offers / that are ready for review!" in 2 lines
 
-## Things Removed vs. Early Versions
-- No trust bar ("Get matched… / Trusted & secure since 1976 / +400,000 people…")
-- No Step 9 "Do you qualify for any special loan programs?" (removed per user request)
-- No VA-specific / military-specific loan language in funnel steps
-- No pre-selected options on any screen
-
-## Option Selection Behavior
-- `pick()` calls remove `.sel` from all siblings, add `.sel` to clicked element, then auto-advance after 280ms
-- Lender cards use `toggleLender()` (toggle, not auto-advance) — user must click Continue
-- No options are pre-selected on page load
-
-## Responsive
-- `@media (max-width: 640px)`: stacks hero buttons, value grid → 1 col, lender grid → 1 col, form row → 1 col
+## CRO Changes Made on `experiment1-homepage` (June 2026)
+1. Mobile hero: full-bleed image (edge-to-edge, no border-radius, no shadow)
+2. Mobile hero: text (eyebrow, h1, subtext) overlaid on image with black overlay; h1 + subtext in white
+3. Mobile hero: removed gap between fixed header and image (padding-top set to match header height)
+4. Mobile hero: image height reduced 35% (250px → 163px)
+5. s13 heading: font-size reduced to 22px on mobile so the 2-line heading fits without overflow
