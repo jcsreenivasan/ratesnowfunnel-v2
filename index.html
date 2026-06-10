@@ -496,12 +496,11 @@
     .offer-td-lender img { height: 26px; max-width: 110px; object-fit: contain; display: block; filter: blur(4px); }
     .offer-val { filter: blur(5px); user-select: none; font-size: 0.88rem; font-weight: 600; color: var(--text); pointer-events: none; }
 
-    /* Offer unlock card (s13) — overlaid on top of table */
-    .offer-gated-wrap { position: relative; padding-top: 240px; }
-    .offer-unlock-wrap { position: absolute; top: 0; left: 0; right: 0; padding-top: 34px; z-index: 10; }
-    .offer-unlock-card { background: #fff; border-radius: 20px; box-shadow: 0 8px 40px rgba(30,27,75,0.18); padding: 0 32px 28px; text-align: center; max-width: 500px; margin: 0 auto; }
+    /* Offer unlock card (s13) — centered over table */
+    .offer-gated-wrap { position: relative; }
+    .offer-unlock-wrap { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(480px, 90%); z-index: 10; padding-top: 31px; }
+    .offer-unlock-card { background: #fff; border-radius: 20px; box-shadow: 0 8px 40px rgba(30,27,75,0.22); padding: 0 32px 28px; text-align: center; width: 100%; }
     .offer-unlock-badge { width: 62px; height: 62px; background: #f5f5f8; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: -31px auto 20px; border: 3px solid #fff; box-shadow: 0 2px 12px rgba(30,27,75,0.1); }
-    .offer-unlock-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 20px; line-height: 1.4; }
     .offer-unlock-input { width: 100%; border: 1.5px solid #d8d8e8; border-radius: 10px; padding: 14px 16px; font-size: 0.95rem; color: var(--text); outline: none; margin-bottom: 12px; font-family: 'Inter', sans-serif; background: #fff; transition: border-color 0.2s; box-sizing: border-box; }
     .offer-unlock-input:focus { border-color: #5349DB; }
     .offer-unlock-btn { width: 100%; background: #5349DB; color: #fff; font-weight: 700; font-size: 1rem; border: none; border-radius: 10px; padding: 15px; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; }
@@ -1527,7 +1526,8 @@
     <!-- ─── STEP 13: LENDER MATCHES ─── -->
     <div class="step-card step-card-wide hidden" id="s13">
       <div class="s13-top"><span class="s13-live-badge">Live Rates</span></div>
-      <h2 class="step-q" style="font-size:32px;">You have 8 mortgage offers that are ready for your review!</h2>
+      <h2 class="step-q" style="font-size:32px;">You have 8 mortgage offers that are ready for review!</h2>
+      <p class="step-sub">Review your personalized rate options.</p>
 
       <!-- Hidden lender grid kept for continueWithOffers() + buildTyLenders() compatibility -->
       <div class="lender-grid" id="lender-grid" style="display:none;">
@@ -1547,23 +1547,8 @@
         </div>
       </div>
 
-      <!-- Gated section: unlock card overlaid on table -->
+      <!-- Gated section: table first, unlock card centered on top -->
       <div class="offer-gated-wrap">
-      <!-- Unlock card -->
-      <div class="offer-unlock-wrap">
-        <div class="offer-unlock-card">
-          <div class="offer-unlock-badge">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17 11V7C17 4.239 14.761 2 12 2C9.239 2 7 4.239 7 7v4" stroke="#B8860B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <rect x="4" y="11" width="16" height="11" rx="2.5" fill="#C49A1A"/>
-              <circle cx="12" cy="16.5" r="1.6" fill="#fff"/>
-            </svg>
-          </div>
-          <p class="offer-unlock-title">Free and complete access in seconds</p>
-          <input id="offer-email-input" type="email" class="offer-unlock-input" placeholder="Enter your email">
-          <button class="offer-unlock-btn" onclick="unlockOffers()">Review these offers</button>
-        </div>
-      </div>
 
       <!-- Visible offer table -->
       <div class="offer-table-wrap">
@@ -1646,6 +1631,22 @@
           </tbody>
         </table>
       </div>
+
+      <!-- Unlock card centered over table -->
+      <div class="offer-unlock-wrap">
+        <div class="offer-unlock-card">
+          <div class="offer-unlock-badge">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 11V7C17 4.239 14.761 2 12 2C9.239 2 7 4.239 7 7v4" stroke="#B8860B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="4" y="11" width="16" height="11" rx="2.5" fill="#C49A1A"/>
+              <circle cx="12" cy="16.5" r="1.6" fill="#fff"/>
+            </svg>
+          </div>
+          <input id="offer-email-input" type="email" class="offer-unlock-input" placeholder="Enter your email">
+          <button class="offer-unlock-btn" onclick="unlockOffers()">Review these offers</button>
+        </div>
+      </div>
+
       </div><!-- /.offer-gated-wrap -->
 
       <a class="btn-back" onclick="go(12)">Back</a>
