@@ -487,8 +487,18 @@
     .offer-table tbody tr:last-child { border-bottom: none; }
     .offer-table tbody tr:hover { background: rgba(83,73,219,0.04); }
     .offer-table tbody td { padding: 12px 14px; vertical-align: middle; }
-    .offer-td-lender img { height: 26px; max-width: 110px; object-fit: contain; display: block; }
+    .offer-td-lender img { height: 26px; max-width: 110px; object-fit: contain; display: block; filter: blur(4px); }
     .offer-val { filter: blur(5px); user-select: none; font-size: 0.88rem; font-weight: 600; color: var(--text); pointer-events: none; }
+
+    /* Offer unlock card (s13) */
+    .offer-unlock-wrap { padding-top: 34px; margin-bottom: 28px; }
+    .offer-unlock-card { background: #fff; border-radius: 20px; box-shadow: 0 8px 40px rgba(30,27,75,0.14); padding: 0 32px 28px; text-align: center; max-width: 500px; margin: 0 auto; }
+    .offer-unlock-badge { width: 62px; height: 62px; background: #f5f5f8; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: -31px auto 20px; border: 3px solid #fff; box-shadow: 0 2px 12px rgba(30,27,75,0.1); }
+    .offer-unlock-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 20px; line-height: 1.4; }
+    .offer-unlock-input { width: 100%; border: 1.5px solid #d8d8e8; border-radius: 10px; padding: 14px 16px; font-size: 0.95rem; color: var(--text); outline: none; margin-bottom: 12px; font-family: 'Inter', sans-serif; background: #fff; transition: border-color 0.2s; box-sizing: border-box; }
+    .offer-unlock-input:focus { border-color: #5349DB; }
+    .offer-unlock-btn { width: 100%; background: #5349DB; color: #fff; font-weight: 700; font-size: 1rem; border: none; border-radius: 10px; padding: 15px; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; }
+    .offer-unlock-btn:hover { background: #3d33c4; }
 
     .consent-text { font-size: 11.5px; color: var(--text-light); line-height: 1.7; margin: 16px 0; }
     .consent-text a { color: var(--purple); }
@@ -1520,7 +1530,7 @@
     <!-- ─── STEP 13: LENDER MATCHES ─── -->
     <div class="step-card step-card-wide hidden" id="s13">
       <div class="s13-top"><span class="s13-live-badge">Live Rates</span></div>
-      <h2 class="step-q" style="font-size:24px;">You have 8 mortgage offers that are ready for your review!</h2>
+      <h2 class="step-q" style="font-size:32px;">You have 8 mortgage offers that are ready for your review!</h2>
 
       <!-- Hidden lender grid kept for continueWithOffers() + buildTyLenders() compatibility -->
       <div class="lender-grid" id="lender-grid" style="display:none;">
@@ -1537,6 +1547,22 @@
           data-rate2="6.375%" data-apr2="6.55%" data-pts2="1"
           data-rate3="6.500%" data-apr3="6.63%" data-pts3="0">
           <div class="lender-badge"><img src="better-mortgage-logo.svg" alt="Better Mortgage"></div>
+        </div>
+      </div>
+
+      <!-- Unlock card -->
+      <div class="offer-unlock-wrap">
+        <div class="offer-unlock-card">
+          <div class="offer-unlock-badge">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 11V7C17 4.239 14.761 2 12 2C9.239 2 7 4.239 7 7v4" stroke="#B8860B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="4" y="11" width="16" height="11" rx="2.5" fill="#C49A1A"/>
+              <circle cx="12" cy="16.5" r="1.6" fill="#fff"/>
+            </svg>
+          </div>
+          <p class="offer-unlock-title">Free and complete access in seconds</p>
+          <input id="offer-email-input" type="email" class="offer-unlock-input" placeholder="Enter your email">
+          <button class="offer-unlock-btn" onclick="unlockOffers()">Review these offers</button>
         </div>
       </div>
 
@@ -1928,33 +1954,46 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     const colors = ['#5349DB','#C72424','#16a25b','#F59E0B','#ffffff','#7c73f5','#ff6b6b','#ffd93d'];
-    const pieces = Array.from({length: 130}, () => ({
+    const pieces = Array.from({length: 120}, () => ({
       x: Math.random() * canvas.width,
-      y: -20 - Math.random() * 120,
-      w: 7 + Math.random() * 9,
-      h: 4 + Math.random() * 5,
+      y: -8 - Math.random() * 80,
+      w: 7 + Math.random() * 8,
+      h: 4 + Math.random() * 4,
       color: colors[Math.floor(Math.random() * colors.length)],
       rot: Math.random() * Math.PI * 2,
-      vx: (Math.random() - 0.5) * 3.5,
-      vy: 2.5 + Math.random() * 4,
-      vr: (Math.random() - 0.5) * 0.18,
+      vx: (Math.random() - 0.5) * 0.7,
+      vy: 0.5 + Math.random() * 0.9,
+      vr: (Math.random() - 0.5) * 0.03,
+      opacity: 0.85 + Math.random() * 0.15,
     }));
     const start = Date.now();
+    const duration = 5000;
     let raf;
     (function draw() {
+      const elapsed = Date.now() - start;
+      const fade = elapsed > 4000 ? 1 - (elapsed - 4000) / 1000 : 1;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       pieces.forEach(p => {
         ctx.save();
+        ctx.globalAlpha = p.opacity * fade;
         ctx.translate(p.x, p.y);
         ctx.rotate(p.rot);
         ctx.fillStyle = p.color;
         ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
         ctx.restore();
-        p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.vy += 0.06;
+        p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.vy += 0.012;
       });
-      if (Date.now() - start < 5000) { raf = requestAnimationFrame(draw); }
+      if (elapsed < duration) { raf = requestAnimationFrame(draw); }
       else { cancelAnimationFrame(raf); canvas.remove(); }
     })();
+  }
+
+  function unlockOffers() {
+    const emailEl = document.getElementById('offer-email-input');
+    const email = emailEl ? emailEl.value.trim() : '';
+    const s14Email = document.querySelector('#s14 input[type="email"]');
+    if (s14Email && email) s14Email.value = email;
+    continueWithOffers('all');
   }
 
   function pick(el, stepId, next) {
