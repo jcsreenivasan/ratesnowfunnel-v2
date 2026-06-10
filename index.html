@@ -113,12 +113,21 @@
     .hero::after { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 900px; height: 600px; background: radial-gradient(ellipse at center top, rgba(247,247,251,0.7) 0%, transparent 65%); pointer-events: none; }
     .eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--green-lt); color: var(--green); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 28px; position: relative; z-index: 1; }
     .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
-    .hero h1 { font-size: 50px; font-weight: 900; line-height: 1.1; color: var(--ink); letter-spacing: -1.5px; max-width: 680px; margin: 0 auto 32px; position: relative; z-index: 1; }
+    .hero h1 { font-size: 50px; font-weight: 900; line-height: 1.1; color: var(--purple-dark); letter-spacing: -1.5px; max-width: 680px; margin: 0 auto 0; position: relative; z-index: 1; }
     .hero h1 em { font-style: normal; color: var(--primary); }
     .hero-sub { display: none; }
     .hero-trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin-top: 22px; position: relative; z-index: 1; }
     .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.83rem; color: var(--slate); font-weight: 500; }
     .trust-check { width: 19px; height: 19px; border-radius: 50%; border: 1.5px solid var(--slate); display: inline-flex; align-items: center; justify-content: center; font-size: 10px; color: var(--slate); flex-shrink: 0; line-height: 1; }
+
+    /* ─── HERO BANNER IMAGE ─── */
+    .hero-banner {
+      width: 100%; max-width: 1020px; height: 380px;
+      object-fit: cover; object-position: left center;
+      border-radius: 22px; display: block;
+      margin: 28px auto 36px;
+      box-shadow: 0 16px 56px rgba(0,0,0,0.18);
+    }
 
     /* ─── PROPERTY TYPE SELECTOR (Landing) ─── */
     .prop-type-intro { position: relative; z-index: 1; width: 100%; }
@@ -127,14 +136,14 @@
     .prop-type-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1020px; margin: 0 auto; }
     .prop-type-card {
       position: relative; overflow: hidden;
-      background: rgba(255,255,255,0.97);
-      border: 2px solid var(--lborder);
+      background: #fff;
+      border: 2px solid var(--primary);
       border-radius: 22px;
       padding: 42px 20px 64px;
       cursor: pointer; text-align: center;
       display: flex; flex-direction: column; align-items: center; gap: 9px;
       font-family: 'Inter', sans-serif;
-      box-shadow: 0 4px 28px rgba(83,73,219,0.07);
+      box-shadow: 0 24px 60px rgba(83,73,219,0.24);
       transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s, border-color 0.2s, background 0.2s;
     }
     .prop-type-card::after { content: ''; position: absolute; top: 0; left: -80%; width: 55%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(83,73,219,0.07) 50%, transparent 100%); transform: skewX(-12deg); pointer-events: none; animation: auto-flash var(--flash-dur) ease-in-out 0.9s infinite; }
@@ -146,15 +155,15 @@
     .prop-type-card:active { transform: scale(0.97); }
     .ptc-icon { margin-bottom: 4px; transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1); }
     .prop-type-card:hover .ptc-icon { transform: translateY(-3px) scale(1.08); }
-    .ptc-name { font-size: 1.12rem; font-weight: 800; color: var(--ink); line-height: 1.2; letter-spacing: -0.3px; transition: color 0.2s; }
+    .ptc-name { font-size: 1.12rem; font-weight: 800; color: var(--primary); line-height: 1.2; letter-spacing: -0.3px; transition: color 0.2s; }
     .prop-type-card:hover .ptc-name { color: var(--primary); }
     .ptc-desc { font-size: 0.82rem; color: var(--slate); line-height: 1.45; font-weight: 400; }
-    .ptc-cta { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; border-top: 1.5px solid var(--lborder); transition: background 0.2s, border-color 0.2s; }
-    .ptc-cta-text { font-size: 0.69rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--primary); transition: color 0.2s; }
-    .ptc-cta-arrow { width: 26px; height: 26px; border-radius: 50%; background: var(--primary-lt); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; color: var(--primary); transition: background 0.2s, color 0.2s, transform 0.2s; }
-    .prop-type-card:hover .ptc-cta { background: var(--primary); border-color: var(--primary); }
+    .ptc-cta { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; border-top: 1.5px solid var(--primary); background: var(--primary); transition: background 0.2s, border-color 0.2s; }
+    .ptc-cta-text { font-size: 0.69rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #fff; transition: color 0.2s; }
+    .ptc-cta-arrow { width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; color: #fff; transition: background 0.2s, color 0.2s, transform 0.2s; }
+    .prop-type-card:hover .ptc-cta { background: var(--primary-dk); border-color: var(--primary-dk); }
     .prop-type-card:hover .ptc-cta-text { color: #fff; }
-    .prop-type-card:hover .ptc-cta-arrow { background: rgba(255,255,255,0.2); color: #fff; transform: translate(3px,-2px); }
+    .prop-type-card:hover .ptc-cta-arrow { background: rgba(255,255,255,0.25); color: #fff; transform: translate(3px,-2px); }
 
     /* Rates Widget */
     .rates-section { position: relative; z-index: 1; padding: 64px 40px 0; display: flex; justify-content: center; }
@@ -507,6 +516,7 @@
       .hero { padding: 22px 18px 28px; }
       .hero h1 { font-size: 30px; letter-spacing: -0.8px; margin-bottom: 18px; }
       .eyebrow { font-size: 0.66rem; margin-bottom: 18px; }
+      .hero-banner { height: 200px; border-radius: 16px; margin: 18px auto 24px; }
 
       /* Property type grid – 2-col on mobile */
       .prop-type-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -891,6 +901,7 @@
   <section class="hero">
     <div class="eyebrow fade-up">Live rates · No credit pull</div>
     <h1 class="fade-up">Check VA Cashout Loan Qualifications with Top VA Refinance Lenders.</h1>
+    <img class="hero-banner fade-up" src="veterana.png" alt="Veteran with family waving American flag">
     <p class="hero-sub fade-up">Real offers from 40+ lenders, matched to your profile in under 3 minutes. Zero obligation, zero impact on your score.</p>
 
     <div class="prop-type-intro fade-up">
