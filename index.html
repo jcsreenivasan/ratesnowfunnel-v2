@@ -598,11 +598,33 @@
       .hero { padding: 22px 18px 28px; }
       .hero h1 { font-size: 30px; letter-spacing: -0.8px; margin-bottom: 18px; }
       .eyebrow { font-size: 0.66rem; margin-bottom: 18px; }
-      .hero-banner-wrap { height: 168px; border-radius: 16px; margin: 0 auto 24px; }
-      .hero-banner-content { padding: 0 18px; gap: 8px; align-items: center; text-align: center; }
-      .hero-banner-wrap h1 { font-size: 20px; letter-spacing: -0.4px; text-align: center; margin-bottom: 0; }
-      .hero-banner-sub { text-align: center; font-size: 0.8rem; margin-top: 0; }
+      /* Hero banner – full-bleed on mobile, image below heading */
+      .hero-banner-wrap {
+        display: flex; flex-direction: column; gap: 0;
+        height: auto; overflow: visible; border-radius: 0; box-shadow: none;
+        width: calc(100% + 36px); margin: 0 -18px 24px;
+      }
+      .hero-banner-overlay { display: none; }
+      .hero-banner-content {
+        position: static; order: 1;
+        padding: 0 18px 16px; gap: 8px;
+        align-items: center; text-align: center;
+      }
       .hero-banner-wrap .eyebrow { margin-bottom: 0; }
+      .hero-banner-wrap h1 {
+        font-size: 22px; letter-spacing: -0.4px; text-align: center; margin-bottom: 0;
+        color: var(--ink); text-shadow: none;
+      }
+      .hero-banner-sub {
+        text-align: center; font-size: 0.8rem; margin-top: 0;
+        color: var(--slate); text-shadow: none;
+      }
+      .hero-banner-wrap picture { order: 2; display: block; width: 100%; }
+      .hero-banner-img {
+        position: static;
+        width: 100%; height: 200px;
+        object-fit: cover; object-position: center; display: block;
+      }
 
       /* Property type grid – 2-col on mobile */
       .prop-type-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
