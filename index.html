@@ -109,6 +109,10 @@
       0%,100% { box-shadow: 0 0 6px 2px rgba(199,36,36,0.55), 0 0 20px 6px rgba(199,36,36,0.22); }
       50%      { box-shadow: 0 0 14px 6px rgba(199,36,36,0.75), 0 0 40px 18px rgba(199,36,36,0.18); }
     }
+    @keyframes live-glow-soft {
+      0%,100% { box-shadow: 0 0 6px 2px rgba(199,36,36,0.275), 0 0 20px 6px rgba(199,36,36,0.11); }
+      50%      { box-shadow: 0 0 14px 6px rgba(199,36,36,0.375), 0 0 40px 18px rgba(199,36,36,0.09); }
+    }
     @keyframes dot-blink {
       0%,100% { opacity: 1; transform: scale(1); }
       50%      { opacity: 0.25; transform: scale(0.7); }
@@ -470,9 +474,21 @@
     .lender-score { font-size: 11px; color: var(--text-light); margin-top: 2px; }
 
     /* s13 live rates badge */
-    .s13-live-badge { display: inline-flex; align-items: center; gap: 8px; background: #C72424; color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; animation: live-glow 2s ease-in-out infinite; }
+    .s13-live-badge { display: inline-flex; align-items: center; gap: 8px; background: #C72424; color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; animation: live-glow-soft 2s ease-in-out infinite; }
     .s13-live-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #fff; flex-shrink: 0; animation: dot-blink 1.2s ease-in-out infinite; }
     .s13-top { text-align: center; margin-bottom: 4px; }
+
+    /* Offer table (s13) */
+    .offer-table-wrap { width: 100%; overflow-x: auto; margin-bottom: 28px; border-radius: 12px; border: 1px solid var(--lborder); background: rgba(255,255,255,0.9); }
+    .offer-table { width: 100%; border-collapse: collapse; min-width: 580px; }
+    .offer-table thead tr { background: #f6f6fc; border-bottom: 1.5px solid var(--lborder); }
+    .offer-table thead th { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--text-light); padding: 11px 14px; text-align: left; white-space: nowrap; }
+    .offer-table tbody tr { border-bottom: 1px solid var(--lborder); cursor: pointer; transition: background 0.15s; }
+    .offer-table tbody tr:last-child { border-bottom: none; }
+    .offer-table tbody tr:hover { background: rgba(83,73,219,0.04); }
+    .offer-table tbody td { padding: 12px 14px; vertical-align: middle; }
+    .offer-td-lender img { height: 26px; max-width: 110px; object-fit: contain; display: block; }
+    .offer-val { filter: blur(5px); user-select: none; font-size: 0.88rem; font-weight: 600; color: var(--text); pointer-events: none; }
 
     .consent-text { font-size: 11.5px; color: var(--text-light); line-height: 1.7; margin: 16px 0; }
     .consent-text a { color: var(--purple); }
@@ -1502,45 +1518,110 @@
     </div>
 
     <!-- ─── STEP 13: LENDER MATCHES ─── -->
-    <div class="step-card hidden" id="s13">
+    <div class="step-card step-card-wide hidden" id="s13">
       <div class="s13-top"><span class="s13-live-badge">Live Rates</span></div>
-      <h2 class="step-q">You have 8 mortgage offers that are ready for your review!</h2>
-      <div class="lender-grid" id="lender-grid">
-        <div class="lender-card" onclick="toggleLender(this)"
+      <h2 class="step-q" style="font-size:24px;">You have 8 mortgage offers that are ready for your review!</h2>
+
+      <!-- Hidden lender grid kept for continueWithOffers() + buildTyLenders() compatibility -->
+      <div class="lender-grid" id="lender-grid" style="display:none;">
+        <div class="lender-card"
           data-rate="6.125%" data-apr="6.38%" data-points="0.5"
           data-rate1="6.125%" data-apr1="6.38%" data-pts1="2"
           data-rate2="6.250%" data-apr2="6.45%" data-pts2="1"
           data-rate3="6.375%" data-apr3="6.52%" data-pts3="0">
-          <div class="lender-chk">✓</div>
           <div class="lender-badge"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div>
-          <div class="lender-rate-row">
-            <div class="lender-rate-item"><div class="lrf-label">Rate</div><div class="lrf-val">6.125%</div></div>
-            <div class="lender-rate-item"><div class="lrf-label">APR</div><div class="lrf-val">6.38%</div></div>
-            <div class="lender-rate-item"><div class="lrf-label">Points</div><div class="lrf-val">0.5</div></div>
-          </div>
-          <div class="lender-nmls">NMLS #1707502</div>
-          <div class="lender-stars">★★★★★</div>
-          <div class="lender-score">4.97 (2,841 reviews)</div>
         </div>
-        <div class="lender-card" onclick="toggleLender(this)"
+        <div class="lender-card"
           data-rate="6.250%" data-apr="6.49%" data-points="0.625"
           data-rate1="6.250%" data-apr1="6.49%" data-pts1="2"
           data-rate2="6.375%" data-apr2="6.55%" data-pts2="1"
           data-rate3="6.500%" data-apr3="6.63%" data-pts3="0">
-          <div class="lender-chk">✓</div>
           <div class="lender-badge"><img src="better-mortgage-logo.svg" alt="Better Mortgage"></div>
-          <div class="lender-rate-row">
-            <div class="lender-rate-item"><div class="lrf-label">Rate</div><div class="lrf-val">6.250%</div></div>
-            <div class="lender-rate-item"><div class="lrf-label">APR</div><div class="lrf-val">6.49%</div></div>
-            <div class="lender-rate-item"><div class="lrf-label">Points</div><div class="lrf-val">0.625</div></div>
-          </div>
-          <div class="lender-nmls">NMLS #330511</div>
-          <div class="lender-stars">★★★★★</div>
-          <div class="lender-score">4.76 (3,241 reviews)</div>
         </div>
       </div>
-<button class="btn-continue" onclick="continueWithOffers('all')">Continue with both offers</button>
-      <button class="btn-continue secondary" onclick="continueWithOffers(1)">Continue with first offer</button>
+
+      <!-- Visible offer table -->
+      <div class="offer-table-wrap">
+        <table class="offer-table">
+          <thead>
+            <tr>
+              <th>Lender</th>
+              <th>Mortgage Term</th>
+              <th>Interest Rate</th>
+              <th>Fees</th>
+              <th>Points</th>
+              <th>Mo. Payment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr onclick="continueWithOffers('all')">
+              <td><div class="offer-td-lender"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div></td>
+              <td><span class="offer-val">30-yr Fixed</span></td>
+              <td><span class="offer-val">6.125%</span></td>
+              <td><span class="offer-val">$3,200</span></td>
+              <td><span class="offer-val">0.5</span></td>
+              <td><span class="offer-val">$2,184</span></td>
+            </tr>
+            <tr onclick="continueWithOffers('all')">
+              <td><div class="offer-td-lender"><img src="better-mortgage-logo.svg" alt="Better Mortgage"></div></td>
+              <td><span class="offer-val">30-yr Fixed</span></td>
+              <td><span class="offer-val">6.250%</span></td>
+              <td><span class="offer-val">$2,950</span></td>
+              <td><span class="offer-val">0.625</span></td>
+              <td><span class="offer-val">$2,218</span></td>
+            </tr>
+            <tr onclick="continueWithOffers('all')">
+              <td><div class="offer-td-lender"><img src="rocket-logo.png" alt="Rocket Mortgage"></div></td>
+              <td><span class="offer-val">30-yr Fixed</span></td>
+              <td><span class="offer-val">6.375%</span></td>
+              <td><span class="offer-val">$3,875</span></td>
+              <td><span class="offer-val">1.0</span></td>
+              <td><span class="offer-val">$2,253</span></td>
+            </tr>
+            <tr onclick="continueWithOffers('all')">
+              <td><div class="offer-td-lender"><img src="veterans-united-logo.png" alt="Veterans United"></div></td>
+              <td><span class="offer-val">30-yr Fixed</span></td>
+              <td><span class="offer-val">6.000%</span></td>
+              <td><span class="offer-val">$4,100</span></td>
+              <td><span class="offer-val">1.5</span></td>
+              <td><span class="offer-val">$2,148</span></td>
+            </tr>
+            <tr onclick="continueWithOffers('all')">
+              <td><div class="offer-td-lender"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div></td>
+              <td><span class="offer-val">15-yr Fixed</span></td>
+              <td><span class="offer-val">5.750%</span></td>
+              <td><span class="offer-val">$3,600</span></td>
+              <td><span class="offer-val">0.75</span></td>
+              <td><span class="offer-val">$3,142</span></td>
+            </tr>
+            <tr onclick="continueWithOffers('all')">
+              <td><div class="offer-td-lender"><img src="better-mortgage-logo.svg" alt="Better Mortgage"></div></td>
+              <td><span class="offer-val">30-yr Fixed</span></td>
+              <td><span class="offer-val">6.500%</span></td>
+              <td><span class="offer-val">$2,800</span></td>
+              <td><span class="offer-val">0.0</span></td>
+              <td><span class="offer-val">$2,275</span></td>
+            </tr>
+            <tr onclick="continueWithOffers('all')">
+              <td><div class="offer-td-lender"><img src="rocket-logo.png" alt="Rocket Mortgage"></div></td>
+              <td><span class="offer-val">30-yr Fixed</span></td>
+              <td><span class="offer-val">6.250%</span></td>
+              <td><span class="offer-val">$3,450</span></td>
+              <td><span class="offer-val">0.875</span></td>
+              <td><span class="offer-val">$2,218</span></td>
+            </tr>
+            <tr onclick="continueWithOffers('all')">
+              <td><div class="offer-td-lender"><img src="veterans-united-logo.png" alt="Veterans United"></div></td>
+              <td><span class="offer-val">30-yr Fixed</span></td>
+              <td><span class="offer-val">6.125%</span></td>
+              <td><span class="offer-val">$4,500</span></td>
+              <td><span class="offer-val">2.0</span></td>
+              <td><span class="offer-val">$2,184</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <a class="btn-back" onclick="go(12)">Back</a>
     </div>
 
@@ -1871,7 +1952,7 @@
         ctx.restore();
         p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.vy += 0.06;
       });
-      if (Date.now() - start < 3500) { raf = requestAnimationFrame(draw); }
+      if (Date.now() - start < 5000) { raf = requestAnimationFrame(draw); }
       else { cancelAnimationFrame(raf); canvas.remove(); }
     })();
   }
