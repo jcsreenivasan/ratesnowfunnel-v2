@@ -675,7 +675,7 @@
       .step-card { padding: 26px 18px 30px; border-radius: 16px; }
       .step-card-wide { padding: 26px 16px 30px; }
       .step-q { font-size: 17px; margin-bottom: 20px; }
-      #s13 .step-q { font-size: 22px !important; }
+      #s13 .step-q, #s13b .step-q { font-size: 22px !important; }
       .step-sub { font-size: 12px; margin-top: -14px; margin-bottom: 18px; }
 
       /* Option grids */
@@ -1672,6 +1672,63 @@
       <a class="btn-back" onclick="go(12)">Back</a>
     </div>
 
+    <!-- ─── STEP 13b: LENDER MATCHES (TOWNHOME VARIANT) ─── -->
+    <div class="step-card step-card-wide hidden" id="s13b">
+      <div class="s13-top">
+        <img src="american-flag.png" alt="American Flag" style="width:40px;height:26px;object-fit:cover;border-radius:3px;display:inline-block;">
+      </div>
+      <h2 class="step-q" style="font-size:32px;">Let's get you connected with a mortgage specialist.</h2>
+
+      <!-- Gated section: table first, unlock card centered on top -->
+      <div class="offer-gated-wrap">
+
+      <!-- Visible offer table (blurred) -->
+      <div class="offer-table-wrap">
+        <table class="offer-table">
+          <thead>
+            <tr>
+              <th>Lender</th>
+              <th>Mortgage Term</th>
+              <th>Interest Rate</th>
+              <th>Fees</th>
+              <th>Points</th>
+              <th>Mo. Payment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><div class="offer-td-lender"><img src="armed-forces-logo.svg" alt="Armed Forces Bank"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.125%</span></td><td><span class="offer-val">$3,200</span></td><td><span class="offer-val">0.5</span></td><td><span class="offer-val">$2,184</span></td></tr>
+            <tr><td><div class="offer-td-lender"><img src="farmers-bank-logo.svg" alt="Farmers Bank"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.250%</span></td><td><span class="offer-val">$2,950</span></td><td><span class="offer-val">0.625</span></td><td><span class="offer-val">$2,218</span></td></tr>
+            <tr><td><div class="offer-td-lender"><img src="lender3-logo.svg" alt="Lender"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.375%</span></td><td><span class="offer-val">$3,875</span></td><td><span class="offer-val">1.0</span></td><td><span class="offer-val">$2,253</span></td></tr>
+            <tr><td><div class="offer-td-lender"><img src="shm-logo.png" alt="Strong Home Mortgage"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.000%</span></td><td><span class="offer-val">$4,100</span></td><td><span class="offer-val">1.5</span></td><td><span class="offer-val">$2,148</span></td></tr>
+            <tr><td><div class="offer-td-lender"><img src="armed-forces-logo.svg" alt="Armed Forces Bank"></div></td><td><span class="offer-val">15-yr Fixed</span></td><td><span class="offer-val">5.750%</span></td><td><span class="offer-val">$3,600</span></td><td><span class="offer-val">0.75</span></td><td><span class="offer-val">$3,142</span></td></tr>
+            <tr><td><div class="offer-td-lender"><img src="farmers-bank-logo.svg" alt="Farmers Bank"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.500%</span></td><td><span class="offer-val">$2,800</span></td><td><span class="offer-val">0.0</span></td><td><span class="offer-val">$2,275</span></td></tr>
+            <tr><td><div class="offer-td-lender"><img src="lender3-logo.svg" alt="Lender"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.250%</span></td><td><span class="offer-val">$3,450</span></td><td><span class="offer-val">0.875</span></td><td><span class="offer-val">$2,218</span></td></tr>
+            <tr><td><div class="offer-td-lender"><img src="shm-logo.png" alt="Strong Home Mortgage"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.125%</span></td><td><span class="offer-val">$4,500</span></td><td><span class="offer-val">2.0</span></td><td><span class="offer-val">$2,184</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Unlock card centered over table -->
+      <div class="offer-unlock-wrap">
+        <div class="offer-unlock-card">
+          <div class="offer-unlock-badge">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 11V7C17 4.239 14.761 2 12 2C9.239 2 7 4.239 7 7v4" stroke="#B8860B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="4" y="11" width="16" height="11" rx="2.5" fill="#C49A1A"/>
+              <circle cx="12" cy="16.5" r="1.6" fill="#fff"/>
+            </svg>
+          </div>
+          <p class="offer-unlock-subtitle">Get matched with a mortgage expert.</p>
+          <input id="offer-email-input-b" type="email" class="offer-unlock-input" placeholder="Enter your email">
+          <button class="offer-unlock-btn" onclick="continueWithOffers('all')">Continue</button>
+        </div>
+      </div>
+
+      </div><!-- /.offer-gated-wrap -->
+
+      <a class="btn-back" onclick="go(12)">Back</a>
+    </div>
+
 
     <!-- ─── STEP 14: CONTACT ─── -->
     <div class="step-card hidden" id="s14">
@@ -1924,7 +1981,7 @@
 <script>
   let curStep = 1;
   let propertyType = '';
-  const progress = { 1:4, 3:11, 'rs4':18, 'rs5':25, 'rs6':32, 'rs7':38, 'rs8':44, 's12b':51, 8:58, 9:64, 10:69, 11:74, 12:80, 'sload':85, 13:89, 14:93, 'sotp':97, 15:100 };
+  const progress = { 1:4, 3:11, 'rs4':18, 'rs5':25, 'rs6':32, 'rs7':38, 'rs8':44, 's12b':51, 8:58, 9:64, 10:69, 11:74, 12:80, 'sload':85, 13:89, 's13b':89, 14:93, 'sotp':97, 15:100 };
 
   function selectPropertyType(el, type) {
     propertyType = type;
@@ -1962,7 +2019,7 @@
     if (nextId === 'rs5') syncRemainingBalance();
     if (step === 15) buildTyLenders();
     if (nextId === 'sload') startLoader();
-    if (step === 13) launchConfetti();
+    if (step === 13 || step === 's13b') launchConfetti();
     window.scrollTo({ top:0, behavior:'smooth' });
   }
 
@@ -2096,7 +2153,7 @@
     _loaderTimers.push(setTimeout(() => { document.getElementById('li1').classList.replace('active','done'); document.getElementById('li2').classList.add('active'); }, 2000));
     _loaderTimers.push(setTimeout(() => { document.getElementById('li2').classList.replace('active','done'); document.getElementById('li3').classList.add('active'); }, 4500));
     _loaderTimers.push(setTimeout(() => { document.getElementById('li3').classList.replace('active','done'); document.getElementById('li4').classList.add('active'); }, 7200));
-    _loaderTimers.push(setTimeout(() => { document.getElementById('li4').classList.replace('active','done'); go(13); }, 10000));
+    _loaderTimers.push(setTimeout(() => { document.getElementById('li4').classList.replace('active','done'); go(propertyType === 'Townhome' ? 's13b' : 13); }, 10000));
   }
 
   function cancelLoader() {
