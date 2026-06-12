@@ -721,6 +721,57 @@
       .step-card { padding: 22px 14px 26px; }
     }
 
+    /* ── STICKY PROPERTY TYPE BANNER (mobile only) ── */
+    .sticky-prop-banner {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 150;
+      background: #fff;
+      border-top: 2px solid var(--primary);
+      box-shadow: 0 -4px 24px rgba(83,73,219,0.18);
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+      transform: translateY(110%);
+      transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+    }
+    @media (max-width: 640px) {
+      .sticky-prop-banner { display: block; }
+      .sticky-prop-banner.spb-visible { transform: translateY(0); }
+    }
+    .spb-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    .spb-img {
+      width: 56px; height: 56px;
+      border-radius: 10px;
+      object-fit: cover; object-position: left center;
+      flex-shrink: 0;
+    }
+    .spb-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      flex: 1;
+    }
+    .spb-btn {
+      background: var(--primary-lt);
+      border: 1.5px solid var(--primary);
+      border-radius: 8px;
+      padding: 7px 6px;
+      font-size: 10.5px; font-weight: 700;
+      color: var(--primary);
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      display: flex; align-items: center; justify-content: center; gap: 4px;
+      line-height: 1.2;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+    .spb-btn:active { background: var(--primary); color: #fff; }
+
   </style>
 </head>
 <body>
@@ -1281,6 +1332,28 @@
       <a href="#">Cookie Settings</a>
     </div>
   </footer>
+
+  <!-- ── STICKY PROPERTY TYPE BANNER ── -->
+  <div class="sticky-prop-banner" id="sticky-prop-banner">
+    <div class="spb-inner" onclick="scrollToPropType()">
+      <img src="veterana-mobile.png" class="spb-img" alt="">
+      <div class="spb-grid">
+        <button class="spb-btn" onclick="scrollToPropType(); event.stopPropagation();">
+          <svg width="14" height="14" style="flex-shrink:0"><use href="#icon-house"/></svg>Single Family
+        </button>
+        <button class="spb-btn" onclick="scrollToPropType(); event.stopPropagation();">
+          <svg width="14" height="14" style="flex-shrink:0"><use href="#icon-townhome"/></svg>Townhome
+        </button>
+        <button class="spb-btn" onclick="scrollToPropType(); event.stopPropagation();">
+          <svg width="14" height="14" style="flex-shrink:0"><use href="#icon-condo"/></svg>Condo
+        </button>
+        <button class="spb-btn" onclick="scrollToPropType(); event.stopPropagation();">
+          <svg width="14" height="14" style="flex-shrink:0"><use href="#icon-multifamily"/></svg>Multi-Family
+        </button>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- ══════════════ FUNNEL ══════════════ -->
@@ -2232,6 +2305,31 @@
     if (e.key === 'ArrowLeft' && idx > 0) { e.preventDefault(); inputs[idx - 1].focus(); }
     if (e.key === 'ArrowRight' && idx < inputs.length - 1) { e.preventDefault(); inputs[idx + 1].focus(); }
   });
+
+  // Sticky property type banner — show when prop-type-intro scrolls above the viewport
+  (function () {
+    var banner = document.getElementById('sticky-prop-banner');
+    var target = document.querySelector('.prop-type-intro');
+    if (!banner || !target) return;
+    var obs = new IntersectionObserver(function (entries) {
+      var landing = document.getElementById('landing');
+      if (landing && landing.style.display === 'none') {
+        banner.classList.remove('spb-visible');
+        return;
+      }
+      var entry = entries[0];
+      if (!entry.isIntersecting && entry.boundingClientRect.bottom < 0) {
+        banner.classList.add('spb-visible');
+      } else {
+        banner.classList.remove('spb-visible');
+      }
+    }, { threshold: 0 });
+    obs.observe(target);
+  })();
+
+  function scrollToPropType() {
+    document.querySelector('.prop-type-intro').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 </script>
 
 </body>
