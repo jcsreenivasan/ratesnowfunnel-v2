@@ -880,6 +880,7 @@
     .ty-medal { margin-bottom: 20px; display: flex; justify-content: center; }
     .ty-lenders { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
     .ty-lender-card { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px 20px 20px; background: rgba(255,255,255,0.95); border: 1px solid var(--lborder); border-radius: 18px; flex: 1; min-width: 220px; max-width: 420px; box-shadow: 0 4px 20px rgba(83,73,219,0.07); }
+    @media (max-width: 640px) { .ty-lenders { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } .ty-lender-card { min-width: unset; padding: 16px 12px 14px; } }
     .ty-rate-options { display: flex; flex-direction: column; gap: 8px; width: 100%; }
     .ty-rate-option { display: flex; justify-content: space-between; gap: 6px; width: 100%; padding: 10px 12px; border-radius: 10px; }
     .ty-rate-option.shade-1 { background: #F0EFFE; }
@@ -2033,217 +2034,34 @@
       <button class="smatch-back" onclick="exitFunnel()">Back</button>
     </div>
 
-    <!-- ─── STEP 13: LENDER MATCHES ─── -->
-    <div class="step-card step-card-wide hidden" id="s13">
-      <div class="s13-top"><span class="s13-live-badge">Live Rates</span></div>
-      <h2 class="step-q" style="font-size:32px;">You have 8 mortgage options that are ready for review!</h2>
-
-      <!-- Hidden lender grid kept for continueWithOffers() + buildTyLenders() compatibility -->
-      <div class="lender-grid" id="lender-grid" style="display:none;">
-        <div class="lender-card"
-          data-rate="6.125%" data-apr="6.38%" data-points="0.5"
-          data-rate1="6.125%" data-apr1="6.38%" data-pts1="2"
-          data-rate2="6.250%" data-apr2="6.45%" data-pts2="1"
-          data-rate3="6.375%" data-apr3="6.52%" data-pts3="0">
-          <div class="lender-badge"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div>
-        </div>
-        <div class="lender-card"
-          data-rate="6.250%" data-apr="6.49%" data-points="0.625"
-          data-rate1="6.250%" data-apr1="6.49%" data-pts1="2"
-          data-rate2="6.375%" data-apr2="6.55%" data-pts2="1"
-          data-rate3="6.500%" data-apr3="6.63%" data-pts3="0">
-          <div class="lender-badge"><img src="better-mortgage-logo.svg" alt="Better Mortgage"></div>
-        </div>
+    <!-- Hidden lender data for buildTyLenders() -->
+    <div id="lender-grid" style="display:none;">
+      <div class="lender-card sel"
+        data-rate1="5.750%" data-apr1="5.821%" data-pts1="0.500"
+        data-rate2="5.875%" data-apr2="5.942%" data-pts2="0.750"
+        data-rate3="6.000%" data-apr3="6.064%" data-pts3="1.000">
+        <div class="lender-badge"><img src="veterans-united-logo.png" alt="Veterans United"></div>
       </div>
-
-      <!-- Gated section: table first, unlock card centered on top -->
-      <div class="offer-gated-wrap">
-
-      <!-- Visible offer table -->
-      <div class="offer-table-wrap">
-        <table class="offer-table">
-          <thead>
-            <tr>
-              <th>Lender</th>
-              <th>Mortgage Term</th>
-              <th>Interest Rate</th>
-              <th>Fees</th>
-              <th>Points</th>
-              <th>Mo. Payment</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="armed-forces-logo.svg" alt="Armed Forces Bank"></div></td>
-              <td><span class="offer-val">30-yr Fixed</span></td>
-              <td><span class="offer-val">6.125%</span></td>
-              <td><span class="offer-val">$3,200</span></td>
-              <td><span class="offer-val">0.5</span></td>
-              <td><span class="offer-val">$2,184</span></td>
-            </tr>
-            <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="farmers-bank-logo.svg" alt="Farmers Bank"></div></td>
-              <td><span class="offer-val">30-yr Fixed</span></td>
-              <td><span class="offer-val">6.250%</span></td>
-              <td><span class="offer-val">$2,950</span></td>
-              <td><span class="offer-val">0.625</span></td>
-              <td><span class="offer-val">$2,218</span></td>
-            </tr>
-            <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="lender3-logo.svg" alt="Lender"></div></td>
-              <td><span class="offer-val">30-yr Fixed</span></td>
-              <td><span class="offer-val">6.375%</span></td>
-              <td><span class="offer-val">$3,875</span></td>
-              <td><span class="offer-val">1.0</span></td>
-              <td><span class="offer-val">$2,253</span></td>
-            </tr>
-            <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="shm-logo.png" alt="Strong Home Mortgage"></div></td>
-              <td><span class="offer-val">30-yr Fixed</span></td>
-              <td><span class="offer-val">6.000%</span></td>
-              <td><span class="offer-val">$4,100</span></td>
-              <td><span class="offer-val">1.5</span></td>
-              <td><span class="offer-val">$2,148</span></td>
-            </tr>
-            <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="armed-forces-logo.svg" alt="Armed Forces Bank"></div></td>
-              <td><span class="offer-val">15-yr Fixed</span></td>
-              <td><span class="offer-val">5.750%</span></td>
-              <td><span class="offer-val">$3,600</span></td>
-              <td><span class="offer-val">0.75</span></td>
-              <td><span class="offer-val">$3,142</span></td>
-            </tr>
-            <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="farmers-bank-logo.svg" alt="Farmers Bank"></div></td>
-              <td><span class="offer-val">30-yr Fixed</span></td>
-              <td><span class="offer-val">6.500%</span></td>
-              <td><span class="offer-val">$2,800</span></td>
-              <td><span class="offer-val">0.0</span></td>
-              <td><span class="offer-val">$2,275</span></td>
-            </tr>
-            <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="lender3-logo.svg" alt="Lender"></div></td>
-              <td><span class="offer-val">30-yr Fixed</span></td>
-              <td><span class="offer-val">6.250%</span></td>
-              <td><span class="offer-val">$3,450</span></td>
-              <td><span class="offer-val">0.875</span></td>
-              <td><span class="offer-val">$2,218</span></td>
-            </tr>
-            <tr onclick="continueWithOffers('all')">
-              <td><div class="offer-td-lender"><img src="shm-logo.png" alt="Strong Home Mortgage"></div></td>
-              <td><span class="offer-val">30-yr Fixed</span></td>
-              <td><span class="offer-val">6.125%</span></td>
-              <td><span class="offer-val">$4,500</span></td>
-              <td><span class="offer-val">2.0</span></td>
-              <td><span class="offer-val">$2,184</span></td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="lender-card sel"
+        data-rate1="5.875%" data-apr1="5.940%" data-pts1="0.250"
+        data-rate2="6.000%" data-apr2="6.058%" data-pts2="0.125"
+        data-rate3="6.125%" data-apr3="6.181%" data-pts3="0.375">
+        <div class="lender-badge"><img src="rocket-logo.png" alt="Rocket Mortgage"></div>
       </div>
-
-      <!-- Unlock card centered over table -->
-      <div class="offer-unlock-wrap">
-        <div class="offer-unlock-card">
-          <div class="offer-unlock-badge">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17 11V7C17 4.239 14.761 2 12 2C9.239 2 7 4.239 7 7v4" stroke="#B8860B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <rect x="4" y="11" width="16" height="11" rx="2.5" fill="#C49A1A"/>
-              <circle cx="12" cy="16.5" r="1.6" fill="#fff"/>
-            </svg>
-          </div>
-          <p class="offer-unlock-subtitle">Review your personalized rate options.</p>
-          <input id="offer-email-input" type="email" class="offer-unlock-input" placeholder="Enter your email">
-          <button class="offer-unlock-btn" onclick="unlockOffers()">Review these offers</button>
-        </div>
+      <div class="lender-card sel"
+        data-rate1="6.000%" data-apr1="6.052%" data-pts1="0.500"
+        data-rate2="6.125%" data-apr2="6.178%" data-pts2="0.250"
+        data-rate3="6.250%" data-apr3="6.301%" data-pts3="0.125">
+        <div class="lender-badge"><img src="better-mortgage-logo.svg" alt="Better"></div>
       </div>
-
-      </div><!-- /.offer-gated-wrap -->
-
-      <a class="btn-back" onclick="go(12)">Back</a>
-    </div>
-
-    <!-- ─── STEP 13b: LENDER MATCHES (TOWNHOME VARIANT) ─── -->
-    <div class="step-card step-card-wide hidden" id="s13b">
-      <div class="s13-top">
-        <img src="Group.png" alt="American Flag" style="width:40px;height:26px;object-fit:contain;display:inline-block;">
-      </div>
-      <h2 class="step-q" style="font-size:32px;">Let's get you connected<br> with a mortgage specialist.</h2>
-
-      <!-- Gated section: table first, unlock card centered on top -->
-      <div class="offer-gated-wrap">
-
-      <!-- Visible offer table (blurred) -->
-      <div class="offer-table-wrap">
-        <table class="offer-table">
-          <thead>
-            <tr>
-              <th>Lender</th>
-              <th>Mortgage Term</th>
-              <th>Interest Rate</th>
-              <th>Fees</th>
-              <th>Points</th>
-              <th>Mo. Payment</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td><div class="offer-td-lender"><img src="armed-forces-logo.svg" alt="Armed Forces Bank"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.125%</span></td><td><span class="offer-val">$3,200</span></td><td><span class="offer-val">0.5</span></td><td><span class="offer-val">$2,184</span></td></tr>
-            <tr><td><div class="offer-td-lender"><img src="farmers-bank-logo.svg" alt="Farmers Bank"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.250%</span></td><td><span class="offer-val">$2,950</span></td><td><span class="offer-val">0.625</span></td><td><span class="offer-val">$2,218</span></td></tr>
-            <tr><td><div class="offer-td-lender"><img src="lender3-logo.svg" alt="Lender"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.375%</span></td><td><span class="offer-val">$3,875</span></td><td><span class="offer-val">1.0</span></td><td><span class="offer-val">$2,253</span></td></tr>
-            <tr><td><div class="offer-td-lender"><img src="shm-logo.png" alt="Strong Home Mortgage"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.000%</span></td><td><span class="offer-val">$4,100</span></td><td><span class="offer-val">1.5</span></td><td><span class="offer-val">$2,148</span></td></tr>
-            <tr><td><div class="offer-td-lender"><img src="armed-forces-logo.svg" alt="Armed Forces Bank"></div></td><td><span class="offer-val">15-yr Fixed</span></td><td><span class="offer-val">5.750%</span></td><td><span class="offer-val">$3,600</span></td><td><span class="offer-val">0.75</span></td><td><span class="offer-val">$3,142</span></td></tr>
-            <tr><td><div class="offer-td-lender"><img src="farmers-bank-logo.svg" alt="Farmers Bank"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.500%</span></td><td><span class="offer-val">$2,800</span></td><td><span class="offer-val">0.0</span></td><td><span class="offer-val">$2,275</span></td></tr>
-            <tr><td><div class="offer-td-lender"><img src="lender3-logo.svg" alt="Lender"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.250%</span></td><td><span class="offer-val">$3,450</span></td><td><span class="offer-val">0.875</span></td><td><span class="offer-val">$2,218</span></td></tr>
-            <tr><td><div class="offer-td-lender"><img src="shm-logo.png" alt="Strong Home Mortgage"></div></td><td><span class="offer-val">30-yr Fixed</span></td><td><span class="offer-val">6.125%</span></td><td><span class="offer-val">$4,500</span></td><td><span class="offer-val">2.0</span></td><td><span class="offer-val">$2,184</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Unlock card centered over table -->
-      <div class="offer-unlock-wrap">
-        <div class="offer-unlock-card">
-          <div class="offer-unlock-badge">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17 11V7C17 4.239 14.761 2 12 2C9.239 2 7 4.239 7 7v4" stroke="#B8860B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <rect x="4" y="11" width="16" height="11" rx="2.5" fill="#C49A1A"/>
-              <circle cx="12" cy="16.5" r="1.6" fill="#fff"/>
-            </svg>
-          </div>
-          <p class="offer-unlock-subtitle">Get matched with a mortgage expert.</p>
-          <input id="offer-email-input-b" type="email" class="offer-unlock-input" placeholder="Enter your email">
-          <button class="offer-unlock-btn" onclick="continueWithOffers('all')">Continue</button>
-        </div>
-      </div>
-
-      </div><!-- /.offer-gated-wrap -->
-
-      <a class="btn-back" onclick="go(12)">Back</a>
-    </div>
-
-
-    <!-- ─── STEP 14: CONTACT ─── -->
-    <div class="step-card hidden" id="s14">
-      <h2 class="step-q">Where should we send your quote(s)?</h2>
-      <p class="step-sub">Your personalized mortgage offers will be delivered here</p>
-      <div class="form-row">
-        <div class="inp-group" style="margin-bottom:0;"><label class="inp-label">First Name</label><input class="inp" type="text" placeholder="John"></div>
-        <div class="inp-group" style="margin-bottom:0;"><label class="inp-label">Last Name</label><input class="inp" type="text" placeholder="Doe"></div>
-      </div>
-      <div class="inp-group"><label class="inp-label">Phone Number</label><input class="inp" type="tel" placeholder="(  )   -    "></div>
-      <label class="sms-consent-item">
-        <input type="checkbox" id="sms-consent-1">
-        <span class="consent-text" style="margin:0;">I agree to receive text messages regarding mortgage rate updates, loan information, and related services. Message and data rates may apply. Reply STOP to unsubscribe.</span>
-      </label>
-      <label class="sms-consent-item">
-        <input type="checkbox" id="sms-consent-2">
-        <span class="consent-text" style="margin:0;">By checking the box and clicking "Continue," I agree to the following: I provide my express consent to receive emails, notifications, calls (including auto-dialed or pre-recorded/artificial voice calls), and text messages related to mortgage quotes from selected lenders and their agents at the email address and/or phone number(s) I provided, including wireless numbers, even if listed on a do-not-call registry. I understand that message and data rates may apply, that my consent is not a condition of purchasing any goods or services, and that I may revoke my consent at any time.</span>
-      </label>
-      <button class="btn-continue" onclick="go('sotp')">Agree and Continue</button>
-      <a class="btn-back" onclick="go(13)">Back</a>
-      <div class="security-box">
-        <svg class="svg-icon svg-icon-md"><use href="#icon-lock"/></svg>
-        <p>Your security is our top priority. We use advanced encryption technology<br>to keep your personal information safe.</p>
+      <div class="lender-card sel"
+        data-rate1="6.050%" data-apr1="6.118%" data-pts1="0.375"
+        data-rate2="6.250%" data-apr2="6.312%" data-pts2="0.500"
+        data-rate3="6.375%" data-apr3="6.438%" data-pts3="0.625">
+        <div class="lender-badge"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div>
       </div>
     </div>
+
 
     <!-- ─── STEP 15: THANK YOU ─── -->
     <div class="step-card step-card-wide hidden" id="s15">
@@ -2276,7 +2094,7 @@
         <input class="otp-inp" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
       </div>
       <button class="btn-continue" onclick="go(15)">Verify &amp; Continue</button>
-      <a class="btn-back" onclick="go(14)">Back</a>
+      <a class="btn-back" onclick="go('smatch')">Back</a>
       <div class="otp-resend">Didn't receive it? <a onclick="void(0)">Resend code</a></div>
     </div>
 
@@ -2306,7 +2124,7 @@
 <script>
   let curStep = 1;
   let propertyType = '';
-  const progress = { 'sq2':12, 'sq3':28, 'sqemail':45, 'sq4':62, 'sq5':80, 'sload':90, 'smatch':95, 13:95, 's13b':95, 14:97, 'sotp':99, 15:100 };
+  const progress = { 'sq2':12, 'sq3':28, 'sqemail':45, 'sq4':62, 'sq5':80, 'sload':90, 'smatch':95, 'sotp':98, 15:100 };
 
   function personalizeFunnel() {
     var inp = document.getElementById('sq2-fname');
@@ -2420,7 +2238,7 @@
     if (nextId === 'rs5') syncRemainingBalance();
     if (step === 15) buildTyLenders();
     if (nextId === 'sload') startLoader();
-    if (step === 'smatch' || step === 13 || step === 's13b') launchConfetti();
+    if (step === 'smatch') launchConfetti();
     if (step === 'smatch') {
       var ov = document.getElementById('smatch-email-overlay');
       if (ov) { ov.style.display = 'flex'; document.getElementById('smatch-popup-phone').value = ''; }
@@ -2444,7 +2262,7 @@
     // Hide overlay and proceed
     var ov = document.getElementById('smatch-email-overlay');
     if (ov) ov.style.display = 'none';
-    go(propertyType === 'Townhome' ? 's13b' : 13);
+    go('sotp');
   }
 
   function launchConfetti() {
