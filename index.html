@@ -1736,7 +1736,7 @@
         <div class="hq-item">
           <div class="hq-label"><span class="hq-num">03</span> What is your goal with this refinance?</div>
           <p class="hq-hint">select all that apply</p>
-          <div class="hq-opts" style="flex-wrap:wrap;">
+          <div class="hq-opts">
             <button class="hq-opt sel" onclick="hqMulti(this)">Lower my payment</button>
             <button class="hq-opt" onclick="hqMulti(this)">Get cash out</button>
             <button class="hq-opt" onclick="hqMulti(this)">Lower my rate</button>
@@ -1754,7 +1754,7 @@
     <!-- ─── STEP SQ2: PERSONALIZE ─── -->
     <div class="step-card step-card-wide hidden" id="sq2">
       <h2 class="sfinal-title">Let's personalize your experience</h2>
-      <p class="sq2-sub">Enter your name to get matched with lenders.</p>
+
       <div class="sq2-name-grid">
         <div class="sq2-name-field">
           <label class="sq2-name-label" for="sq2-fname">First name <span style="color:#e53e3e;">*</span></label>
@@ -1940,16 +1940,16 @@
 
     <!-- ─── STEP SMATCH: LENDER PREVIEW ─── -->
     <div class="step-card step-card-wide hidden" id="smatch">
+      <div class="smatch-popup-badges" style="margin-bottom:16px;">
+        <img src="badge-va-loans.png" alt="350K+ VA Loans Closed">
+        <img src="badge-5star.png" alt="200K+ 5-Star Reviews">
+        <img src="badge-veterans.png" alt="1000+ Veterans Helped">
+      </div>
       <h2 class="smatch-title">These offers match your search criteria</h2>
       <p class="smatch-sub">Request quotes from these top lenders. Free — no impact to your credit score.</p>
       <div class="smatch-cards-wrap">
       <div class="smatch-email-overlay" id="smatch-email-overlay">
         <div class="smatch-email-popup">
-          <div class="smatch-popup-badges">
-            <img src="badge-va-loans.png" alt="350K+ VA Loans Closed">
-            <img src="badge-5star.png" alt="200K+ 5-Star Reviews">
-            <img src="badge-veterans.png" alt="1000+ Veterans Helped">
-          </div>
           <p class="smatch-popup-title">Review your personalized rate options.</p>
           <p class="smatch-popup-sub">Add your number to unlock your personalized VA rates.</p>
           <input id="smatch-popup-phone" class="smatch-popup-email" type="tel" placeholder="(555) 000-0000" autocomplete="tel" />
