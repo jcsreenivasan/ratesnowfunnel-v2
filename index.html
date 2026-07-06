@@ -878,11 +878,11 @@
     /* Thank you */
     .ty-page { text-align: center; padding: 10px 0; }
     .ty-medal { margin-bottom: 20px; display: flex; justify-content: center; }
-    .ty-lenders { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
-    .ty-lender-card { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px 20px 20px; background: rgba(255,255,255,0.95); border: 1px solid var(--lborder); border-radius: 18px; flex: 1; min-width: 220px; max-width: 420px; box-shadow: 0 4px 20px rgba(83,73,219,0.07); }
-    @media (max-width: 640px) { .ty-lenders { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } .ty-lender-card { min-width: unset; padding: 16px 12px 14px; } }
-    .ty-rate-options { display: flex; flex-direction: column; gap: 8px; width: 100%; }
-    .ty-rate-option { display: flex; justify-content: space-between; gap: 6px; width: 100%; padding: 10px 12px; border-radius: 10px; }
+    .ty-lenders { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+    .ty-lender-card { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 14px 16px; background: rgba(255,255,255,0.95); border: 1px solid var(--lborder); border-radius: 18px; box-shadow: 0 4px 20px rgba(83,73,219,0.07); }
+    .ty-rate-options { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+    .ty-rate-option { display: flex; justify-content: space-between; gap: 4px; width: 100%; padding: 8px 10px; border-radius: 10px; box-sizing: border-box; }
+    @media (max-width: 640px) { .ty-lenders { gap: 10px; } .ty-lender-card { padding: 12px 8px 10px; gap: 7px; } .ty-rate-option { padding: 6px 7px; } .ty-rate-val { font-size: 13px !important; } .ty-rate-lbl { font-size: 9px !important; } .ty-lender-logo { min-height: 38px !important; } .ty-lender-logo img { max-width: 90px !important; max-height: 36px !important; } }
     .ty-rate-option.shade-1 { background: #F0EFFE; }
     .ty-rate-option.shade-2 { background: #DDD9FC; }
     .ty-rate-option.shade-3 { background: #C9C2F9; }
@@ -2432,7 +2432,7 @@
       ];
       const rateRow = o => `<div class="ty-rate-option ${o.shade}"><div class="ty-rate-item"><div class="ty-rate-lbl">Rate</div><div class="ty-rate-val">${o.rate}</div></div><div class="ty-rate-item"><div class="ty-rate-lbl">APR</div><div class="ty-rate-val">${o.apr}</div></div><div class="ty-rate-item"><div class="ty-rate-lbl">Points</div><div class="ty-rate-val">${o.pts}</div></div></div>`;
       const ratesHtml = `<div class="ty-rate-options">${opts.map(rateRow).join('')}</div>`;
-      return `<div class="ty-lender-card">${logoHtml}${ratesHtml}<button class="btn-continue secondary" style="margin-top:0;color:#5349DB;border-color:#5349DB">View Full Rates &amp; Fees</button></div>`;
+      return `<div class="ty-lender-card">${logoHtml}${ratesHtml}<button class="btn-continue secondary" style="margin-top:0;color:#5349DB;border-color:#5349DB;font-size:13px;padding:10px 8px;">View Rates &amp; Fees</button></div>`;
     }).join('');
   }
 
