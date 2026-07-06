@@ -477,6 +477,10 @@
       transition: background 0.15s;
     }
     .smatch-popup-btn:hover { background: #4139c4; }
+    .smatch-disclaimers { text-align: left; margin-bottom: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .smatch-disclaimer-row { display: flex; align-items: flex-start; gap: 10px; }
+    .smatch-disclaimer-row input[type="checkbox"] { flex-shrink: 0; margin-top: 3px; width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; }
+    .smatch-disclaimer-label { font-size: 10px; color: var(--slate); line-height: 1.45; cursor: pointer; }
     .hero-trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin-top: 22px; position: relative; z-index: 1; }
     .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.83rem; color: var(--slate); font-weight: 500; }
     .trust-check { width: 19px; height: 19px; border-radius: 50%; border: 1.5px solid var(--slate); display: inline-flex; align-items: center; justify-content: center; font-size: 10px; color: var(--slate); flex-shrink: 0; line-height: 1; }
@@ -1905,6 +1909,16 @@
           <p class="smatch-popup-title">Review your personalized rate options.</p>
           <p class="smatch-popup-sub">Add your number to unlock your personalized VA rates — we'll show you exactly what you qualify for right now.</p>
           <input id="smatch-popup-phone" class="smatch-popup-email" type="tel" placeholder="(555) 000-0000" autocomplete="tel" />
+          <div class="smatch-disclaimers">
+            <div class="smatch-disclaimer-row">
+              <input type="checkbox" id="smatch-disc1" />
+              <label class="smatch-disclaimer-label" for="smatch-disc1">I agree to receive text messages regarding mortgage rate updates, loan information, and related services from rates.now and its lender partners. Message and data rates may apply. Reply STOP to unsubscribe.</label>
+            </div>
+            <div class="smatch-disclaimer-row">
+              <input type="checkbox" id="smatch-disc2" />
+              <label class="smatch-disclaimer-label" for="smatch-disc2">By checking the box and clicking "Continue", I agree to the following: I provide my express consent to receive emails, notifications, calls (including auto-dialed or pre-recorded/artificial voice calls), and text messages related to mortgage quotes from selected lenders and their agents at the email address and/or phone number(s) I provided, including wireless numbers, even if listed on a do-not-call registry. I understand that message and data rates may apply, that my consent is not a condition of purchasing any goods or services, and that I may revoke my consent at any time. Privacy Policy | Terms of Service</label>
+            </div>
+          </div>
           <button class="smatch-popup-btn" onclick="submitSmatchEmail()">Review these offers</button>
         </div>
       </div>
@@ -2424,13 +2438,6 @@
 
   function submitSmatchEmail() {
     var inp = document.getElementById('smatch-popup-phone');
-    var phone = inp.value.replace(/\D/g, '');
-    if (phone.length < 10) {
-      inp.style.borderColor = '#e53e3e';
-      inp.focus();
-      return;
-    }
-    inp.style.borderColor = '';
     // Pre-fill phone in s14 if field exists
     var s14phone = document.getElementById('phone');
     if (s14phone) s14phone.value = inp.value.trim();
