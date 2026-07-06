@@ -305,6 +305,7 @@
     .sq5-heading { font-size: 24px; font-weight: 800; color: var(--ink); text-align: center; line-height: 1.3; margin-bottom: 28px; }
     .sq2-sub { font-size: 14px; color: var(--slate); margin-bottom: 28px; }
     .sq-fname-greeting { color: var(--primary); }
+    .sq-fname-only { color: var(--primary); }
     .sqemail-sub { font-size: 14px; color: var(--slate); line-height: 1.65; margin-bottom: 24px; }
     .sqemail-wrap { display: flex; flex-direction: column; gap: 10px; }
     .sqemail-input { width: 100%; box-sizing: border-box; padding: 16px 18px; border: 1.5px solid #d0d0e8; border-radius: 12px; font-size: 15px; font-family: 'Inter', sans-serif; color: var(--ink); outline: none; transition: border-color 0.15s; }
@@ -1712,8 +1713,8 @@
       <p class="sq2-sub">Enter your name to get matched with lenders.</p>
       <div class="sq2-name-grid">
         <div class="sq2-name-field">
-          <label class="sq2-name-label" for="sq2-fname">First name</label>
-          <input class="sq2-name-input" id="sq2-fname" type="text" placeholder="e.g. John" autocomplete="given-name">
+          <label class="sq2-name-label" for="sq2-fname">First name <span style="color:#e53e3e;">*</span></label>
+          <input class="sq2-name-input" id="sq2-fname" type="text" placeholder="e.g. John" autocomplete="given-name" required>
         </div>
         <div class="sq2-name-field">
           <label class="sq2-name-label" for="sq2-lname">Last name</label>
@@ -1722,7 +1723,7 @@
       </div>
       <div class="sfinal-actions" style="padding-top:28px;">
         <button class="sfinal-back-btn" onclick="exitFunnel()">Back</button>
-        <button class="sfinal-submit-btn" onclick="personalizeFunnel();go('sq3')">Continue</button>
+        <button class="sfinal-submit-btn" onclick="if(personalizeFunnel())go('sq3')">Continue</button>
       </div>
     </div>
 
@@ -1785,8 +1786,8 @@
 
     <!-- ─── STEP SQEMAIL: EMAIL CAPTURE ─── -->
     <div class="step-card step-card-wide hidden" id="sqemail">
-      <h2 class="sfinal-title"><span class="sq-fname-greeting"></span>where should we send your personalized report?</h2>
-      <p class="sqemail-sub">We've put together a custom rate report based on your answers. Enter your email and we'll deliver it straight to your inbox — free, with no strings attached.</p>
+      <h2 class="sfinal-title"><span class="sq-fname-only"></span>where should we send your personalized report?</h2>
+      <p class="sqemail-sub">Enter your email and we'll deliver it straight to your inbox — free, with no strings attached.</p>
       <div class="sqemail-wrap">
         <input class="sqemail-input" id="sqemail-input" type="email" placeholder="your@email.com" autocomplete="email">
         <p class="sqemail-privacy">🔒 No spam. Only your personalized rate matches.</p>
@@ -1799,7 +1800,7 @@
 
     <!-- ─── STEP SQ4: FINANCIAL QUESTIONS ─── -->
     <div class="step-card step-card-wide hidden" id="sq4">
-      <h2 class="sfinal-title"><span class="sq-fname-greeting"></span>let's cover your financials 💰</h2>
+      <h2 class="sfinal-title">Financial questions</h2>
       <div class="hq-list">
         <div class="hq-item">
           <div class="hq-label"><span class="hq-num">01</span> What's your estimated credit score?</div>
@@ -2294,11 +2295,21 @@
   const progress = { 'sq2':12, 'sq3':28, 'sqemail':45, 'sq4':62, 'sq5':80, 'sload':90, 'smatch':95, 13:95, 's13b':95, 14:97, 'sotp':99, 15:100 };
 
   function personalizeFunnel() {
-    var fname = (document.getElementById('sq2-fname').value.trim() || '').split(' ')[0];
-    if (!fname) return;
+    var inp = document.getElementById('sq2-fname');
+    var fname = (inp.value.trim() || '').split(' ')[0];
+    if (!fname) {
+      inp.style.borderColor = '#e53e3e';
+      inp.focus();
+      return false;
+    }
+    inp.style.borderColor = '';
     document.querySelectorAll('.sq-fname-greeting').forEach(function(el) {
       el.textContent = 'Hey ' + fname + ', ';
     });
+    document.querySelectorAll('.sq-fname-only').forEach(function(el) {
+      el.textContent = fname + ', ';
+    });
+    return true;
   }
 
   function useMyLocation() {
