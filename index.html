@@ -328,7 +328,7 @@
     .sq5-suggest-item { padding: 14px 16px; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: background 0.12s; }
     .sq5-suggest-item:hover { background: rgba(255,255,255,0.1); }
     .sq5-suggest-zip { color: #a5b4fc; font-size: 12px; margin-left: 2px; font-weight: 500; }
-    .sq5-btns { display: flex; gap: 12px; margin-bottom: 18px; }
+    .sq5-btns { display: flex; flex-direction: column; gap: 12px; margin-bottom: 18px; }
     .sq5-loc-btn { flex: 1; padding: 15px 10px; border: 2px solid var(--primary); border-radius: 14px; background: #fff; color: var(--primary); font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.15s; }
     .sq5-loc-btn:hover { background: #f0eeff; }
     .sq5-next-btn { flex: 1; padding: 15px 10px; border: none; border-radius: 14px; background: #5349DB; color: #fff; font-size: 16px; font-weight: 800; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.15s; }
@@ -883,13 +883,17 @@
     .trust-item-text { font-size: 12.5px; font-weight: 600; color: var(--text); max-width: 160px; line-height: 1.4; }
 
     /* Thank you */
+    #sotp .btn-continue { background: #5349db; }
+    #sotp .btn-continue:hover { background: #4238c0; }
     .ty-page { text-align: center; padding: 10px 0; }
     .ty-medal { margin-bottom: 20px; display: flex; justify-content: center; }
+    .ty-medal-badges { display: none; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .ty-medal-badges img { height: 52px; width: auto; object-fit: contain; }
     .ty-lenders { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
     .ty-lender-card { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 14px 16px; background: rgba(255,255,255,0.95); border: 1px solid var(--lborder); border-radius: 18px; box-shadow: 0 4px 20px rgba(83,73,219,0.07); }
     .ty-rate-options { display: flex; flex-direction: column; gap: 6px; width: 100%; }
     .ty-rate-option { display: flex; justify-content: space-between; gap: 4px; width: 100%; padding: 8px 10px; border-radius: 10px; box-sizing: border-box; }
-    @media (max-width: 640px) { .ty-lenders { gap: 10px; } .ty-lender-card { padding: 12px 8px 10px; gap: 7px; } .ty-rate-option { padding: 6px 7px; } .ty-rate-val { font-size: 13px !important; } .ty-rate-lbl { font-size: 9px !important; } .ty-lender-logo { min-height: 38px !important; } .ty-lender-logo img { max-width: 90px !important; max-height: 36px !important; } }
+    @media (max-width: 640px) { .ty-lenders { gap: 10px; } .ty-lender-card { padding: 12px 8px 10px; gap: 7px; } .ty-rate-option { padding: 6px 7px; } .ty-rate-val { font-size: 12px !important; font-weight: 400 !important; } .ty-rate-lbl { font-size: 9px !important; } .ty-lender-logo { min-height: 38px !important; } .ty-lender-logo img { max-width: 90px !important; max-height: 36px !important; } .ty-medal { display: none; } .ty-medal-badges { display: flex; } }
     .ty-rate-option.shade-1 { background: #F0EFFE; }
     .ty-rate-option.shade-2 { background: #DDD9FC; }
     .ty-rate-option.shade-3 { background: #C9C2F9; }
@@ -2120,6 +2124,11 @@
       <div class="ty-page">
         <div class="ty-medal">
           <svg class="svg-icon svg-icon-xl"><use href="#icon-sparkle"/></svg>
+        </div>
+        <div class="ty-medal-badges">
+          <img src="badge-va-loans.png" alt="350K+ VA Loans Closed">
+          <img src="badge-5star.png" alt="200K+ 5-Star Reviews">
+          <img src="badge-veterans.png" alt="1000+ Veterans Helped">
         </div>
         <div class="ty-title">You're all set!</div>
         <p class="ty-body">Your selected lenders are ready to compete for your business. Review their offers below.</p>
