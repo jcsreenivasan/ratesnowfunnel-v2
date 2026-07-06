@@ -1708,7 +1708,7 @@
     <!-- ─── STEP SQ2: LOAN DETAILS ─── -->
     <!-- ─── STEP SQ2: MILITARY QUESTIONS ─── -->
     <div class="step-card step-card-wide hidden" id="sq2">
-      <h2 class="sfinal-title">Let's personalize your results</h2>
+      <h2 class="sfinal-title">Let's personalize your experience</h2>
       <p class="sq2-sub">Enter your name to get matched with lenders.</p>
       <div class="sq2-name-grid">
         <div class="sq2-name-field">
@@ -1728,7 +1728,7 @@
 
     <!-- ─── STEP SQ3: HOUSING QUESTIONS ─── -->
     <div class="step-card step-card-wide hidden" id="sq3">
-      <h2 class="sfinal-title"><span class="sq-fname-greeting"></span>🏠 Housing Questions</h2>
+      <h2 class="sfinal-title"><span class="sq-fname-greeting"></span>please answer a few housing questions 🏠</h2>
       <div class="hq-list">
         <div class="hq-item">
           <div class="hq-label"><span class="hq-num">01</span> What is your current interest rate?</div>
@@ -1799,7 +1799,7 @@
 
     <!-- ─── STEP SQ4: FINANCIAL QUESTIONS ─── -->
     <div class="step-card step-card-wide hidden" id="sq4">
-      <h2 class="sfinal-title"><span class="sq-fname-greeting"></span>💰 Financial Questions</h2>
+      <h2 class="sfinal-title"><span class="sq-fname-greeting"></span>let's cover your financials 💰</h2>
       <div class="hq-list">
         <div class="hq-item">
           <div class="hq-label"><span class="hq-num">01</span> What's your estimated credit score?</div>
@@ -1902,8 +1902,8 @@
             <img src="badge-veterans.png" alt="1000+ Veterans Helped">
           </div>
           <p class="smatch-popup-title">Review your personalized rate options.</p>
-          <p class="smatch-popup-sub">Enter your email to unlock your matched lender rates.</p>
-          <input id="smatch-popup-email" class="smatch-popup-email" type="email" placeholder="you@email.com" autocomplete="email" />
+          <p class="smatch-popup-sub">Enter your phone number and a lender specialist will reach out with your best rate options.</p>
+          <input id="smatch-popup-phone" class="smatch-popup-email" type="tel" placeholder="(555) 000-0000" autocomplete="tel" />
           <button class="smatch-popup-btn" onclick="submitSmatchEmail()">Review these offers</button>
         </div>
       </div>
@@ -2398,7 +2398,7 @@
     if (step === 'smatch' || step === 13 || step === 's13b') launchConfetti();
     if (step === 'smatch') {
       var ov = document.getElementById('smatch-email-overlay');
-      if (ov) { ov.style.display = 'flex'; document.getElementById('smatch-popup-email').value = ''; }
+      if (ov) { ov.style.display = 'flex'; document.getElementById('smatch-popup-phone').value = ''; }
     }
     window.scrollTo({ top:0, behavior:'smooth' });
   }
@@ -2412,17 +2412,17 @@
   }
 
   function submitSmatchEmail() {
-    var inp = document.getElementById('smatch-popup-email');
-    var email = inp.value.trim();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    var inp = document.getElementById('smatch-popup-phone');
+    var phone = inp.value.replace(/\D/g, '');
+    if (phone.length < 10) {
       inp.style.borderColor = '#e53e3e';
       inp.focus();
       return;
     }
     inp.style.borderColor = '';
-    // Pre-fill email in s14 if field exists
-    var s14email = document.getElementById('email');
-    if (s14email) s14email.value = email;
+    // Pre-fill phone in s14 if field exists
+    var s14phone = document.getElementById('phone');
+    if (s14phone) s14phone.value = inp.value.trim();
     // Hide overlay and proceed
     var ov = document.getElementById('smatch-email-overlay');
     if (ov) ov.style.display = 'none';
