@@ -268,12 +268,12 @@
     .hq-slider-wrap { margin-top: 10px; }
     .hq-slider-val { font-size: 13px; font-weight: 800; color: var(--primary); letter-spacing: -0.2px; margin-bottom: 8px; line-height: 1; }
     .hq-slider-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--slate); margin-top: 4px; font-weight: 600; }
-    .hq-label { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; line-height: 1.3; }
+    .hq-label { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; line-height: 1.3; }
     .hq-hint { font-size: 11px; color: var(--slate); margin: -4px 0 8px; font-style: italic; }
     .hq-num { font-size: 10px; font-weight: 800; color: #94a3b8; letter-spacing: 0.1em; flex-shrink: 0; line-height: 1; }
     .hq-opts { display: flex; flex-wrap: nowrap; gap: 7px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; -ms-overflow-style: none; }
     .hq-opts::-webkit-scrollbar { display: none; }
-    .hq-opt { padding: 7px 14px; border: 1.5px solid #d0d0e8; border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--ink); background: #fff; cursor: pointer; font-family: 'Inter', sans-serif; transition: border-color 0.15s, background 0.15s, color 0.15s; white-space: nowrap; }
+    .hq-opt { padding: 7px 14px; border: 1.5px solid #d0d0e8; border-radius: 100px; font-size: 14px; font-weight: 600; color: var(--ink); background: #fff; cursor: pointer; font-family: 'Inter', sans-serif; transition: border-color 0.15s, background 0.15s, color 0.15s; white-space: nowrap; }
     .hq-opt.sel { background: var(--primary); border-color: var(--primary); color: #fff; }
     .hq-opt:hover:not(.sel) { border-color: var(--primary); color: var(--primary); }
     .hq-multi-hint { font-size: 11px; color: var(--slate); margin-top: 8px; font-style: italic; }
@@ -830,6 +830,14 @@
     .ty-rate-item { display: flex; flex-direction: column; align-items: center; flex: 1; }
     .ty-rate-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
     .ty-rate-val { font-size: 18px; font-weight: 800; color: var(--text); margin-top: 4px; }
+    .ty-rate-table { width: 100%; display: flex; flex-direction: column; gap: 5px; }
+    .ty-rate-thead { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 0 10px 4px; }
+    .ty-rate-thd { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); text-align: center; }
+    .ty-rate-trow { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 8px 10px; border-radius: 8px; }
+    .ty-rate-trow.shade-1 { background: #F0EFFE; }
+    .ty-rate-trow.shade-2 { background: #DDD9FC; }
+    .ty-rate-trow.shade-3 { background: #C9C2F9; }
+    .ty-rate-td { font-size: 13px; font-weight: 400; color: var(--ink); text-align: center; }
     .lender-card { border: 1.5px solid var(--border); border-radius: 10px; padding: 16px 14px; position: relative; transition: border-color .2s; cursor: pointer; background: rgba(255,255,255,0.9); }
     .lender-card.sel { border-color: var(--purple); border-width: 2px; }
     .lender-chk { position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; background: var(--purple); border-radius: 4px; display: none; align-items: center; justify-content: center; color: white; font-size: 12px; }
@@ -893,7 +901,7 @@
     .ty-lender-card { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 14px 16px; background: rgba(255,255,255,0.95); border: 1px solid var(--lborder); border-radius: 18px; box-shadow: 0 4px 20px rgba(83,73,219,0.07); }
     .ty-rate-options { display: flex; flex-direction: column; gap: 6px; width: 100%; }
     .ty-rate-option { display: flex; justify-content: space-between; gap: 4px; width: 100%; padding: 8px 10px; border-radius: 10px; box-sizing: border-box; }
-    @media (max-width: 640px) { .ty-lenders { gap: 10px; } .ty-lender-card { padding: 12px 8px 10px; gap: 7px; } .ty-rate-option { padding: 6px 7px; } .ty-rate-val { font-size: 12px !important; font-weight: 400 !important; } .ty-rate-lbl { font-size: 9px !important; font-weight: 700 !important; } .ty-lender-logo { min-height: 38px !important; } .ty-lender-logo img { max-width: 90px !important; max-height: 36px !important; } .ty-medal { display: none; } .ty-medal-badges { display: flex; } }
+    @media (max-width: 640px) { .ty-lenders { gap: 10px; } .ty-lender-card { padding: 12px 8px 10px; gap: 7px; } .ty-rate-option { padding: 6px 7px; } .ty-rate-val { font-size: 12px !important; font-weight: 400 !important; } .ty-rate-lbl { font-size: 9px !important; font-weight: 700 !important; } .ty-rate-trow { padding: 6px 7px !important; } .ty-rate-td { font-size: 12px !important; font-weight: 400 !important; } .ty-rate-thd { font-size: 8px !important; font-weight: 700 !important; } .ty-lender-logo { min-height: 38px !important; } .ty-lender-logo img { max-width: 90px !important; max-height: 36px !important; } .ty-medal { display: none; } .ty-medal-badges { display: flex; } }
     .ty-rate-option.shade-1 { background: #F0EFFE; }
     .ty-rate-option.shade-2 { background: #DDD9FC; }
     .ty-rate-option.shade-3 { background: #C9C2F9; }
@@ -2526,8 +2534,8 @@
         { rate: card.dataset.rate2||'—', apr: card.dataset.apr2||'—', pts: card.dataset.pts2||'—', shade: 'shade-2' },
         { rate: card.dataset.rate3||'—', apr: card.dataset.apr3||'—', pts: card.dataset.pts3||'—', shade: 'shade-3' },
       ];
-      const rateRow = o => `<div class="ty-rate-option ${o.shade}"><div class="ty-rate-item"><div class="ty-rate-lbl">Rate</div><div class="ty-rate-val">${o.rate}</div></div><div class="ty-rate-item"><div class="ty-rate-lbl">APR</div><div class="ty-rate-val">${o.apr}</div></div><div class="ty-rate-item"><div class="ty-rate-lbl">Points</div><div class="ty-rate-val">${o.pts}</div></div></div>`;
-      const ratesHtml = `<div class="ty-rate-options">${opts.map(rateRow).join('')}</div>`;
+      const rateRow = o => `<div class="ty-rate-trow ${o.shade}"><div class="ty-rate-td">${o.rate}</div><div class="ty-rate-td">${o.apr}</div><div class="ty-rate-td">${o.pts}</div></div>`;
+      const ratesHtml = `<div class="ty-rate-table"><div class="ty-rate-thead"><div class="ty-rate-thd">Rate</div><div class="ty-rate-thd">APR</div><div class="ty-rate-thd">Points</div></div>${opts.map(rateRow).join('')}</div>`;
       return `<div class="ty-lender-card">${logoHtml}${ratesHtml}<button class="btn-continue secondary" style="margin-top:0;color:#5349DB;border-color:#5349DB;font-size:13px;padding:10px 8px;">View Rates &amp; Fees</button></div>`;
     }).join('');
   }
