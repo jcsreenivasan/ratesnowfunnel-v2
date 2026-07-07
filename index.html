@@ -893,7 +893,7 @@
     .ty-lender-card { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 14px 16px; background: rgba(255,255,255,0.95); border: 1px solid var(--lborder); border-radius: 18px; box-shadow: 0 4px 20px rgba(83,73,219,0.07); }
     .ty-rate-options { display: flex; flex-direction: column; gap: 6px; width: 100%; }
     .ty-rate-option { display: flex; justify-content: space-between; gap: 4px; width: 100%; padding: 8px 10px; border-radius: 10px; box-sizing: border-box; }
-    @media (max-width: 640px) { .ty-lenders { gap: 10px; } .ty-lender-card { padding: 12px 8px 10px; gap: 7px; } .ty-rate-option { padding: 6px 7px; } .ty-rate-val { font-size: 12px !important; font-weight: 400 !important; } .ty-rate-lbl { font-size: 9px !important; } .ty-lender-logo { min-height: 38px !important; } .ty-lender-logo img { max-width: 90px !important; max-height: 36px !important; } .ty-medal { display: none; } .ty-medal-badges { display: flex; } }
+    @media (max-width: 640px) { .ty-lenders { gap: 10px; } .ty-lender-card { padding: 12px 8px 10px; gap: 7px; } .ty-rate-option { padding: 6px 7px; } .ty-rate-val { font-size: 12px !important; font-weight: 400 !important; } .ty-rate-lbl { font-size: 9px !important; font-weight: 700 !important; } .ty-lender-logo { min-height: 38px !important; } .ty-lender-logo img { max-width: 90px !important; max-height: 36px !important; } .ty-medal { display: none; } .ty-medal-badges { display: flex; } }
     .ty-rate-option.shade-1 { background: #F0EFFE; }
     .ty-rate-option.shade-2 { background: #DDD9FC; }
     .ty-rate-option.shade-3 { background: #C9C2F9; }
@@ -1780,10 +1780,15 @@
         <button class="sfinal-back-btn" onclick="go('sqmil')">Back</button>
         <button class="sfinal-submit-btn" onclick="if(personalizeFunnel())go('sq3')">Continue</button>
       </div>
-      <div class="smatch-popup-badges" style="margin-top:20px;">
-        <img src="badge-va-loans.png" alt="350K+ VA Loans Closed">
-        <img src="badge-5star.png" alt="200K+ 5-Star Reviews">
-        <img src="badge-veterans.png" alt="1000+ Veterans Helped">
+      <div style="display:flex;justify-content:center;margin-top:20px;">
+        <div class="social-proof-chip">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" fill="#16a25b" opacity="0.18"/>
+            <path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" stroke="#16a25b" stroke-width="1.5"/>
+            <path d="M9 12l2 2 4-4" stroke="#16a25b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>5,200+ veterans use VArates.now to compare VA rates</span>
+        </div>
       </div>
     </div>
 
