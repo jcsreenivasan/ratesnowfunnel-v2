@@ -2519,7 +2519,12 @@
     const selected = [...document.querySelectorAll('#lender-grid .lender-card.sel')];
     const container = document.getElementById('ty-lenders');
     if (!selected.length) { container.innerHTML = ''; return; }
-    container.innerHTML = selected.map(card => {
+    const chipHtml = `<div style="grid-column:1/-1;display:flex;justify-content:center;padding:2px 0;">` +
+      `<div class="social-proof-chip">` +
+      `<svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" fill="#16a25b" opacity="0.18"/><path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" stroke="#16a25b" stroke-width="1.5"/><path d="M9 12l2 2 4-4" stroke="#16a25b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>` +
+      `<span>5,200+ veterans use VArates.now to compare VA rates</span>` +
+      `</div></div>`;
+    const cards = selected.map(card => {
       const badge = card.querySelector('.lender-badge');
       const img = badge ? badge.querySelector('img') : null;
       let logoHtml;
@@ -2537,7 +2542,9 @@
       const rateRow = o => `<div class="ty-rate-trow ${o.shade}"><div class="ty-rate-td">${o.rate}</div><div class="ty-rate-td">${o.apr}</div><div class="ty-rate-td">${o.pts}</div></div>`;
       const ratesHtml = `<div class="ty-rate-table"><div class="ty-rate-thead"><div class="ty-rate-thd">Rate</div><div class="ty-rate-thd">APR</div><div class="ty-rate-thd">Points</div></div>${opts.map(rateRow).join('')}</div>`;
       return `<div class="ty-lender-card">${logoHtml}${ratesHtml}<button class="btn-continue secondary" style="margin-top:0;color:#5349DB;border-color:#5349DB;font-size:13px;padding:10px 8px;">View Rates &amp; Fees</button></div>`;
-    }).join('');
+    });
+    if (cards.length > 2) cards.splice(2, 0, chipHtml);
+    container.innerHTML = cards.join('');
   }
 
   function toggleFaq(btn) {
