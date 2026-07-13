@@ -1766,43 +1766,13 @@
       </div>
       <div class="sfinal-actions" style="padding-top:24px;">
         <button class="sfinal-back-btn" onclick="exitFunnel()">Back</button>
-        <button class="sfinal-submit-btn" onclick="go('sq2')">Continue</button>
-      </div>
-    </div>
-
-    <!-- ─── STEP SQ2: PERSONALIZE ─── -->
-    <div class="step-card step-card-wide hidden" id="sq2">
-      <h2 class="sfinal-title">Let's personalize your experience</h2>
-
-      <div class="sq2-name-grid">
-        <div class="sq2-name-field">
-          <label class="sq2-name-label" for="sq2-fname">First name <span style="color:#e53e3e;">*</span></label>
-          <input class="sq2-name-input" id="sq2-fname" type="text" placeholder="e.g. John" autocomplete="given-name" required>
-        </div>
-        <div class="sq2-name-field">
-          <label class="sq2-name-label" for="sq2-lname">Last name</label>
-          <input class="sq2-name-input" id="sq2-lname" type="text" placeholder="e.g. Smith" autocomplete="family-name">
-        </div>
-      </div>
-      <div class="sfinal-actions" style="padding-top:28px;">
-        <button class="sfinal-back-btn" onclick="go('sqmil')">Back</button>
-        <button class="sfinal-submit-btn" onclick="if(personalizeFunnel())go('sq3')">Continue</button>
-      </div>
-      <div style="display:flex;justify-content:center;margin-top:20px;">
-        <div class="social-proof-chip">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" fill="#16a25b" opacity="0.18"/>
-            <path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" stroke="#16a25b" stroke-width="1.5"/>
-            <path d="M9 12l2 2 4-4" stroke="#16a25b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span>5,200+ veterans use VArates.now to compare VA rates</span>
-        </div>
+        <button class="sfinal-submit-btn" onclick="go('sq3')">Continue</button>
       </div>
     </div>
 
     <!-- ─── STEP SQ3: HOUSING QUESTIONS ─── -->
     <div class="step-card step-card-wide hidden" id="sq3">
-      <h2 class="sfinal-title"><span class="sq-fname-greeting"></span>please answer a few housing questions 🏠</h2>
+      <h2 class="sfinal-title">Please answer a few housing questions 🏠</h2>
       <div class="hq-list">
         <div class="hq-item">
           <div class="hq-label"><span class="hq-num">01</span> What is your current interest rate?</div>
@@ -1852,21 +1822,31 @@
         </div>
       </div>
       <div class="sfinal-actions" style="padding-top:24px;">
-        <button class="sfinal-back-btn" onclick="go('sq2')">Back</button>
+        <button class="sfinal-back-btn" onclick="go('sqmil')">Back</button>
         <button class="sfinal-submit-btn" onclick="go('sq4')">Continue</button>
       </div>
     </div>
 
     <!-- ─── STEP SQEMAIL: EMAIL CAPTURE ─── -->
     <div class="step-card step-card-wide hidden" id="sqemail">
-      <h2 class="sfinal-title"><span class="sq-fname-only"></span>where should we send your personalized report?</h2>
+      <h2 class="sfinal-title">Where should we send your personalized rates?</h2>
+      <div class="sq2-name-grid" style="margin-bottom:14px;">
+        <div class="sq2-name-field">
+          <label class="sq2-name-label" for="sqemail-fname">First name <span style="color:#e53e3e;">*</span></label>
+          <input class="sq2-name-input" id="sqemail-fname" type="text" placeholder="e.g. John" autocomplete="given-name">
+        </div>
+        <div class="sq2-name-field">
+          <label class="sq2-name-label" for="sqemail-lname">Last name</label>
+          <input class="sq2-name-input" id="sqemail-lname" type="text" placeholder="e.g. Smith" autocomplete="family-name">
+        </div>
+      </div>
       <div class="sqemail-wrap">
         <input class="sqemail-input" id="sqemail-input" type="email" placeholder="your@email.com" autocomplete="email">
         <p class="sqemail-privacy">🔒 No spam. Only your personalized rate matches.</p>
       </div>
       <div class="sfinal-actions" style="padding-top:24px;">
         <button class="sfinal-back-btn" onclick="go('sq4')">Back</button>
-        <button class="sfinal-submit-btn" onclick="go('sq5')">Continue</button>
+        <button class="sfinal-submit-btn" onclick="if(personalizeFunnel())go('sq5')">Continue</button>
       </div>
     </div>
 
@@ -2198,14 +2178,13 @@
 <script>
   let curStep = 1;
   let propertyType = '';
-  const progress = { 'sqmil':10, 'sq2':20, 'sq3':32, 'sq4':50, 'sqemail':65, 'sq5':78, 'sload':90, 'smatch':95, 'sotp':98, 15:100 };
+  const progress = { 'sqmil':10, 'sq3':20, 'sq4':38, 'sqemail':55, 'sq5':70, 'sload':85, 'smatch':92, 'sotp':97, 15:100 };
 
   function personalizeFunnel() {
-    var inp = document.getElementById('sq2-fname');
-    var fname = (inp.value.trim() || '').split(' ')[0];
+    var inp = document.getElementById('sqemail-fname');
+    var fname = (inp ? inp.value.trim() : '').split(' ')[0];
     if (!fname) {
-      inp.style.borderColor = '#e53e3e';
-      inp.focus();
+      if (inp) { inp.style.borderColor = '#e53e3e'; inp.focus(); }
       return false;
     }
     inp.style.borderColor = '';
