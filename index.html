@@ -93,7 +93,7 @@
     .progress-pct { font-size: 11px; font-weight: 600; color: var(--text-light); padding: 3px 16px 4px; }
 
     /* ─── LANDING ─── */
-    #landing { padding-top: 64px; }
+    #landing { padding-top: 96px; }
 
     .fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.65s ease forwards; }
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
@@ -524,9 +524,9 @@
       animation: dot-blink 1.2s ease-in-out infinite;
     }
     .hero-banner-wrap h1 {
-      font-size: 42px; font-weight: 900; line-height: 1.15;
+      font-size: 32px; font-weight: 900; line-height: 1.2;
       color: #000000;
-      letter-spacing: -1.2px;
+      letter-spacing: -0.8px;
       max-width: 740px;
       margin: 0;
       text-align: center;
@@ -975,11 +975,11 @@
       }
       .hero-banner-content { padding: 8px 0 0; gap: 10px; align-items: flex-start; text-align: left; }
       .hero-banner-wrap h1 {
-        font-size: 26px; letter-spacing: -0.5px; text-align: left; margin-bottom: 0;
+        font-size: 26px; letter-spacing: -0.4px; text-align: center; margin-bottom: 0;
         color: #000000; text-shadow: none;
       }
       .hero-banner-sub {
-        text-align: left; font-size: 0.9rem; margin-top: 0;
+        text-align: center; font-size: 0.9rem; margin-top: 0;
         color: #333333; text-shadow: none;
       }
 
@@ -1224,24 +1224,52 @@
       font-size: 14px; color: #64648a; line-height: 1.6;
       margin: 0 0 22px; text-align: center;
     }
-    .ra-fields { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+    .ra-fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
     .ra-field-label {
       font-size: 12px; font-weight: 700; color: #0f0c28;
       margin-bottom: 5px; display: block;
     }
-    .ra-input-wrap { position: relative; }
-    .ra-input-sym {
-      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-      font-size: 14px; font-weight: 600; color: #64648a; pointer-events: none;
+    /* Rate slider */
+    .ra-rate-display {
+      font-size: 40px; font-weight: 800; color: #5349DB;
+      text-align: center; letter-spacing: -1px; margin-bottom: 14px;
     }
+    .ra-rate-slider {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 6px; border-radius: 3px;
+      outline: none; cursor: pointer;
+      background: linear-gradient(to right, #5349DB 44%, #d0d0e8 44%);
+      margin-bottom: 14px; display: block;
+    }
+    .ra-rate-slider::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: #5349DB; cursor: pointer;
+      box-shadow: 0 2px 10px rgba(83,73,219,0.38);
+      border: 2.5px solid #fff;
+    }
+    .ra-rate-slider::-moz-range-thumb {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: #5349DB; cursor: pointer; border: 2.5px solid #fff;
+      box-shadow: 0 2px 10px rgba(83,73,219,0.38);
+    }
+    .ra-presets {
+      display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+    }
+    .ra-preset {
+      padding: 6px 16px; border: 1.5px solid #d0d0e8; border-radius: 100px;
+      font-size: 13px; font-weight: 600; color: #5349DB; background: #fff;
+      cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.15s;
+    }
+    .ra-preset.ra-preset-active { background: #5349DB; color: #fff; border-color: #5349DB; }
+    /* Email input */
     .ra-input {
       width: 100%; box-sizing: border-box;
-      padding: 13px 14px 13px 30px;
+      padding: 13px 14px;
       border: 1.5px solid #d0d0e8; border-radius: 10px;
       font-size: 15px; font-family: 'Inter', sans-serif; color: #0f0c28;
       outline: none; transition: border-color 0.15s;
     }
-    .ra-input.ra-input-plain { padding-left: 14px; }
     .ra-input:focus { border-color: #5349DB; }
     .ra-cta {
       width: 100%; padding: 15px;
@@ -2633,6 +2661,23 @@
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  // ─── RATE ALERT SLIDER ───
+  function raUpdateSlider(val) {
+    var min = 2, max = 10;
+    var pct = (val - min) / (max - min) * 100;
+    var slider = document.getElementById('ra-rate-slider');
+    slider.style.background = 'linear-gradient(to right, #5349DB ' + pct + '%, #d0d0e8 ' + pct + '%)';
+    document.getElementById('ra-rate-display').textContent = parseFloat(val).toFixed(1) + '%';
+    document.querySelectorAll('.ra-preset').forEach(function(btn) {
+      btn.classList.toggle('ra-preset-active', parseFloat(btn.dataset.val) === parseFloat(val));
+    });
+  }
+  function raPresetPick(val) {
+    var slider = document.getElementById('ra-rate-slider');
+    slider.value = val;
+    raUpdateSlider(val);
+  }
+
   // ─── RATE ALERT POPUP ───
   (function() {
     var shown = false;
@@ -2665,15 +2710,20 @@
       <p class="ra-sub">Set your target rate, and we'll send you an instant alert as soon as it becomes available.</p>
       <div class="ra-fields">
         <div>
-          <label class="ra-field-label" for="ra-rate">Your target rate</label>
-          <div class="ra-input-wrap">
-            <span class="ra-input-sym">%</span>
-            <input class="ra-input" id="ra-rate" type="number" min="0" max="15" step="0.1" placeholder="e.g. 5.5">
+          <label class="ra-field-label" style="text-align:center;display:block;">Your target rate</label>
+          <div class="ra-rate-display" id="ra-rate-display">5.5%</div>
+          <input type="range" class="ra-rate-slider" id="ra-rate-slider" min="2" max="10" step="0.1" value="5.5" oninput="raUpdateSlider(this.value)">
+          <div class="ra-presets">
+            <button class="ra-preset" data-val="3" onclick="raPresetPick(3)" type="button">3%</button>
+            <button class="ra-preset" data-val="4" onclick="raPresetPick(4)" type="button">4%</button>
+            <button class="ra-preset" data-val="5" onclick="raPresetPick(5)" type="button">5%</button>
+            <button class="ra-preset" data-val="6" onclick="raPresetPick(6)" type="button">6%</button>
+            <button class="ra-preset" data-val="7" onclick="raPresetPick(7)" type="button">7%</button>
           </div>
         </div>
         <div>
           <label class="ra-field-label" for="ra-email">Email address</label>
-          <input class="ra-input ra-input-plain" id="ra-email" type="email" placeholder="your@email.com" autocomplete="email">
+          <input class="ra-input" id="ra-email" type="email" placeholder="your@email.com" autocomplete="email">
         </div>
       </div>
       <button class="ra-cta" onclick="closeRaPopup()">Alert me when rates drop</button>
