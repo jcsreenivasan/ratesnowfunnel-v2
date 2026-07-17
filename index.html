@@ -2833,7 +2833,17 @@
             <input class="ra-input" id="ra-phone" type="tel" placeholder="(555) 000-0000" autocomplete="tel">
           </div>
         </div>
-        <button class="ra-cta" onclick="closeRaPopup()">Finish setup</button>
+        <div class="smatch-disclaimers" style="margin-top:14px;">
+          <div class="smatch-disclaimer-row">
+            <input type="checkbox" id="ra-disc1">
+            <label class="smatch-disclaimer-label" for="ra-disc1">I agree to receive text messages regarding mortgage rate updates, loan information, and related services from rates.now and its lender partners. Message and data rates may apply. Reply STOP to unsubscribe.</label>
+          </div>
+          <div class="smatch-disclaimer-row">
+            <input type="checkbox" id="ra-disc2">
+            <label class="smatch-disclaimer-label" for="ra-disc2">By checking the box and clicking "Continue", I agree to the following: I provide my express consent to receive emails, notifications, calls (including auto-dialed or pre-recorded/artificial voice calls), and text messages related to mortgage quotes from selected lenders and their agents at the email address and/or phone number(s) I provided, including wireless numbers, even if listed on a do-not-call registry. I understand that message and data rates may apply, that my consent is not a condition of purchasing any goods or services, and that I may revoke my consent at any time. Privacy Policy | Terms of Service</label>
+          </div>
+        </div>
+        <button class="ra-cta" onclick="closeRaPopup()" style="margin-top:14px;">Finish setup</button>
         <button class="ra-back-link" onclick="raGoStep(2)" type="button">← Back</button>
       </div>
 
