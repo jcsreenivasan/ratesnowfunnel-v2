@@ -93,7 +93,8 @@
     .progress-pct { font-size: 11px; font-weight: 600; color: var(--text-light); padding: 3px 16px 4px; }
 
     /* ─── LANDING ─── */
-    #landing { padding-top: 96px; }
+    #landing { padding-top: 96px; background: #ffffff; }
+    body { background-color: #ffffff; }
 
     .fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.65s ease forwards; }
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
@@ -528,13 +529,13 @@
       color: #000000;
       letter-spacing: -0.8px;
       max-width: 740px;
-      margin: 0;
+      margin: 28px 0 0;
       text-align: center;
     }
     .hero-banner-sub {
       color: #333333;
       font-size: 1rem; font-weight: 500; line-height: 1.5;
-      margin: 0; text-align: center;
+      margin: 0 0 24px; text-align: center;
     }
 
     /* ─── PROPERTY TYPE SELECTOR (Landing) ─── */
@@ -1283,6 +1284,45 @@
       display: flex; align-items: center; justify-content: center; gap: 6px;
       margin-top: 14px; font-size: 12px; color: #64648a;
     }
+    /* Popup success page */
+    .ra-success {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 12px 0 4px; text-align: center;
+    }
+    .ra-success-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, #e8faf0 0%, #d1f5e0 100%);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 0 0 12px #f0fdf6;
+    }
+    .ra-success-h1 {
+      font-size: 22px; font-weight: 800; color: #0f0c28;
+      letter-spacing: -0.4px; margin: 0 0 10px;
+    }
+    .ra-success-sub {
+      font-size: 14px; color: #64648a; line-height: 1.6; margin: 0 0 24px;
+      max-width: 300px;
+    }
+    .ra-success-details {
+      display: flex; flex-direction: column; gap: 10px;
+      width: 100%; margin-bottom: 24px;
+    }
+    .ra-success-row {
+      display: flex; align-items: center; gap: 10px;
+      background: #f7f7fb; border-radius: 10px; padding: 12px 14px;
+      font-size: 13px; color: #0f0c28; font-weight: 500; text-align: left;
+    }
+    .ra-success-row svg { flex-shrink: 0; }
+    .ra-success-close {
+      width: 100%; padding: 14px;
+      background: #5349DB; color: #fff;
+      border: none; border-radius: 12px;
+      font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .ra-success-close:hover { background: #4238c0; }
+
     /* Multi-step popup extras */
     .ra-step { display: none; }
     .ra-step.ra-step-active { display: block; }
@@ -2843,8 +2883,36 @@
             <label class="smatch-disclaimer-label" for="ra-disc2">By checking the box and clicking "Continue", I agree to the following: I provide my express consent to receive emails, notifications, calls (including auto-dialed or pre-recorded/artificial voice calls), and text messages related to mortgage quotes from selected lenders and their agents at the email address and/or phone number(s) I provided, including wireless numbers, even if listed on a do-not-call registry. I understand that message and data rates may apply, that my consent is not a condition of purchasing any goods or services, and that I may revoke my consent at any time. Privacy Policy | Terms of Service</label>
           </div>
         </div>
-        <button class="ra-cta" onclick="closeRaPopup()" style="margin-top:14px;">Finish setup</button>
+        <button class="ra-cta" onclick="raGoStep(4)" style="margin-top:14px;">Finish setup</button>
         <button class="ra-back-link" onclick="raGoStep(2)" type="button">← Back</button>
+      </div>
+
+      <!-- ── Step 4: Success ── -->
+      <div class="ra-step" id="ra-step-4">
+        <div class="ra-success">
+          <div class="ra-success-icon">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#16a25b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h2 class="ra-success-h1">You're on the watch list!</h2>
+          <p class="ra-success-sub">We'll send you an instant alert the moment your target rate becomes available.</p>
+          <div class="ra-success-details">
+            <div class="ra-success-row">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span>Instant alert when rates hit your target</span>
+            </div>
+            <div class="ra-success-row">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>No spam. Unsubscribe any time.</span>
+            </div>
+            <div class="ra-success-row">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Real-time monitoring, 24/7</span>
+            </div>
+          </div>
+          <button class="ra-success-close" onclick="closeRaPopup()">Done</button>
+        </div>
       </div>
 
     </div>
