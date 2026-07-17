@@ -1188,9 +1188,10 @@
     .ra-modal {
       background: #fff;
       border-radius: 20px;
-      padding: 40px 36px 32px;
+      padding: 0;
       max-width: 480px; width: 100%;
       position: relative;
+      overflow: hidden;
       box-shadow: 0 24px 80px rgba(0,0,0,0.28);
       transform: translateY(20px);
       transition: transform 0.3s ease;
@@ -1198,28 +1199,30 @@
     .ra-overlay.ra-visible .ra-modal {
       transform: translateY(0);
     }
+    .ra-hero-img {
+      width: 100%; display: block;
+    }
+    .ra-modal-body {
+      padding: 24px 32px 28px;
+    }
     .ra-close {
-      position: absolute; top: 16px; right: 16px;
+      position: absolute; top: 12px; right: 12px;
       width: 32px; height: 32px;
-      border: none; background: #f0effe; border-radius: 50%;
+      border: none; background: rgba(255,255,255,0.85); border-radius: 50%;
       cursor: pointer; display: flex; align-items: center; justify-content: center;
-      color: #5349DB; font-size: 18px; line-height: 1;
+      color: #333; font-size: 16px; line-height: 1;
       transition: background 0.15s;
+      backdrop-filter: blur(4px);
     }
-    .ra-close:hover { background: #e0dcfd; }
-    .ra-icon {
-      width: 52px; height: 52px; border-radius: 14px;
-      background: #f0effe; display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
-    }
+    .ra-close:hover { background: #fff; }
     .ra-h1 {
-      font-size: 24px; font-weight: 800; color: #0f0c28;
-      letter-spacing: -0.5px; line-height: 1.2;
-      margin: 0 0 10px;
+      font-size: 22px; font-weight: 800; color: #0f0c28;
+      letter-spacing: -0.4px; line-height: 1.2;
+      margin: 0 0 10px; text-align: center;
     }
     .ra-sub {
       font-size: 14px; color: #64648a; line-height: 1.6;
-      margin: 0 0 24px;
+      margin: 0 0 22px; text-align: center;
     }
     .ra-fields { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
     .ra-field-label {
@@ -1253,8 +1256,8 @@
       margin-top: 14px; font-size: 12px; color: #64648a;
     }
     @media (max-width: 480px) {
-      .ra-modal { padding: 32px 20px 24px; }
-      .ra-h1 { font-size: 21px; }
+      .ra-modal-body { padding: 20px 18px 22px; }
+      .ra-h1 { font-size: 20px; }
     }
 
   </style>
@@ -2656,30 +2659,28 @@
 <div class="ra-overlay" id="ra-overlay">
   <div class="ra-modal">
     <button class="ra-close" id="ra-close-btn" aria-label="Close">&#x2715;</button>
-    <div class="ra-icon">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-      </svg>
-    </div>
-    <h2 class="ra-h1">Let us watch for your target rate</h2>
-    <p class="ra-sub">Set your target rate, and we'll send you an instant alert as soon as it becomes available.</p>
-    <div class="ra-fields">
-      <div>
-        <label class="ra-field-label" for="ra-rate">Your target rate</label>
-        <div class="ra-input-wrap">
-          <span class="ra-input-sym">%</span>
-          <input class="ra-input" id="ra-rate" type="number" min="0" max="15" step="0.1" placeholder="e.g. 5.5">
+    <img class="ra-hero-img" src="ra-hero.png" alt="">
+    <div class="ra-modal-body">
+      <h2 class="ra-h1">Let us watch for your target rate</h2>
+      <p class="ra-sub">Set your target rate, and we'll send you an instant alert as soon as it becomes available.</p>
+      <div class="ra-fields">
+        <div>
+          <label class="ra-field-label" for="ra-rate">Your target rate</label>
+          <div class="ra-input-wrap">
+            <span class="ra-input-sym">%</span>
+            <input class="ra-input" id="ra-rate" type="number" min="0" max="15" step="0.1" placeholder="e.g. 5.5">
+          </div>
+        </div>
+        <div>
+          <label class="ra-field-label" for="ra-email">Email address</label>
+          <input class="ra-input ra-input-plain" id="ra-email" type="email" placeholder="your@email.com" autocomplete="email">
         </div>
       </div>
-      <div>
-        <label class="ra-field-label" for="ra-email">Email address</label>
-        <input class="ra-input ra-input-plain" id="ra-email" type="email" placeholder="your@email.com" autocomplete="email">
+      <button class="ra-cta" onclick="closeRaPopup()">Alert me when rates drop</button>
+      <div class="ra-trust">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16a25b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        No spam. Unsubscribe any time.
       </div>
-    </div>
-    <button class="ra-cta" onclick="closeRaPopup()">Alert me when rates drop</button>
-    <div class="ra-trust">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16a25b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      No spam. Unsubscribe any time.
     </div>
   </div>
 </div>
