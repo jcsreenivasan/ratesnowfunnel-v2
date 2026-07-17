@@ -1355,6 +1355,87 @@
       .ra-name-grid { grid-template-columns: 1fr; }
     }
 
+    /* ═══════════════════════════════════════════════
+       DARK MODE — LANDING PAGE ONLY
+       To revert: remove class="dark-landing" from <div id="landing">
+       ═══════════════════════════════════════════════ */
+
+    /* Page & hero background */
+    #landing.dark-landing,
+    #landing.dark-landing .hero {
+      background: #0D0C1D !important;
+    }
+
+    /* Header goes dark when landing is dark */
+    body:has(#landing.dark-landing) header {
+      background: rgba(10, 9, 24, 0.96);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    /* Heading & sub */
+    #landing.dark-landing .hero-banner-wrap h1 {
+      color: #FFFFFF;
+    }
+    #landing.dark-landing .hero-banner-sub {
+      color: rgba(255,255,255,0.68);
+    }
+
+    /* "What is your branch of service?" */
+    #landing.dark-landing .branch-q {
+      color: #FFFFFF;
+    }
+
+    /* Branch cards */
+    #landing.dark-landing .branch-card {
+      background: #18163A;
+      border-color: rgba(255,255,255,0.1);
+    }
+    #landing.dark-landing .branch-card:hover {
+      background: #252249;
+      border-color: var(--primary);
+      box-shadow: 0 2px 18px rgba(83,73,219,0.35);
+    }
+    #landing.dark-landing .branch-card-name {
+      color: #EEEDFF;
+    }
+    #landing.dark-landing .branch-card-noserve {
+      border-color: rgba(255,255,255,0.18);
+    }
+    #landing.dark-landing .branch-card-noserve .branch-card-name {
+      color: #EEEDFF;
+    }
+
+    /* Trust badges — keep visible */
+    #landing.dark-landing .hf-trust-badges { opacity: 0.92; }
+
+    /* Social proof chip */
+    #landing.dark-landing .social-proof-chip {
+      background: rgba(22,162,91,0.1);
+      border-color: rgba(74,222,128,0.3);
+      color: #4ADE80;
+    }
+
+    /* Footer */
+    body:has(#landing.dark-landing) footer {
+      background: #0D0C1D;
+      border-top-color: rgba(255,255,255,0.07);
+    }
+    body:has(#landing.dark-landing) .footer-links a {
+      color: rgba(255,255,255,0.5);
+    }
+    body:has(#landing.dark-landing) .footer-links a:hover {
+      color: rgba(255,255,255,0.85);
+    }
+    body:has(#landing.dark-landing) .footer-legal,
+    body:has(#landing.dark-landing) .footer-nmls,
+    body:has(#landing.dark-landing) .footer-company-name {
+      color: rgba(255,255,255,0.38);
+    }
+    body:has(#landing.dark-landing) .eho-badge {
+      border-color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.4);
+    }
+
   </style>
 </head>
 <body>
@@ -1619,7 +1700,7 @@
 </header>
 
 <!-- ══════════════ LANDING ══════════════ -->
-<div id="landing">
+<div id="landing" class="dark-landing">
   <!-- HERO -->
   <section class="hero">
     <div class="hero-banner-wrap fade-up">
