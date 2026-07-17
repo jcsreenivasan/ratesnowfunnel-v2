@@ -37,9 +37,6 @@
       font-family: 'Inter', system-ui, sans-serif;
       color: var(--text);
       background-color: #f7f7fb;
-      background-image: url('ca.png');
-      background-repeat: repeat;
-      background-size: 900px auto;
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -495,10 +492,8 @@
     /* ─── HERO BANNER IMAGE ─── */
     .hero-banner-wrap {
       position: relative; overflow: hidden;
-      width: 100%; max-width: 1020px; height: 300px;
-      border-radius: 22px;
+      width: 100%; max-width: 1020px;
       margin: 0 auto 36px;
-      box-shadow: 0 16px 56px rgba(0,0,0,0.18);
       display: flex; align-items: center; justify-content: center;
       z-index: 2;
     }
@@ -530,18 +525,16 @@
     }
     .hero-banner-wrap h1 {
       font-size: 42px; font-weight: 900; line-height: 1.15;
-      color: #ffffff;
+      color: #000000;
       letter-spacing: -1.2px;
       max-width: 740px;
       margin: 0;
       text-align: center;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.35);
     }
     .hero-banner-sub {
-      color: rgba(255,255,255,0.88);
+      color: #333333;
       font-size: 1rem; font-weight: 500; line-height: 1.5;
       margin: 0; text-align: center;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.3);
     }
 
     /* ─── PROPERTY TYPE SELECTOR (Landing) ─── */
@@ -1452,15 +1445,9 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-banner-wrap fade-up">
-      <picture>
-        <source media="(max-width: 640px)" srcset="veterana-mobile.png">
-        <img class="hero-banner-img" src="veterana2.png" alt="Veteran with family waving American flag">
-      </picture>
-      <div class="hero-banner-overlay"></div>
       <div class="hero-banner-content">
-        <div class="eyebrow">Live rates · No credit pull</div>
-        <h1>Paying too much for your VA Loan?<br> Compare Top VA Lenders</h1>
-        <p class="hero-banner-sub">Vetted VA lenders. Real numbers. No guesswork.</p>
+        <h1>Compare top VA Lender rates</h1>
+        <p class="hero-banner-sub">Don't settle for a higher VA loan rate. Compare offers from multiple lenders tailored to your financial situation.</p>
       </div>
     </div>
     <p class="hero-sub fade-up">Real offers from 40+ lenders, matched to your profile in under 3 minutes. Zero obligation, zero impact on your score.</p>
@@ -1647,47 +1634,6 @@
           <path d="M9 12l2 2 4-4" stroke="#16a25b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <span>5,200+ veterans use VArates.now to compare VA rates</span>
-      </div>
-    </div>
-
-    <!-- VA Rates Card -->
-    <div class="va-rates-card fade-up">
-      <div class="va-rates-hdr">
-        <img src="american-flag.png" alt="US" style="width:22px;height:16px;object-fit:cover;border-radius:2px;flex-shrink:0;">
-        <span class="va-rates-hdr-title">Today's VA Mortgage Rates</span>
-      </div>
-      <div class="va-rates-cols">
-        <div class="va-rates-col">
-          <div class="vrc-name">30 Yr Fixed VA IRRRL</div>
-          <div class="vrc-rate-row">
-            <span class="vrc-rate">5.80%</span>
-            <span class="vrc-change">▲ 0.21%</span>
-            <span class="vrc-period">7d</span>
-          </div>
-          <div class="vrc-stats">90d high: 6.12%<br>90d low: 5.65%</div>
-        </div>
-        <div class="va-rates-col">
-          <div class="vrc-name">15 Yr Fixed VA IRRRL</div>
-          <div class="vrc-rate-row">
-            <span class="vrc-rate">6.10%</span>
-            <span class="vrc-change">▲ 0.18%</span>
-            <span class="vrc-period">7d</span>
-          </div>
-          <div class="vrc-stats">90d high: 6.38%<br>90d low: 5.89%</div>
-        </div>
-        <div class="va-rates-col">
-          <div class="vrc-name">30 Yr Fixed VA</div>
-          <div class="vrc-rate-row">
-            <span class="vrc-rate">6.05%</span>
-            <span class="vrc-change">▲ 0.27%</span>
-            <span class="vrc-period">7d</span>
-          </div>
-          <div class="vrc-stats">90d high: 6.45%<br>90d low: 5.78%</div>
-        </div>
-        <div class="va-rates-col" id="vrc-cta-col">
-          <div class="vrc-cta-text">VA rate quote in seconds</div>
-          <button class="vrc-cta-btn" onclick="showSfinalCard()">Get a quote</button>
-        </div>
       </div>
     </div>
 
