@@ -133,9 +133,7 @@
 
     /* ─── HERO FORM CARD ─── */
     .hero-form-card {
-      background: #fff;
-      border-radius: 20px;
-      border: 1px solid rgba(83,73,219,0.15);
+      background: transparent;
       padding: 32px 36px 28px;
       max-width: 720px;
       width: 100%;
@@ -143,7 +141,6 @@
       text-align: left;
       position: relative;
       z-index: 2;
-      box-shadow: 0 4px 32px rgba(30,27,75,0.09);
     }
     .hf-title {
       font-size: 22px;
@@ -974,9 +971,9 @@
       .hero-banner-wrap {
         margin: 0 0 20px; width: 100%; background: #ffffff;
       }
-      .hero-banner-content { padding: 8px 0 0; gap: 10px; align-items: flex-start; text-align: left; }
+      .hero-banner-content { padding: 8px 0 0; gap: 10px; align-items: center; text-align: center; }
       .hero-banner-wrap h1 {
-        font-size: 26px; letter-spacing: -0.4px; text-align: center; margin-bottom: 0;
+        font-size: 32px; letter-spacing: -0.6px; text-align: center; margin-bottom: 0;
         color: #000000; text-shadow: none;
       }
       .hero-banner-sub {
@@ -1110,7 +1107,7 @@
       .branch-card-noserve { border-style: dashed; }
     }
     @media (max-width: 640px) {
-      .hero-form-card { padding: 24px 20px 22px; margin: 0 -18px; width: calc(100% + 36px); border-radius: 0; box-shadow: none; border-left: none; border-right: none; }
+      .hero-form-card { padding: 20px 0 22px; margin: 0; width: 100%; }
       .hero-sfinal-card, .hero-page3-card { padding: 24px 20px 22px; margin: 0 -18px; width: calc(100% + 36px); border-radius: 0; box-shadow: none; border-left: none; border-right: none; }
       .hf-title { font-size: 18px; }
       .hf-sub { font-size: 18px; }
