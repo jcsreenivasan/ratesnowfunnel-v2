@@ -1177,6 +1177,92 @@
     }
     .spb-cta-btn:active { background: var(--primary-dk); }
 
+    /* ─── RATE ALERT POPUP ─── */
+    .ra-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(15,12,40,0.72);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .ra-overlay.ra-visible {
+      opacity: 1; pointer-events: all;
+    }
+    .ra-modal {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px 36px 32px;
+      max-width: 480px; width: 100%;
+      position: relative;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.28);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    .ra-overlay.ra-visible .ra-modal {
+      transform: translateY(0);
+    }
+    .ra-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 32px; height: 32px;
+      border: none; background: #f0effe; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: #5349DB; font-size: 18px; line-height: 1;
+      transition: background 0.15s;
+    }
+    .ra-close:hover { background: #e0dcfd; }
+    .ra-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: #f0effe; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .ra-h1 {
+      font-size: 24px; font-weight: 800; color: #0f0c28;
+      letter-spacing: -0.5px; line-height: 1.2;
+      margin: 0 0 10px;
+    }
+    .ra-sub {
+      font-size: 14px; color: #64648a; line-height: 1.6;
+      margin: 0 0 24px;
+    }
+    .ra-fields { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+    .ra-field-label {
+      font-size: 12px; font-weight: 700; color: #0f0c28;
+      margin-bottom: 5px; display: block;
+    }
+    .ra-input-wrap { position: relative; }
+    .ra-input-sym {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      font-size: 14px; font-weight: 600; color: #64648a; pointer-events: none;
+    }
+    .ra-input {
+      width: 100%; box-sizing: border-box;
+      padding: 13px 14px 13px 30px;
+      border: 1.5px solid #d0d0e8; border-radius: 10px;
+      font-size: 15px; font-family: 'Inter', sans-serif; color: #0f0c28;
+      outline: none; transition: border-color 0.15s;
+    }
+    .ra-input.ra-input-plain { padding-left: 14px; }
+    .ra-input:focus { border-color: #5349DB; }
+    .ra-cta {
+      width: 100%; padding: 15px;
+      background: #5349DB; color: #fff;
+      border: none; border-radius: 12px;
+      font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .ra-cta:hover { background: #4238c0; }
+    .ra-trust {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin-top: 14px; font-size: 12px; color: #64648a;
+    }
+    @media (max-width: 480px) {
+      .ra-modal { padding: 32px 20px 24px; }
+      .ra-h1 { font-size: 21px; }
+    }
+
   </style>
 </head>
 <body>
@@ -2549,7 +2635,60 @@
     var el = document.querySelector('.prop-type-intro');
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+
+  // ─── RATE ALERT POPUP ───
+  (function() {
+    var shown = false;
+    function showRaPopup() {
+      if (shown) return;
+      shown = true;
+      document.getElementById('ra-overlay').classList.add('ra-visible');
+    }
+    function closeRaPopup() {
+      document.getElementById('ra-overlay').classList.remove('ra-visible');
+    }
+    setTimeout(showRaPopup, 6000);
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('ra-close-btn').addEventListener('click', closeRaPopup);
+      document.getElementById('ra-overlay').addEventListener('click', function(e) {
+        if (e.target === this) closeRaPopup();
+      });
+    });
+    window.closeRaPopup = closeRaPopup;
+  })();
 </script>
+
+<!-- ─── RATE ALERT POPUP ─── -->
+<div class="ra-overlay" id="ra-overlay">
+  <div class="ra-modal">
+    <button class="ra-close" id="ra-close-btn" aria-label="Close">&#x2715;</button>
+    <div class="ra-icon">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+    </div>
+    <h2 class="ra-h1">Let us watch for your target rate</h2>
+    <p class="ra-sub">Set your target rate, and we'll send you an instant alert as soon as it becomes available.</p>
+    <div class="ra-fields">
+      <div>
+        <label class="ra-field-label" for="ra-rate">Your target rate</label>
+        <div class="ra-input-wrap">
+          <span class="ra-input-sym">%</span>
+          <input class="ra-input" id="ra-rate" type="number" min="0" max="15" step="0.1" placeholder="e.g. 5.5">
+        </div>
+      </div>
+      <div>
+        <label class="ra-field-label" for="ra-email">Email address</label>
+        <input class="ra-input ra-input-plain" id="ra-email" type="email" placeholder="your@email.com" autocomplete="email">
+      </div>
+    </div>
+    <button class="ra-cta" onclick="closeRaPopup()">Alert me when rates drop</button>
+    <div class="ra-trust">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16a25b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      No spam. Unsubscribe any time.
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
