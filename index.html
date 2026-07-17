@@ -1283,9 +1283,38 @@
       display: flex; align-items: center; justify-content: center; gap: 6px;
       margin-top: 14px; font-size: 12px; color: #64648a;
     }
+    /* Multi-step popup extras */
+    .ra-step { display: none; }
+    .ra-step.ra-step-active { display: block; }
+    .ra-step-bar {
+      display: flex; gap: 6px; justify-content: center; margin-bottom: 18px;
+    }
+    .ra-step-dot {
+      width: 28px; height: 4px; border-radius: 2px; background: #d0d0e8; transition: background 0.2s;
+    }
+    .ra-step-dot.ra-dot-active { background: #5349DB; }
+    .ra-back-link {
+      display: block; text-align: center; margin-top: 12px;
+      font-size: 13px; color: #64648a; background: none; border: none;
+      cursor: pointer; font-family: 'Inter', sans-serif; text-decoration: underline;
+    }
+    .ra-select {
+      width: 100%; box-sizing: border-box;
+      padding: 13px 14px;
+      border: 1.5px solid #d0d0e8; border-radius: 10px;
+      font-size: 15px; font-family: 'Inter', sans-serif; color: #0f0c28;
+      background: #fff; outline: none; cursor: pointer;
+      -webkit-appearance: none; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364648a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center;
+      transition: border-color 0.15s;
+    }
+    .ra-select:focus { border-color: #5349DB; }
+    .ra-name-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     @media (max-width: 480px) {
       .ra-modal-body { padding: 20px 18px 22px; }
       .ra-h1 { font-size: 20px; }
+      .ra-name-grid { grid-template-columns: 1fr; }
     }
 
   </style>
@@ -2678,6 +2707,18 @@
     raUpdateSlider(val);
   }
 
+  function raGoStep(n) {
+    document.querySelectorAll('.ra-step').forEach(function(el) { el.classList.remove('ra-step-active'); });
+    var step = document.getElementById('ra-step-' + n);
+    if (step) step.classList.add('ra-step-active');
+    // Hide hero image on steps 2 and 3
+    var img = document.getElementById('ra-hero-img');
+    if (img) img.style.display = n === 1 ? 'block' : 'none';
+    // Scroll modal to top
+    var body = document.querySelector('.ra-modal-body');
+    if (body) body.scrollTop = 0;
+  }
+
   // ─── RATE ALERT POPUP ───
   (function() {
     var shown = false;
@@ -2704,33 +2745,98 @@
 <div class="ra-overlay" id="ra-overlay">
   <div class="ra-modal">
     <button class="ra-close" id="ra-close-btn" aria-label="Close">&#x2715;</button>
-    <img class="ra-hero-img" src="ra-hero.png" alt="">
+    <img class="ra-hero-img" id="ra-hero-img" src="ra-hero.png" alt="">
+
     <div class="ra-modal-body">
-      <h2 class="ra-h1">Let us watch for your target rate</h2>
-      <p class="ra-sub">Set your target rate, and we'll send you an instant alert as soon as it becomes available.</p>
-      <div class="ra-fields">
-        <div>
-          <label class="ra-field-label" style="text-align:center;display:block;">Your target rate</label>
-          <div class="ra-rate-display" id="ra-rate-display">5.5%</div>
-          <input type="range" class="ra-rate-slider" id="ra-rate-slider" min="2" max="10" step="0.1" value="5.5" oninput="raUpdateSlider(this.value)">
-          <div class="ra-presets">
-            <button class="ra-preset" data-val="3" onclick="raPresetPick(3)" type="button">3%</button>
-            <button class="ra-preset" data-val="4" onclick="raPresetPick(4)" type="button">4%</button>
-            <button class="ra-preset" data-val="5" onclick="raPresetPick(5)" type="button">5%</button>
-            <button class="ra-preset" data-val="6" onclick="raPresetPick(6)" type="button">6%</button>
-            <button class="ra-preset" data-val="7" onclick="raPresetPick(7)" type="button">7%</button>
+
+      <!-- ── Step 1: Rate slider ── -->
+      <div class="ra-step ra-step-active" id="ra-step-1">
+        <h2 class="ra-h1">Let us watch for your target rate</h2>
+        <p class="ra-sub">Set your target rate, and we'll send you an instant alert as soon as it becomes available.</p>
+        <div class="ra-fields">
+          <div>
+            <label class="ra-field-label" style="text-align:center;display:block;">Your target rate</label>
+            <div class="ra-rate-display" id="ra-rate-display">5.5%</div>
+            <input type="range" class="ra-rate-slider" id="ra-rate-slider" min="2" max="10" step="0.1" value="5.5" oninput="raUpdateSlider(this.value)">
+            <div class="ra-presets">
+              <button class="ra-preset" data-val="3" onclick="raPresetPick(3)" type="button">3%</button>
+              <button class="ra-preset" data-val="4" onclick="raPresetPick(4)" type="button">4%</button>
+              <button class="ra-preset" data-val="5" onclick="raPresetPick(5)" type="button">5%</button>
+              <button class="ra-preset" data-val="6" onclick="raPresetPick(6)" type="button">6%</button>
+              <button class="ra-preset" data-val="7" onclick="raPresetPick(7)" type="button">7%</button>
+            </div>
           </div>
         </div>
-        <div>
-          <label class="ra-field-label" for="ra-email">Email address</label>
-          <input class="ra-input" id="ra-email" type="email" placeholder="your@email.com" autocomplete="email">
+        <button class="ra-cta" onclick="raGoStep(2)">Alert me when rates drop</button>
+        <div class="ra-trust">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16a25b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          No spam. Unsubscribe any time.
         </div>
       </div>
-      <button class="ra-cta" onclick="closeRaPopup()">Alert me when rates drop</button>
-      <div class="ra-trust">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16a25b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        No spam. Unsubscribe any time.
+
+      <!-- ── Step 2: Credit score + ZIP ── -->
+      <div class="ra-step" id="ra-step-2">
+        <div class="ra-step-bar">
+          <div class="ra-step-dot ra-dot-active"></div>
+          <div class="ra-step-dot ra-dot-active"></div>
+          <div class="ra-step-dot"></div>
+        </div>
+        <h2 class="ra-h1">Help us personalize your alert</h2>
+        <p class="ra-sub">Just two quick questions so we can match you to the right rates.</p>
+        <div class="ra-fields">
+          <div>
+            <label class="ra-field-label" for="ra-credit">Credit score range</label>
+            <select class="ra-select" id="ra-credit">
+              <option value="" disabled selected>Select your credit score</option>
+              <option value="excellent">Excellent — 720 &amp; above</option>
+              <option value="good">Good — 680–719</option>
+              <option value="fair">Fair — 640–679</option>
+              <option value="poor">Poor — 580–639</option>
+              <option value="below">Below 580</option>
+            </select>
+          </div>
+          <div>
+            <label class="ra-field-label" for="ra-zip">Property ZIP code</label>
+            <input class="ra-input" id="ra-zip" type="text" inputmode="numeric" maxlength="5" placeholder="e.g. 90210" autocomplete="postal-code">
+          </div>
+        </div>
+        <button class="ra-cta" onclick="raGoStep(3)">Continue</button>
+        <button class="ra-back-link" onclick="raGoStep(1)" type="button">← Back</button>
       </div>
+
+      <!-- ── Step 3: Contact details ── -->
+      <div class="ra-step" id="ra-step-3">
+        <div class="ra-step-bar">
+          <div class="ra-step-dot ra-dot-active"></div>
+          <div class="ra-step-dot ra-dot-active"></div>
+          <div class="ra-step-dot ra-dot-active"></div>
+        </div>
+        <h2 class="ra-h1">Where should we send your alert?</h2>
+        <p class="ra-sub">We'll notify you the moment your target rate is available.</p>
+        <div class="ra-fields">
+          <div class="ra-name-grid">
+            <div>
+              <label class="ra-field-label" for="ra-fname">First name</label>
+              <input class="ra-input" id="ra-fname" type="text" placeholder="e.g. John" autocomplete="given-name">
+            </div>
+            <div>
+              <label class="ra-field-label" for="ra-lname">Last name</label>
+              <input class="ra-input" id="ra-lname" type="text" placeholder="e.g. Smith" autocomplete="family-name">
+            </div>
+          </div>
+          <div>
+            <label class="ra-field-label" for="ra-email">Email address</label>
+            <input class="ra-input" id="ra-email" type="email" placeholder="your@email.com" autocomplete="email">
+          </div>
+          <div>
+            <label class="ra-field-label" for="ra-phone">Phone number</label>
+            <input class="ra-input" id="ra-phone" type="tel" placeholder="(555) 000-0000" autocomplete="tel">
+          </div>
+        </div>
+        <button class="ra-cta" onclick="closeRaPopup()">Finish setup</button>
+        <button class="ra-back-link" onclick="raGoStep(2)" type="button">← Back</button>
+      </div>
+
     </div>
   </div>
 </div>
