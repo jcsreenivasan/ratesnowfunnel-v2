@@ -899,6 +899,24 @@
     .ty-lender-logo { display: flex; align-items: center; justify-content: center; min-height: 60px; width: 100%; }
     .ty-lender-logo img { max-width: 160px; max-height: 60px; object-fit: contain; display: block; }
     .ty-lender-name { font-size: 14px; font-weight: 700; color: var(--text); text-align: center; line-height: 1.3; }
+    .ty-placeholder-card {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; gap: 10px; padding: 20px 14px;
+      background: linear-gradient(145deg, #5349DB 0%, #3d33c4 100%);
+      border-radius: 18px; min-height: 180px;
+    }
+    .ty-placeholder-brand {
+      font-size: 17px; font-weight: 800; color: #fff; line-height: 1.2; letter-spacing: -0.3px;
+    }
+    .ty-placeholder-tagline {
+      font-size: 12px; color: rgba(255,255,255,0.8); line-height: 1.45;
+    }
+    .ty-placeholder-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 100px; padding: 4px 12px;
+      font-size: 11px; font-weight: 700; color: #fff; letter-spacing: 0.05em;
+    }
     .ty-view-rates { font-size: 14px; font-weight: 700; color: var(--purple); text-decoration: none; cursor: pointer; }
     .ty-view-rates:hover { text-decoration: underline; }
     .ty-title { font-size: 28px; font-weight: 800; color: var(--purple-dark); margin-bottom: 12px; }
@@ -2740,6 +2758,16 @@
       const ratesHtml = `<div class="ty-rate-table"><div class="ty-rate-thead"><div class="ty-rate-thd">Rate</div><div class="ty-rate-thd">APR</div><div class="ty-rate-thd">Points</div></div>${opts.map(rateRow).join('')}</div>`;
       return `<div class="ty-lender-card">${logoHtml}${ratesHtml}<button class="btn-continue secondary" style="margin-top:0;color:#5349DB;border-color:#5349DB;font-size:13px;padding:10px 8px;">View Rates &amp; Fees</button></div>`;
     });
+    // Replace 4th card with placeholder
+    const placeholderHtml = `<div class="ty-placeholder-card">` +
+      `<div class="ty-placeholder-badge">` +
+        `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>` +
+        `#1 VA Rate Marketplace` +
+      `</div>` +
+      `<div class="ty-placeholder-brand">Rates.Now</div>` +
+      `<div class="ty-placeholder-tagline">The #1 Place to Shop VA Mortgage Rates</div>` +
+    `</div>`;
+    if (cards.length >= 4) cards[3] = placeholderHtml;
     if (cards.length > 2) cards.splice(2, 0, chipHtml);
     container.innerHTML = cards.join('');
   }
