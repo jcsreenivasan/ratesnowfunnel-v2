@@ -409,6 +409,45 @@
     .sfinal-submit-btn { background: var(--primary); color: #fff; border: none; border-radius: 10px; padding: 15px 32px; font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif; cursor: pointer; transition: background 0.15s; flex: 1; max-width: 260px; }
     .sfinal-submit-btn:hover { background: var(--purple); }
 
+    /* ─── RATE PREVIEW SCROLL (smatch) ─── */
+    .rate-preview-scroll { overflow-x: auto; overflow-y: hidden; margin-bottom: 20px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .rate-preview-scroll::-webkit-scrollbar { display: none; }
+    .rate-preview-track { display: flex; gap: 12px; width: max-content; padding: 6px 4px 10px; }
+    .rate-preview-card { width: 142px; flex-shrink: 0; background: #fff; border: 1.5px solid rgba(83,73,219,0.18); border-radius: 16px; padding: 14px 12px 14px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 4px 16px rgba(83,73,219,0.10), 0 1px 4px rgba(0,0,0,0.05); transition: transform 0.15s, box-shadow 0.15s; }
+    .rate-preview-card:not(.rate-preview-locked):hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(83,73,219,0.16); }
+    .rate-preview-logo-wrap { width: 90px; height: 38px; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; }
+    .rate-preview-logo-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .rate-preview-content { pointer-events: none; }
+    .rate-preview-name { font-size: 10px; font-weight: 700; color: var(--slate); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .rate-preview-rate { font-size: 26px; font-weight: 900; color: var(--primary); line-height: 1; margin-bottom: 4px; letter-spacing: -0.8px; }
+    .rate-preview-rate sup { font-size: 13px; font-weight: 800; vertical-align: super; letter-spacing: 0; }
+    .rate-preview-label { font-size: 10px; color: var(--slate); font-weight: 500; }
+    .rate-preview-lowest-tag { position: absolute; top: 0; left: 0; right: 0; z-index: 30; background: linear-gradient(90deg, #16a25b, #12924f); color: #fff; font-size: 9px; font-weight: 800; padding: 5px 6px; text-align: center; letter-spacing: 0.6px; text-transform: uppercase; }
+    .rate-preview-locked .rate-preview-content { filter: blur(5px); user-select: none; }
+    .rate-preview-lock { position: absolute; inset: 0; z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; background: rgba(247,247,252,0.72); backdrop-filter: blur(2px); border-radius: 16px; padding: 10px 8px; }
+    .rate-preview-lock-icon { font-size: 15px; line-height: 1; }
+    .rate-preview-lock-text { font-size: 9px; font-weight: 700; color: var(--ink); text-align: center; line-height: 1.4; }
+    .rate-preview-details { display: flex; justify-content: center; gap: 14px; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(83,73,219,0.1); }
+    .rate-preview-detail { text-align: center; }
+    .rate-preview-detail-label { font-size: 9px; font-weight: 600; color: var(--slate); text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 2px; }
+    .rate-preview-detail-val { font-size: 11px; font-weight: 700; color: var(--ink); }
+    .rate-preview-2nd-tag { position: absolute; top: 0; left: 0; right: 0; z-index: 30; background: linear-gradient(90deg, #5349DB, #3d33c4); color: #fff; font-size: 9px; font-weight: 800; padding: 5px 6px; text-align: center; letter-spacing: 0.6px; text-transform: uppercase; }
+    .rate-preview-nmls { font-size: 9px; color: var(--slate); margin-top: 7px; padding-top: 6px; border-top: 1px solid rgba(83,73,219,0.08); }
+    .rate-preview-stars { font-size: 11px; color: #f5a623; margin-top: 3px; line-height: 1; }
+    .rate-preview-review-count { font-size: 9px; color: var(--slate); margin-top: 2px; }
+    .smatch-inline-form { margin-top: 24px; text-align: center; }
+    .sqemail-green-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--green-lt); border: 1.5px solid rgba(22,162,91,0.25); color: #0f7a46; font-size: 12px; font-weight: 600; padding: 7px 18px; border-radius: 100px; margin-bottom: 16px; }
+    .sqemail-google-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 11px 16px; background: #fff; border: 1.5px solid #dadce0; border-radius: 10px; font-size: 14px; font-weight: 600; color: #3c4043; cursor: pointer; margin-bottom: 14px; transition: background 0.15s, box-shadow 0.15s; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .sqemail-google-btn:hover { background: #f8f9fa; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
+    .sqemail-or-divider { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .sqemail-or-line { flex: 1; height: 1px; background: #e2e8f0; }
+    .sqemail-or-text { font-size: 12px; color: #94a3b8; font-weight: 500; white-space: nowrap; }
+    #sqemail .smatch-popup-title { font-size: 21.6px; }
+    .sqemail-rate-bg-wrap { position: relative; min-height: 540px; border-radius: 16px; overflow: hidden; display: flex; align-items: flex-start; justify-content: center; margin-bottom: 16px; padding: 20px 0; }
+    .sqemail-rate-bg-wrap .rate-preview-scroll { position: absolute; top: 10px; left: 0; right: 0; opacity: 0.90; pointer-events: none; margin-bottom: 0; }
+    .sqemail-popup-card { position: relative; z-index: 10; width: min(550px, calc(100% - 40px)); background: #fff; border-radius: 20px; box-shadow: 0 8px 40px rgba(83,73,219,0.20), 0 2px 16px rgba(0,0,0,0.10); padding: 28px 24px 24px; text-align: center; margin-top: 80px; }
+    @media (max-width: 640px) { .sqemail-rate-bg-wrap { min-height: 600px; } }
+
     /* ─── SMATCH STEP ─── */
     .smatch-title { font-size: 28px; font-weight: 800; color: var(--ink); text-align: center; margin-bottom: 8px; letter-spacing: -0.5px; line-height: 1.2; }
     .smatch-sub { font-size: 14px; color: var(--slate); text-align: center; margin-bottom: 24px; line-height: 1.5; }
@@ -490,8 +529,8 @@
     /* ─── HERO BANNER IMAGE ─── */
     .hero-banner-wrap {
       position: relative; overflow: hidden;
-      width: 100%; max-width: 1020px;
-      margin: 0 auto 36px;
+      width: calc(100% + 80px);
+      margin: 0 -40px 36px;
       display: flex; align-items: center; justify-content: center;
       z-index: 2;
     }
@@ -509,7 +548,7 @@
     .hero-banner-content {
       position: relative; z-index: 2;
       display: flex; flex-direction: column; align-items: center; gap: 16px;
-      padding: 36px 40px 32px; text-align: center;
+      padding: 41px 40px 37px; text-align: center;
     }
     .hero-banner-wrap .eyebrow {
       margin-bottom: 0;
@@ -523,14 +562,15 @@
     }
     .hero-banner-wrap h1 {
       font-size: 32px; font-weight: 900; line-height: 1.2;
-      color: #000000;
+      color: #ffffff;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.35);
       letter-spacing: -0.8px;
       max-width: 740px;
       margin: 28px 0 0;
       text-align: center;
     }
     .hero-banner-sub {
-      color: #333333;
+      color: rgba(255,255,255,0.88);
       font-size: 1rem; font-weight: 500; line-height: 1.5;
       margin: 0 0 24px; text-align: center;
     }
@@ -985,18 +1025,18 @@
       .hero { padding: 0 18px 28px; background: #ffffff; }
       .hero h1 { font-size: 30px; letter-spacing: -0.8px; margin-bottom: 18px; }
       .eyebrow { font-size: 0.66rem; margin-bottom: 18px; }
-      /* Hero banner – clean text-only on mobile */
+      /* Hero banner – mobile */
       .hero-banner-wrap {
-        margin: 0 0 20px; width: 100%; background: #ffffff;
+        margin: 0 -18px 20px; width: calc(100% + 36px);
       }
-      .hero-banner-content { padding: 8px 0 0; gap: 10px; align-items: center; text-align: center; }
+      .hero-banner-content { padding: 32px 18px 28px; gap: 10px; align-items: center; text-align: center; }
       .hero-banner-wrap h1 {
         font-size: 32px; letter-spacing: -0.6px; text-align: center; margin-bottom: 0;
-        color: #000000; text-shadow: none;
+        color: #ffffff; text-shadow: 0 2px 12px rgba(0,0,0,0.4);
       }
       .hero-banner-sub {
         text-align: center; font-size: 0.9rem; margin-top: 0;
-        color: #333333; text-shadow: none;
+        color: rgba(255,255,255,0.88); text-shadow: 0 1px 8px rgba(0,0,0,0.3);
       }
 
       /* Property type grid – 2-col on mobile */
@@ -1722,9 +1762,14 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-banner-wrap fade-up">
+      <picture>
+        <source media="(max-width: 640px)" srcset="veterana-mobile.png">
+        <img class="hero-banner-img" src="veterana2.png" alt="Veteran with family waving American flag">
+      </picture>
+      <div class="hero-banner-overlay"></div>
       <div class="hero-banner-content">
         <h1>Compare Top VA IRRRL Lender Rates</h1>
-        <p class="hero-banner-sub">VA rates have dropped. Compare multiple offers from top VA lenders now.</p>
+        <p class="hero-banner-sub">Thank you for your service! Our lender network offers mortgage rates below the national average.</p>
       </div>
     </div>
     <p class="hero-sub fade-up">Real offers from 40+ lenders, matched to your profile in under 3 minutes. Zero obligation, zero impact on your score.</p>
@@ -1918,6 +1963,211 @@
 
 
 
+  <!-- FAQ -->
+  <section class="faq-section fade-up">
+    <div class="section-label">Got questions?</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Can I refinance a non-VA loan into a VA loan?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Yes. Eligible borrowers can refinance a conventional or FHA loan into a VA loan through a VA Cash-Out Refinance.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Do I need an appraisal for a VA Cash-Out Refinance?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">In most cases, yes. An appraisal is typically required to determine your home's current value.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">What is the difference between a VA IRRRL and a VA Cash-Out Refinance?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">A VA IRRRL lowers your rate or payment, while a VA Cash-Out Refinance lets you access home equity.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">How long does a VA cash out refinance take?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Timelines vary, but many VA refinances close within 30–45 days.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Will I need to pay mortgage insurance on a VA Cash-Out Refinance?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">No. VA loans do not require monthly mortgage insurance.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Are VA refinance rates lower than conventional refinance rates?</span>
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5349DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">VA refinance rates are often competitive and may be lower than conventional options for qualified borrowers.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE -->
+  <div class="article-section">
+    <div class="article-inner">
+      <h2 class="article-title">VA IRRRL vs. Cash-Out: Which Refinance Option Is Right for You?</h2>
+      <div class="article-kp">
+        <p><strong>Key points:</strong></p>
+        <p>The VA guarantees two different refinance products: an interest rate reduction refinance loan (IRRRL) and a cash-out refinance.</p>
+        <p>The IRRRL is the VA's streamline refinance, and it lets current VA borrowers refi with less paperwork.</p>
+        <p>The cash-out refinance is available to any eligible veteran or service member, even if they don't currently have a VA loan.</p>
+        <p>Both kinds of VA refinances require most borrowers to pay the VA funding fee.</p>
+      </div>
+      <div class="article-body">
+        <p>Refinancing might make it sound like you adjust the terms of your current mortgage. But that's not actually how it works. When you refinance a mortgage, you get an entirely new mortgage. You then use part of the money from the new loan to pay off your old loan.</p>
+        <p>That replacement gives you some options. Even if you don't currently have a VA home loan, you could use a refinance to get into a mortgage that's backed by the Department of Veterans Affairs (VA). And if you currently have a VA-backed mortgage, refinancing might be easier than you think.</p>
+        <p>All of that is true because the VA guarantees two types of refinances: interest rate reduction refinance loans (IRRRLs) and cash-out refinances. Understanding your choices here helps you pick the best path forward for yourself.</p>
+
+        <h3>The two types of VA refis: IRRRL vs. cash-out</h3>
+        <p>Getting a new mortgage backed by the VA comes with some upside. You won't have to worry about private mortgage insurance (PMI) even if you have less than 20% equity in your house. In fact, some lenders will let you refinance up to 100% of your home's value (for comparison, conventional refis typically cap out at 80–85%). And you can generally get a lower interest rate if you refinance with a VA loan.</p>
+        <p>The specific ways the refinance benefits you hinge on the type of new loan you get. Let's look more closely at your two options from the VA: IRRRL vs. cash-out refinancing.</p>
+
+        <h3>Interest rate reduction refinance loan (streamline refi)</h3>
+        <p>The VA offers this kind of refinancing with one goal: to help current VA borrowers realize a net tangible benefit with less paperwork than a typical refi requires.</p>
+        <p>Also called a streamline refinance, the IRRRL allows you to get a new mortgage without getting — or paying for — a new appraisal or going through all the rigors of full credit underwriting. (That said, each individual lender gets to decide about their process for IRRRL underwriting. The lender might require you to provide some documentation or get a hard credit check.)</p>
+        <p>The key thing about an IRRRL is that it has to result in some kind of net tangible benefit for you. The VA backs these kinds of refinances if you can:</p>
+        <ul>
+          <li>Get a lower interest rate</li>
+          <li>Move from an adjustable-rate mortgage (ARM) into a fixed-rate loan, stabilizing your monthly payments</li>
+          <li>Shorten your loan term so pay less in interest overall</li>
+        </ul>
+        <p>The other main caveat is that your new mortgage amount can't exceed the balance of the loan you're refinancing (i.e., you can't get cash out). The only reason the VA lets you go over with an IRRRL is in the case of:</p>
+        <ul>
+          <li>Allowable lender fees/charges</li>
+          <li>Up to two discount points</li>
+          <li>The cost of up to $6,000 in energy efficient improvements</li>
+          <li>The VA funding fee</li>
+        </ul>
+        <p>There are three main benefits of an IRRRL vs. a cash-out refinance. They are:</p>
+        <ul>
+          <li>Less paperwork</li>
+          <li>A lower VA funding fee (0.5%)</li>
+          <li>The ability to refinance even if you no longer live in the home (as long as you can certify that you once lived there)</li>
+        </ul>
+
+        <h3>Cash-out refinance (broadly applicable refi)</h3>
+        <p>Maybe because your refinance won't result in a lower interest rate or you're looking for a way to cash out some equity. You still have a path forward. The VA also guarantees what it calls cash-out refinances.</p>
+        <p>That name is kind of misleading, though. To clear it up, it helps to know that the VA categorizes these refis into two groups:</p>
+        <ul>
+          <li><strong>Type I cash-out refinance:</strong> With this type, your new loan amount doesn't exceed the payoff amount of your old mortgage. You can use a Type I cash-out refi to refinance any kind of mortgage into a VA loan without liquidating equity.</li>
+          <li><strong>Type II cash-out refinance:</strong> This is the typical cash-out refi, where you get a new mortgage with a bigger balance, then pocket the difference. This gives you a way to turn the equity you have in your house into money you can spend.</li>
+        </ul>
+        <p>With a VA cash-out refinance, you have to live at the property.</p>
+        <p>The big upside of this kind of VA-backed refi is that you can use it:</p>
+        <ul>
+          <li>To cash out some of your equity</li>
+          <li>Even if you don't currently have a VA loan (as long as you can get a certificate of eligibility [COE])</li>
+          <li>To refinance your mortgage if you don't otherwise qualify for an IRRRL</li>
+        </ul>
+        <p>The big downside of a VA cash-out refinance vs. an IRRRL is the cost. Specifically, the VA funding fee is higher. If it's your first time using this kind of loan, your funding fee equals 2.15% of the total loan amount. If you've used it before, the VA funding fee jumps to 3.3%.</p>
+
+        <h3>VA IRRRL vs. cash-out refinance: Deciding which is best for you</h3>
+        <p>With a better understanding of the two types of VA-backed refinances, you may have a general sense for which fits your situation. Still, asking a few follow-up questions often helps to provide you with added clarity.</p>
+
+        <div class="va-wrapper">
+          <table class="va-table">
+            <caption>VA IRRRL vs VA Cash-Out Refinance Eligibility and Feature Comparison</caption>
+            <thead>
+              <tr>
+                <th scope="col">Can You Get a Loan If…</th>
+                <th scope="col">VA IRRRL</th>
+                <th scope="col">VA Cash-Out Refinance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">…you currently have a VA loan?</th>
+                <td class="yes">Yes</td>
+                <td class="yes">Yes</td>
+              </tr>
+              <tr>
+                <th scope="row">…you currently have a conventional, FHA, or USDA loan?</th>
+                <td class="no">No</td>
+                <td class="yes">Yes</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want to skip the appraisal?</th>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want a lower VA funding fee?</th>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want to cash out equity from your home?</th>
+                <td class="no">No</td>
+                <td class="yes">Yes</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want a loan amount equal to 100% of your current property value?</th>
+                <td class="no">No</td>
+                <td class="yes">Yes</td>
+              </tr>
+              <tr>
+                <th scope="row">…you no longer live in the property but once did?</th>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+              </tr>
+              <tr>
+                <th scope="row">…you want to skip credit underwriting?</th>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="va-note">
+            <strong>Important:</strong> A VA IRRRL is designed for simplifying and lowering the rate on an existing VA loan, while a VA cash-out refinance is intended for accessing home equity or converting non-VA loans into VA financing.
+          </div>
+        </div>
+
+        <p>Or, if you'd rather talk it through with a person, you can start exploring your options with lenders that offer VA refinances. We have rate tables showcasing today's interest rates for both IRRRLs and cash-out refinances. The loan officers at any of those lenders should be able to help you figure out which type of VA refi best matches your needs.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div class="footer-legal" style="text-align:left;max-width:100%;font-size:11.5px;line-height:1.75;color:var(--text-light);margin-bottom:20px;">
@@ -2052,36 +2302,325 @@
 
     <!-- ─── STEP SQEMAIL: EMAIL CAPTURE ─── -->
     <div class="step-card step-card-wide hidden" id="sqemail">
-      <h2 class="sfinal-title">Where should we send your personalized rates?</h2>
-      <div class="sq2-name-grid" style="margin-bottom:14px;">
-        <div class="sq2-name-field">
-          <label class="sq2-name-label" for="sqemail-fname">First name <span style="color:#e53e3e;">*</span></label>
-          <input class="sq2-name-input" id="sqemail-fname" type="text" placeholder="e.g. John" autocomplete="given-name">
+      <div class="sqemail-rate-bg-wrap">
+        <div class="rate-preview-scroll">
+          <div class="rate-preview-track">
+            <div class="rate-preview-card">
+              <div class="rate-preview-content">
+                <div class="rate-preview-logo-wrap"><img src="farmers-bank-kc-logo.svg" alt="Farmers Bank KC"></div>
+                <div class="rate-preview-name">Rate option 1</div>
+                <div class="rate-preview-rate">5.750<sup>%</sup></div>
+                <div class="rate-preview-label">30yr Fixed</div>
+                <div class="rate-preview-details">
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">5.821%</div></div>
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">2.00</div></div>
+                </div>
+                <div class="rate-preview-nmls">NMLS #1907</div>
+                <div class="rate-preview-stars">★★★★★</div>
+                <div class="rate-preview-review-count">4.9 (12,847 reviews)</div>
+              </div>
+            </div>
+            <div class="rate-preview-card">
+              <div class="rate-preview-content">
+                <div class="rate-preview-logo-wrap"><img src="fbkc-mortgage-logo.png" alt="Farmers Bank KC Mortgage"></div>
+                <div class="rate-preview-name">Rate option 2</div>
+                <div class="rate-preview-rate">5.875<sup>%</sup></div>
+                <div class="rate-preview-label">30yr Fixed</div>
+                <div class="rate-preview-details">
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">5.940%</div></div>
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">2.00</div></div>
+                </div>
+                <div class="rate-preview-nmls">NMLS #3030</div>
+                <div class="rate-preview-stars">★★★★★</div>
+                <div class="rate-preview-review-count">4.8 (6,203 reviews)</div>
+              </div>
+            </div>
+            <div class="rate-preview-card rate-preview-locked">
+              <div class="rate-preview-lowest-tag">⭐ Lowest Rate</div>
+              <div class="rate-preview-content" style="padding-top:18px;">
+                <div class="rate-preview-logo-wrap"><img src="better-mortgage-logo.svg" alt="Better"></div>
+                <div class="rate-preview-name">Rate option 3</div>
+                <div class="rate-preview-rate">5.625<sup>%</sup></div>
+                <div class="rate-preview-label">30yr Fixed</div>
+                <div class="rate-preview-details">
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">5.687%</div></div>
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.125</div></div>
+                </div>
+                <div class="rate-preview-nmls">NMLS #330511</div>
+                <div class="rate-preview-stars">★★★★☆</div>
+                <div class="rate-preview-review-count">4.5 (3,102 reviews)</div>
+              </div>
+              <div class="rate-preview-lock">
+                <span class="rate-preview-lock-icon">🔒</span>
+                <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
+              </div>
+            </div>
+            <div class="rate-preview-card rate-preview-locked">
+              <div class="rate-preview-content">
+                <div class="rate-preview-logo-wrap"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div>
+                <div class="rate-preview-name">Rate option 4</div>
+                <div class="rate-preview-rate">6.000<sup>%</sup></div>
+                <div class="rate-preview-label">30yr Fixed</div>
+                <div class="rate-preview-details">
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.058%</div></div>
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.375</div></div>
+                </div>
+                <div class="rate-preview-nmls">NMLS #236066</div>
+                <div class="rate-preview-stars">★★★★★</div>
+                <div class="rate-preview-review-count">4.7 (1,847 reviews)</div>
+              </div>
+              <div class="rate-preview-lock">
+                <span class="rate-preview-lock-icon">🔒</span>
+                <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
+              </div>
+            </div>
+            <div class="rate-preview-card rate-preview-locked">
+              <div class="rate-preview-2nd-tag">🥈 2nd Lowest</div>
+              <div class="rate-preview-content" style="padding-top:18px;">
+                <div class="rate-preview-logo-wrap"><img src="veterans-united-logo.png" alt="Veterans United"></div>
+                <div class="rate-preview-name">Rate option 5</div>
+                <div class="rate-preview-rate">6.125<sup>%</sup></div>
+                <div class="rate-preview-label">30yr Fixed</div>
+                <div class="rate-preview-details">
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.192%</div></div>
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.500</div></div>
+                </div>
+                <div class="rate-preview-nmls">NMLS #1907</div>
+                <div class="rate-preview-stars">★★★★★</div>
+                <div class="rate-preview-review-count">4.9 (12,847 reviews)</div>
+              </div>
+              <div class="rate-preview-lock">
+                <span class="rate-preview-lock-icon">🔒</span>
+                <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
+              </div>
+            </div>
+            <div class="rate-preview-card rate-preview-locked">
+              <div class="rate-preview-content">
+                <div class="rate-preview-logo-wrap"><img src="rocket-logo.png" alt="Rocket Mortgage"></div>
+                <div class="rate-preview-name">Rate option 6</div>
+                <div class="rate-preview-rate">6.250<sup>%</sup></div>
+                <div class="rate-preview-label">30yr Fixed</div>
+                <div class="rate-preview-details">
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.312%</div></div>
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.625</div></div>
+                </div>
+                <div class="rate-preview-nmls">NMLS #3030</div>
+                <div class="rate-preview-stars">★★★★★</div>
+                <div class="rate-preview-review-count">4.8 (6,203 reviews)</div>
+              </div>
+              <div class="rate-preview-lock">
+                <span class="rate-preview-lock-icon">🔒</span>
+                <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
+              </div>
+            </div>
+            <div class="rate-preview-card rate-preview-locked">
+              <div class="rate-preview-content">
+                <div class="rate-preview-logo-wrap"><img src="better-mortgage-logo.svg" alt="Better"></div>
+                <div class="rate-preview-name">Rate option 7</div>
+                <div class="rate-preview-rate">6.375<sup>%</sup></div>
+                <div class="rate-preview-label">30yr Fixed</div>
+                <div class="rate-preview-details">
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.432%</div></div>
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.750</div></div>
+                </div>
+                <div class="rate-preview-nmls">NMLS #330511</div>
+                <div class="rate-preview-stars">★★★★☆</div>
+                <div class="rate-preview-review-count">4.5 (3,102 reviews)</div>
+              </div>
+              <div class="rate-preview-lock">
+                <span class="rate-preview-lock-icon">🔒</span>
+                <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
+              </div>
+            </div>
+            <div class="rate-preview-card rate-preview-locked">
+              <div class="rate-preview-content">
+                <div class="rate-preview-logo-wrap"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div>
+                <div class="rate-preview-name">Rate option 8</div>
+                <div class="rate-preview-rate">6.500<sup>%</sup></div>
+                <div class="rate-preview-label">30yr Fixed</div>
+                <div class="rate-preview-details">
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.561%</div></div>
+                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.875</div></div>
+                </div>
+                <div class="rate-preview-nmls">NMLS #236066</div>
+                <div class="rate-preview-stars">★★★★★</div>
+                <div class="rate-preview-review-count">4.7 (1,847 reviews)</div>
+              </div>
+              <div class="rate-preview-lock">
+                <span class="rate-preview-lock-icon">🔒</span>
+                <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="sq2-name-field">
-          <label class="sq2-name-label" for="sqemail-lname">Last name</label>
-          <input class="sq2-name-input" id="sqemail-lname" type="text" placeholder="e.g. Smith" autocomplete="family-name">
+        <div class="sqemail-popup-card">
+          <!-- Pane 1: Email form -->
+          <div id="sqemail-pane1">
+            <p class="smatch-popup-title">Let lenders bid for your refinance — you pick the winner!</p>
+            <div class="sqemail-green-tag">Rates .50 below the national ave.</div>
+            <button class="sqemail-google-btn" type="button">
+              <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+              Continue with Google
+            </button>
+            <div class="sqemail-or-divider">
+              <div class="sqemail-or-line"></div>
+              <span class="sqemail-or-text">or</span>
+              <div class="sqemail-or-line"></div>
+            </div>
+            <div style="text-align:left;">
+              <div class="sq2-name-grid" style="margin-bottom:12px;">
+                <div class="sq2-name-field">
+                  <label class="sq2-name-label" for="sqemail-fname">First name <span style="color:#e53e3e;">*</span></label>
+                  <input class="smatch-popup-email" style="margin-bottom:0;" id="sqemail-fname" type="text" placeholder="e.g. John" autocomplete="given-name">
+                </div>
+                <div class="sq2-name-field">
+                  <label class="sq2-name-label" for="sqemail-lname">Last name</label>
+                  <input class="smatch-popup-email" style="margin-bottom:0;" id="sqemail-lname" type="text" placeholder="e.g. Smith" autocomplete="family-name">
+                </div>
+              </div>
+              <div class="sq2-name-field">
+                <label class="sq2-name-label" for="sqemail-input">Email address <span style="color:#e53e3e;">*</span></label>
+                <input class="smatch-popup-email" id="sqemail-input" type="email" placeholder="your@email.com" autocomplete="email">
+              </div>
+            </div>
+            <div class="smatch-disclaimers" style="margin-bottom:14px;">
+              <div class="smatch-disclaimer-row">
+                <input type="checkbox" id="sqemail-consent" />
+                <label class="smatch-disclaimer-label" for="sqemail-consent">By checking the box and clicking "Continue", I agree to the following: I provide my express consent to receive emails, notifications, calls (including auto-dialed or pre-recorded/artificial voice calls), and text messages related to mortgage quotes from selected lenders and their agents at the email address and/or phone number(s) I provided, including wireless numbers, even if listed on a do-not-call registry. I understand that message and data rates may apply, that my consent is not a condition of purchasing any goods or services, and that I may revoke my consent at any time. Privacy Policy | Terms of Service</label>
+              </div>
+            </div>
+            <button class="smatch-popup-btn" onclick="sqemailContinue()">Continue</button>
+            <div class="smatch-popup-badges" style="margin-top:20px;margin-bottom:0;">
+              <img src="badge-va-loans.png" alt="350K+ VA Loans Closed">
+              <img src="badge-5star.png" alt="200K+ 5-Star Reviews">
+              <img src="badge-veterans.png" alt="1000+ Veterans Helped">
+            </div>
+          </div>
+          <!-- Pane 2: Phone form -->
+          <div id="sqemail-pane2" style="display:none;">
+            <p class="smatch-popup-title">Your rate options are ready!</p>
+            <p class="smatch-popup-sub">Expect a call from our lender network to fine-tune your VA rate and options.</p>
+            <input id="sqemail-phone" class="smatch-popup-email" type="tel" placeholder="(555) 000-0000" autocomplete="tel" />
+            <div class="smatch-disclaimers">
+              <div class="smatch-disclaimer-row">
+                <input type="checkbox" id="sqemail-disc1" />
+                <label class="smatch-disclaimer-label" for="sqemail-disc1">I agree to receive text messages regarding mortgage rate updates, loan information, and related services from rates.now and its lender partners. Message and data rates may apply. Reply STOP to unsubscribe.</label>
+              </div>
+            </div>
+            <button class="smatch-popup-btn" onclick="sqemailPhoneSubmit()">Review these offers</button>
+            <div class="smatch-popup-badges" style="margin-top:20px;margin-bottom:0;">
+              <img src="badge-va-loans.png" alt="350K+ VA Loans Closed">
+              <img src="badge-5star.png" alt="200K+ 5-Star Reviews">
+              <img src="badge-veterans.png" alt="1000+ Veterans Helped">
+            </div>
+          </div>
         </div>
       </div>
-      <div class="sqemail-wrap">
-        <div class="sq2-name-field" style="margin-bottom:0;">
-          <label class="sq2-name-label" for="sqemail-input">Email address <span style="color:#e53e3e;">*</span></label>
-          <input class="sqemail-input" id="sqemail-input" type="email" placeholder="your@email.com" autocomplete="email">
-        </div>
-        <p class="sqemail-privacy">🔒 No spam. Only your personalized rate matches.</p>
+      <div style="text-align:center;margin-top:8px;">
+        <button class="smatch-back" onclick="go('sq5')">Back</button>
       </div>
-      <div class="sfinal-actions" style="padding-top:20px;">
-        <button class="sfinal-back-btn" onclick="go('sq4')">Back</button>
-        <button class="sfinal-submit-btn" onclick="if(personalizeFunnel())go('sq5')">Continue</button>
-      </div>
-      <div style="display:flex;justify-content:center;margin-top:16px;">
-        <div class="social-proof-chip">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" fill="#16a25b" opacity="0.18"/>
-            <path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" stroke="#16a25b" stroke-width="1.5"/>
-            <path d="M9 12l2 2 4-4" stroke="#16a25b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span>5,200+ veterans use VArates.now to compare VA rates</span>
+      <div class="smatch-cards-wrap" style="display:none;">
+        <div class="smatch-cards">
+          <!-- Farmers Bank of Kansas City -->
+          <div class="smatch-card">
+            <div class="smatch-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="smatch-logo-wrap"><img src="fbkc-mortgage-logo.png" alt="Farmers Bank of Kansas City Mortgage"></div>
+            <div class="smatch-rate-rows">
+              <div class="smatch-rate-row smatch-row-clear"><div class="smatch-rate-cols">
+                <div><div class="smatch-rate-col-label">Rate</div><div class="smatch-rate-col-val">5.750<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">APR</div><div class="smatch-rate-col-val">5.821<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">Points</div><div class="smatch-rate-col-val">0.500</div></div>
+              </div></div>
+              <div class="smatch-rate-row"><div class="smatch-rate-cols">
+                <div><div class="smatch-rate-col-label">Rate</div><div class="smatch-rate-col-val">5.875<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">APR</div><div class="smatch-rate-col-val">5.942<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">Points</div><div class="smatch-rate-col-val">0.750</div></div>
+              </div></div>
+              <div class="smatch-rate-row"><div class="smatch-rate-cols">
+                <div><div class="smatch-rate-col-label">Rate</div><div class="smatch-rate-col-val">6.000<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">APR</div><div class="smatch-rate-col-val">6.064<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">Points</div><div class="smatch-rate-col-val">1.000</div></div>
+              </div></div>
+            </div>
+            <div class="smatch-nmls">NMLS #1907</div>
+            <div class="smatch-stars">★★★★★</div>
+            <div class="smatch-reviews">4.9 (12,847 reviews)</div>
+          </div>
+          <!-- Strong Home Mortgage -->
+          <div class="smatch-card">
+            <div class="smatch-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="smatch-logo-wrap"><img src="strong-home-logo.png" alt="Strong Home Mortgage"></div>
+            <div class="smatch-rate-rows">
+              <div class="smatch-rate-row"><div class="smatch-rate-cols">
+                <div><div class="smatch-rate-col-label">Rate</div><div class="smatch-rate-col-val">5.875<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">APR</div><div class="smatch-rate-col-val">5.940<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">Points</div><div class="smatch-rate-col-val">0.250</div></div>
+              </div></div>
+              <div class="smatch-rate-row smatch-row-clear"><div class="smatch-rate-cols">
+                <div><div class="smatch-rate-col-label">Rate</div><div class="smatch-rate-col-val">6.000<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">APR</div><div class="smatch-rate-col-val">6.058<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">Points</div><div class="smatch-rate-col-val">0.125</div></div>
+              </div></div>
+              <div class="smatch-rate-row"><div class="smatch-rate-cols">
+                <div><div class="smatch-rate-col-label">Rate</div><div class="smatch-rate-col-val">6.125<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">APR</div><div class="smatch-rate-col-val">6.181<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">Points</div><div class="smatch-rate-col-val">0.375</div></div>
+              </div></div>
+            </div>
+            <div class="smatch-nmls">NMLS #3030</div>
+            <div class="smatch-stars">★★★★★</div>
+            <div class="smatch-reviews">4.8 (6,203 reviews)</div>
+          </div>
+          <!-- Farmers Bank of Kansas City 2 -->
+          <div class="smatch-card">
+            <div class="smatch-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="smatch-logo-wrap"><img src="farmers-bank-logo.png" alt="Farmers Bank of Kansas City"></div>
+            <div class="smatch-rate-rows">
+              <div class="smatch-rate-row"><div class="smatch-rate-cols">
+                <div><div class="smatch-rate-col-label">Rate</div><div class="smatch-rate-col-val">6.000<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">APR</div><div class="smatch-rate-col-val">6.052<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">Points</div><div class="smatch-rate-col-val">0.500</div></div>
+              </div></div>
+              <div class="smatch-rate-row smatch-row-clear"><div class="smatch-rate-cols">
+                <div><div class="smatch-rate-col-label">Rate</div><div class="smatch-rate-col-val">6.125<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">APR</div><div class="smatch-rate-col-val">6.178<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">Points</div><div class="smatch-rate-col-val">0.250</div></div>
+              </div></div>
+              <div class="smatch-rate-row"><div class="smatch-rate-cols">
+                <div><div class="smatch-rate-col-label">Rate</div><div class="smatch-rate-col-val">6.250<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">APR</div><div class="smatch-rate-col-val">6.301<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">Points</div><div class="smatch-rate-col-val">0.125</div></div>
+              </div></div>
+            </div>
+            <div class="smatch-nmls">NMLS #330511</div>
+            <div class="smatch-stars">★★★★☆</div>
+            <div class="smatch-reviews">4.5 (3,102 reviews)</div>
+          </div>
+          <!-- Strong Home Mortgage 2 -->
+          <div class="smatch-card">
+            <div class="smatch-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="smatch-logo-wrap"><img src="strong-home-logo.png" alt="Strong Home Mortgage"></div>
+            <div class="smatch-rate-rows">
+              <div class="smatch-rate-row smatch-row-clear"><div class="smatch-rate-cols">
+                <div><div class="smatch-rate-col-label">Rate</div><div class="smatch-rate-col-val">6.050<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">APR</div><div class="smatch-rate-col-val">6.118<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">Points</div><div class="smatch-rate-col-val">0.375</div></div>
+              </div></div>
+              <div class="smatch-rate-row"><div class="smatch-rate-cols">
+                <div><div class="smatch-rate-col-label">Rate</div><div class="smatch-rate-col-val">6.250<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">APR</div><div class="smatch-rate-col-val">6.312<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">Points</div><div class="smatch-rate-col-val">0.500</div></div>
+              </div></div>
+              <div class="smatch-rate-row"><div class="smatch-rate-cols">
+                <div><div class="smatch-rate-col-label">Rate</div><div class="smatch-rate-col-val">6.375<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">APR</div><div class="smatch-rate-col-val">6.438<sup class="smatch-rate-pct">%</sup></div></div>
+                <div><div class="smatch-rate-col-label">Points</div><div class="smatch-rate-col-val">0.625</div></div>
+              </div></div>
+            </div>
+            <div class="smatch-nmls">NMLS #236066</div>
+            <div class="smatch-stars">★★★★★</div>
+            <div class="smatch-reviews">4.7 (1,847 reviews)</div>
+          </div>
         </div>
       </div>
     </div>
@@ -2140,7 +2679,7 @@
       </div>
       <div class="sfinal-actions" style="padding-top:24px;">
         <button class="sfinal-back-btn" onclick="go('sq3')">Back</button>
-        <button class="sfinal-submit-btn" onclick="go('sqemail')">Continue</button>
+        <button class="sfinal-submit-btn" onclick="go('sq5')">Continue</button>
       </div>
     </div>
 
@@ -2156,9 +2695,9 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Use my ZIP code
         </button>
-        <button class="sq5-next-btn" onclick="go('sload')" type="button">Next</button>
+        <button class="sq5-next-btn" onclick="go('sqemail')" type="button">Next</button>
       </div>
-      <button class="sq5-back-link" onclick="go('sqemail')" type="button">Back</button>
+      <button class="sq5-back-link" onclick="go('sq4')" type="button">Back</button>
     </div>
 
     <!-- ─── STEP LOAD: FINDING MATCHES ─── -->
@@ -2183,31 +2722,159 @@
 
     <!-- ─── STEP SMATCH: LENDER PREVIEW ─── -->
     <div class="step-card step-card-wide hidden" id="smatch">
-      <div class="smatch-popup-badges" style="margin-bottom:16px;">
-        <img src="badge-va-loans.png" alt="350K+ VA Loans Closed">
-        <img src="badge-5star.png" alt="200K+ 5-Star Reviews">
-        <img src="badge-veterans.png" alt="1000+ Veterans Helped">
-      </div>
-      <h2 class="smatch-title">These offers match your search criteria</h2>
-      <div class="smatch-cards-wrap">
-      <div class="smatch-email-overlay" id="smatch-email-overlay">
-        <div class="smatch-email-popup">
-          <p class="smatch-popup-title">Review your personalized rate options.</p>
-          <p class="smatch-popup-sub">Add your number to unlock your personalized VA rates.</p>
-          <input id="smatch-popup-phone" class="smatch-popup-email" type="tel" placeholder="(555) 000-0000" autocomplete="tel" />
-          <div class="smatch-disclaimers">
-            <div class="smatch-disclaimer-row">
-              <input type="checkbox" id="smatch-disc1" />
-              <label class="smatch-disclaimer-label" for="smatch-disc1">I agree to receive text messages regarding mortgage rate updates, loan information, and related services from rates.now and its lender partners. Message and data rates may apply. Reply STOP to unsubscribe.</label>
-            </div>
-            <div class="smatch-disclaimer-row">
-              <input type="checkbox" id="smatch-disc2" />
-              <label class="smatch-disclaimer-label" for="smatch-disc2">By checking the box and clicking "Continue", I agree to the following: I provide my express consent to receive emails, notifications, calls (including auto-dialed or pre-recorded/artificial voice calls), and text messages related to mortgage quotes from selected lenders and their agents at the email address and/or phone number(s) I provided, including wireless numbers, even if listed on a do-not-call registry. I understand that message and data rates may apply, that my consent is not a condition of purchasing any goods or services, and that I may revoke my consent at any time. Privacy Policy | Terms of Service</label>
+      <div class="rate-preview-scroll">
+        <div class="rate-preview-track">
+          <!-- Visible: Rate options 1 & 2 -->
+          <div class="rate-preview-card">
+            <div class="rate-preview-content">
+              <div class="rate-preview-logo-wrap"><img src="veterans-united-logo.png" alt="Veterans United"></div>
+              <div class="rate-preview-name">Rate option 1</div>
+              <div class="rate-preview-rate">5.750<sup>%</sup></div>
+              <div class="rate-preview-label">30yr Fixed</div>
+              <div class="rate-preview-details">
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">5.821%</div></div>
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">2.00</div></div>
+              </div>
+              <div class="rate-preview-nmls">NMLS #1907</div>
+              <div class="rate-preview-stars">★★★★★</div>
+              <div class="rate-preview-review-count">4.9 (12,847 reviews)</div>
             </div>
           </div>
-          <button class="smatch-popup-btn" onclick="submitSmatchEmail()">Review these offers</button>
+          <div class="rate-preview-card">
+            <div class="rate-preview-content">
+              <div class="rate-preview-logo-wrap"><img src="rocket-logo.png" alt="Rocket Mortgage"></div>
+              <div class="rate-preview-name">Rate option 2</div>
+              <div class="rate-preview-rate">5.875<sup>%</sup></div>
+              <div class="rate-preview-label">30yr Fixed</div>
+              <div class="rate-preview-details">
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">5.940%</div></div>
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">2.00</div></div>
+              </div>
+              <div class="rate-preview-nmls">NMLS #3030</div>
+              <div class="rate-preview-stars">★★★★★</div>
+              <div class="rate-preview-review-count">4.8 (6,203 reviews)</div>
+            </div>
+          </div>
+          <!-- Locked: Rate options 3–8 — option 3 has Lowest Rate tag, option 5 has 2nd Lowest -->
+          <div class="rate-preview-card rate-preview-locked">
+            <div class="rate-preview-lowest-tag">⭐ Lowest Rate</div>
+            <div class="rate-preview-content" style="padding-top:18px;">
+              <div class="rate-preview-logo-wrap"><img src="better-mortgage-logo.svg" alt="Better"></div>
+              <div class="rate-preview-name">Rate option 3</div>
+              <div class="rate-preview-rate">5.625<sup>%</sup></div>
+              <div class="rate-preview-label">30yr Fixed</div>
+              <div class="rate-preview-details">
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">5.687%</div></div>
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.125</div></div>
+              </div>
+              <div class="rate-preview-nmls">NMLS #330511</div>
+              <div class="rate-preview-stars">★★★★☆</div>
+              <div class="rate-preview-review-count">4.5 (3,102 reviews)</div>
+            </div>
+            <div class="rate-preview-lock">
+              <span class="rate-preview-lock-icon">🔒</span>
+              <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
+            </div>
+          </div>
+          <div class="rate-preview-card rate-preview-locked">
+            <div class="rate-preview-content">
+              <div class="rate-preview-logo-wrap"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div>
+              <div class="rate-preview-name">Rate option 4</div>
+              <div class="rate-preview-rate">6.000<sup>%</sup></div>
+              <div class="rate-preview-label">30yr Fixed</div>
+              <div class="rate-preview-details">
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.058%</div></div>
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.375</div></div>
+              </div>
+              <div class="rate-preview-nmls">NMLS #236066</div>
+              <div class="rate-preview-stars">★★★★★</div>
+              <div class="rate-preview-review-count">4.7 (1,847 reviews)</div>
+            </div>
+            <div class="rate-preview-lock">
+              <span class="rate-preview-lock-icon">🔒</span>
+              <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
+            </div>
+          </div>
+          <div class="rate-preview-card rate-preview-locked">
+            <div class="rate-preview-2nd-tag">🥈 2nd Lowest</div>
+            <div class="rate-preview-content" style="padding-top:18px;">
+              <div class="rate-preview-logo-wrap"><img src="veterans-united-logo.png" alt="Veterans United"></div>
+              <div class="rate-preview-name">Rate option 5</div>
+              <div class="rate-preview-rate">6.125<sup>%</sup></div>
+              <div class="rate-preview-label">30yr Fixed</div>
+              <div class="rate-preview-details">
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.192%</div></div>
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.500</div></div>
+              </div>
+              <div class="rate-preview-nmls">NMLS #1907</div>
+              <div class="rate-preview-stars">★★★★★</div>
+              <div class="rate-preview-review-count">4.9 (12,847 reviews)</div>
+            </div>
+            <div class="rate-preview-lock">
+              <span class="rate-preview-lock-icon">🔒</span>
+              <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
+            </div>
+          </div>
+          <div class="rate-preview-card rate-preview-locked">
+            <div class="rate-preview-content">
+              <div class="rate-preview-logo-wrap"><img src="rocket-logo.png" alt="Rocket Mortgage"></div>
+              <div class="rate-preview-name">Rate option 6</div>
+              <div class="rate-preview-rate">6.250<sup>%</sup></div>
+              <div class="rate-preview-label">30yr Fixed</div>
+              <div class="rate-preview-details">
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.312%</div></div>
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.625</div></div>
+              </div>
+              <div class="rate-preview-nmls">NMLS #3030</div>
+              <div class="rate-preview-stars">★★★★★</div>
+              <div class="rate-preview-review-count">4.8 (6,203 reviews)</div>
+            </div>
+            <div class="rate-preview-lock">
+              <span class="rate-preview-lock-icon">🔒</span>
+              <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
+            </div>
+          </div>
+          <div class="rate-preview-card rate-preview-locked">
+            <div class="rate-preview-content">
+              <div class="rate-preview-logo-wrap"><img src="better-mortgage-logo.svg" alt="Better"></div>
+              <div class="rate-preview-name">Rate option 7</div>
+              <div class="rate-preview-rate">6.375<sup>%</sup></div>
+              <div class="rate-preview-label">30yr Fixed</div>
+              <div class="rate-preview-details">
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.432%</div></div>
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.750</div></div>
+              </div>
+              <div class="rate-preview-nmls">NMLS #330511</div>
+              <div class="rate-preview-stars">★★★★☆</div>
+              <div class="rate-preview-review-count">4.5 (3,102 reviews)</div>
+            </div>
+            <div class="rate-preview-lock">
+              <span class="rate-preview-lock-icon">🔒</span>
+              <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
+            </div>
+          </div>
+          <div class="rate-preview-card rate-preview-locked">
+            <div class="rate-preview-content">
+              <div class="rate-preview-logo-wrap"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div>
+              <div class="rate-preview-name">Rate option 8</div>
+              <div class="rate-preview-rate">6.500<sup>%</sup></div>
+              <div class="rate-preview-label">30yr Fixed</div>
+              <div class="rate-preview-details">
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.561%</div></div>
+                <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.875</div></div>
+              </div>
+              <div class="rate-preview-nmls">NMLS #236066</div>
+              <div class="rate-preview-stars">★★★★★</div>
+              <div class="rate-preview-review-count">4.7 (1,847 reviews)</div>
+            </div>
+            <div class="rate-preview-lock">
+              <span class="rate-preview-lock-icon">🔒</span>
+              <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="smatch-cards-wrap" style="display:none;">
       <div class="smatch-cards">
 
         <!-- Veterans United: row 1 clear -->
@@ -2316,6 +2983,27 @@
 
       </div>
       </div><!-- /.smatch-cards-wrap -->
+      <div class="smatch-inline-form">
+        <p class="smatch-popup-title">Your rate options are ready!</p>
+        <p class="smatch-popup-sub">Add your number to unlock your personalized VA rates.</p>
+        <input id="smatch-popup-phone" class="smatch-popup-email" type="tel" placeholder="(555) 000-0000" autocomplete="tel" />
+        <div class="smatch-disclaimers">
+          <div class="smatch-disclaimer-row">
+            <input type="checkbox" id="smatch-disc1" />
+            <label class="smatch-disclaimer-label" for="smatch-disc1">I agree to receive text messages regarding mortgage rate updates, loan information, and related services from rates.now and its lender partners. Message and data rates may apply. Reply STOP to unsubscribe.</label>
+          </div>
+          <div class="smatch-disclaimer-row">
+            <input type="checkbox" id="smatch-disc2" />
+            <label class="smatch-disclaimer-label" for="smatch-disc2">By checking the box and clicking "Continue", I agree to the following: I provide my express consent to receive emails, notifications, calls (including auto-dialed or pre-recorded/artificial voice calls), and text messages related to mortgage quotes from selected lenders and their agents at the email address and/or phone number(s) I provided, including wireless numbers, even if listed on a do-not-call registry. I understand that message and data rates may apply, that my consent is not a condition of purchasing any goods or services, and that I may revoke my consent at any time. Privacy Policy | Terms of Service</label>
+          </div>
+        </div>
+        <button class="smatch-popup-btn" onclick="submitSmatchEmail()">Review these offers</button>
+        <div class="smatch-popup-badges" style="margin-top:20px; margin-bottom:0;">
+          <img src="badge-va-loans.png" alt="350K+ VA Loans Closed">
+          <img src="badge-5star.png" alt="200K+ 5-Star Reviews">
+          <img src="badge-veterans.png" alt="1000+ Veterans Helped">
+        </div>
+      </div>
       <button class="smatch-back" onclick="exitFunnel()">Back</button>
     </div>
 
@@ -2414,7 +3102,7 @@
 <script>
   let curStep = 1;
   let propertyType = '';
-  const progress = { 'sqmil':10, 'sq3':20, 'sq4':38, 'sqemail':55, 'sq5':70, 'sload':85, 'smatch':92, 'sotp':97, 15:100 };
+  const progress = { 'sqmil':10, 'sq3':20, 'sq4':38, 'sq5':55, 'sqemail':70, 'sload':85, 'smatch':92, 'sotp':97, 15:100 };
 
   function personalizeFunnel() {
     var inp = document.getElementById('sqemail-fname');
@@ -2562,7 +3250,26 @@
       var ov = document.getElementById('smatch-email-overlay');
       if (ov) { ov.style.display = 'flex'; document.getElementById('smatch-popup-phone').value = ''; }
     }
+    if (step === 'sqemail') {
+      var p1 = document.getElementById('sqemail-pane1');
+      var p2 = document.getElementById('sqemail-pane2');
+      if (p1) p1.style.display = 'block';
+      if (p2) p2.style.display = 'none';
+    }
     window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  function sqemailContinue() {
+    if (!personalizeFunnel()) return;
+    document.getElementById('sqemail-pane1').style.display = 'none';
+    document.getElementById('sqemail-pane2').style.display = 'block';
+  }
+
+  function sqemailPhoneSubmit() {
+    var inp = document.getElementById('sqemail-phone');
+    var s14phone = document.getElementById('phone');
+    if (s14phone && inp) s14phone.value = inp.value.trim();
+    go('sotp');
   }
 
   function hqPick(el) {
@@ -2765,7 +3472,7 @@
         `#1 VA Rate Marketplace` +
       `</div>` +
       `<div class="ty-placeholder-brand">Rates.Now</div>` +
-      `<div class="ty-placeholder-tagline">The #1 Place to Shop VA Mortgage Rates</div>` +
+      `<div class="ty-placeholder-tagline">The #1 Place to Shop<br>VA Mortgage Rates</div>` +
     `</div>`;
     if (cards.length >= 4) cards[3] = placeholderHtml;
     if (cards.length > 2) cards.splice(2, 0, chipHtml);
