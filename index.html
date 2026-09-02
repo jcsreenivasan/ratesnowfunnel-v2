@@ -88,7 +88,7 @@
       backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(91,91,214,.08);
     }
-    .progress-track { height: 4px; background: #E0E0F0; }
+    .progress-track { height: 5px; background: #E0E0F0; }
     .progress-fill { height: 100%; background: var(--purple); transition: width .5s ease; }
     .progress-pct { font-size: 11px; font-weight: 600; color: var(--text-light); padding: 3px 16px 4px; }
 
@@ -134,10 +134,10 @@
     /* ─── HERO FORM CARD ─── */
     .hero-form-card {
       background: transparent;
-      padding: 32px 36px 28px;
+      padding: 0 36px 28px;
       max-width: 720px;
       width: 100%;
-      margin: 32px auto 0;
+      margin: 0 auto 0;
       text-align: left;
       position: relative;
       z-index: 2;
@@ -360,7 +360,7 @@
     }
 
     /* ─── SOCIAL PROOF STRIP ─── */
-    .social-proof-strip { display: flex; align-items: center; justify-content: center; margin-top: 40px; }
+    .social-proof-strip { display: flex; align-items: center; justify-content: center; margin-top: 28px; }
     .social-proof-chip { display: inline-flex; align-items: center; gap: 8px; background: var(--green-lt); border: 1.5px solid rgba(22,162,91,0.25); border-radius: 100px; padding: 9px 18px; color: #0f7a46; font-size: 13px; font-weight: 600; }
     .social-proof-chip svg { flex-shrink: 0; }
 
@@ -458,6 +458,20 @@
     .sqemail-v2-badge-label { font-size: 9px; font-weight: 700; color: var(--slate); letter-spacing: 0.5px; margin-top: 3px; text-transform: uppercase; }
     .sqemail-v2-badge-divider { width: 1px; height: 32px; background: #e2e8f0; margin: 0 4px; flex-shrink: 0; }
 
+    /* ─── SQCONTACT STEP ─── */
+    .sqcontact-wrap { max-width: 520px; margin: 0 auto; padding: 8px 0 4px; }
+    .sqcontact-title { font-size: 32px; font-weight: 800; color: var(--ink); line-height: 1.2; margin-bottom: 10px; letter-spacing: -0.6px; text-align: center; }
+    .sqcontact-sub { font-size: 14px; color: var(--slate); text-align: center; margin-bottom: 8px; line-height: 1.5; }
+    .sqcontact-protected { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--slate); font-weight: 500; margin-bottom: 24px; }
+    .sqcontact-field { margin-bottom: 16px; text-align: left; }
+    .sqcontact-label { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+    .sqcontact-input { width: 100%; padding: 14px 16px; border: 1.5px solid #d1d5db; border-radius: 10px; font-size: 15px; font-family: 'Inter', sans-serif; color: var(--ink); background: #fff; box-sizing: border-box; transition: border-color 0.15s, box-shadow 0.15s; outline: none; }
+    .sqcontact-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(83,73,219,0.12); }
+    .sqcontact-cta { display: block; width: 100%; padding: 17px 24px; background: var(--primary); color: #fff; border: none; border-radius: 12px; font-size: 17px; font-weight: 700; font-family: 'Inter', sans-serif; cursor: pointer; margin-bottom: 22px; transition: background 0.15s, box-shadow 0.15s; box-shadow: 0 4px 18px rgba(83,73,219,0.28); }
+    .sqcontact-cta:hover { background: #4239c4; box-shadow: 0 6px 24px rgba(83,73,219,0.36); }
+    .sqcontact-badges { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 4px; padding-top: 16px; border-top: 1px solid #e9ecef; }
+    .sqcontact-badges img { height: 52px; width: auto; }
+
     /* ─── SMATCH STEP ─── */
     .smatch-title { font-size: 28px; font-weight: 800; color: var(--ink); text-align: center; margin-bottom: 8px; letter-spacing: -0.5px; line-height: 1.2; }
     .smatch-sub { font-size: 14px; color: var(--slate); text-align: center; margin-bottom: 24px; line-height: 1.5; }
@@ -540,7 +554,7 @@
     .hero-banner-wrap {
       position: relative; overflow: hidden;
       width: calc(100% + 80px);
-      margin: 0 -40px 36px;
+      margin: 0 -40px 0;
       display: flex; align-items: center; justify-content: center;
       z-index: 2;
       background: linear-gradient(135deg, #13116e 0%, #2231d4 48%, #1a4ec8 100%);
@@ -1017,7 +1031,7 @@
     /* ── MOBILE ── */
     @media (max-width: 640px) {
       /* Header */
-      header { padding: 8px 16px; height: 56px; justify-content: flex-start; }
+      header { padding: 8px 16px; height: 56px; justify-content: center; }
       .logo-img { height: 38px !important; }
       .progress-bar-wrap { top: 56px; }
       #funnel { padding-top: 80px; }
@@ -1030,7 +1044,7 @@
       .eyebrow { font-size: 0.66rem; margin-bottom: 18px; }
       /* Hero banner – mobile */
       .hero-banner-wrap {
-        margin: 0 -18px 20px; width: calc(100% + 36px);
+        margin: 0 -18px 0; width: calc(100% + 36px);
       }
       .hero-banner-content { padding: 36px 22px 32px; gap: 14px; align-items: center; text-align: center; }
       .hero-banner-wrap h1 {
@@ -1774,7 +1788,7 @@
     <p class="hero-sub fade-up">Real offers from 40+ lenders, matched to your profile in under 3 minutes. Zero obligation, zero impact on your score.</p>
     <div class="hero-form-card fade-up" id="hero-form-card">
       <!-- Social proof chip -->
-      <div class="social-proof-strip fade-up" style="margin-bottom:12px;">
+      <div class="social-proof-strip fade-up" style="margin-bottom:24px;">
         <div class="social-proof-chip">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
             <path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" fill="#16a25b" opacity="0.18"/>
@@ -2470,6 +2484,44 @@
       </div>
     </div>
 
+    <!-- ─── STEP SQCONTACT: CONTACT DETAILS ─── -->
+    <div class="step-card step-card-wide hidden" id="sqcontact">
+      <div class="sqcontact-wrap">
+        <h2 class="sqcontact-title">Finally, just a few details about you.</h2>
+        <p class="sqcontact-sub">We need it to verify that you are not a bot.</p>
+        <div style="text-align:center;">
+          <div class="sqcontact-protected">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" fill="#16a25b" opacity="0.15" stroke="#16a25b" stroke-width="1.5"/><path d="M9 12l2 2 4-4" stroke="#16a25b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            All data is encrypted.
+          </div>
+        </div>
+        <div class="sqcontact-field">
+          <label class="sqcontact-label" for="sqcontact-fname">First name</label>
+          <input class="sqcontact-input" id="sqcontact-fname" type="text" placeholder="e.g. John" autocomplete="given-name">
+        </div>
+        <div class="sqcontact-field">
+          <label class="sqcontact-label" for="sqcontact-lname">Last name</label>
+          <input class="sqcontact-input" id="sqcontact-lname" type="text" placeholder="e.g. Smith" autocomplete="family-name">
+        </div>
+        <div class="sqcontact-field">
+          <label class="sqcontact-label" for="sqcontact-phone">Mobile phone number</label>
+          <input class="sqcontact-input" id="sqcontact-phone" type="tel" placeholder="(555) 555-5555" autocomplete="tel">
+        </div>
+        <div class="smatch-disclaimers" style="margin-bottom:18px;">
+          <div class="smatch-disclaimer-row">
+            <input type="checkbox" id="sqcontact-consent" />
+            <label class="smatch-disclaimer-label" for="sqcontact-consent">I agree to receive text messages regarding mortgage rate updates, loan information, and related services from rates.now and its lender partners. Message and data rates may apply. Reply STOP to unsubscribe.</label>
+          </div>
+        </div>
+        <button class="sqcontact-cta" onclick="sqcontactSubmit()">Review these offers</button>
+        <div class="sqcontact-badges">
+          <img src="badge-va-loans.png" alt="15K+ VA Loans Closed">
+          <img src="badge-5star.png" alt="90K+ 5-Star Reviews">
+          <img src="badge-veterans.png" alt="25K+ Veterans Helped">
+        </div>
+      </div>
+    </div>
+
     <!-- ─── STEP SQ4: FINANCIAL QUESTIONS ─── -->
     <div class="step-card step-card-wide hidden" id="sq4">
       <h2 class="sfinal-title">Financial questions</h2>
@@ -2947,7 +2999,8 @@
 <script>
   let curStep = 1;
   let propertyType = '';
-  const progress = { 'sqmil':10, 'sq3':20, 'sq4':38, 'sq5':55, 'sqemail':70, 'sload':85, 'smatch':92, 'sotp':97, 15:100 };
+  const progress = { 'sqmil':10, 'sq3':20, 'sq4':38, 'sq5':55, 'sqemail':70, 'sqcontact':99, 'sload':85, 'smatch':92, 'sotp':97, 15:100 };
+  const progressLabel = { 'sqcontact': '99% complete · Final step' };
 
   function personalizeFunnel() {
     var inp = document.getElementById('sqemail-fname');
@@ -3086,7 +3139,7 @@
     }
     const pct = progress[step] || 100;
     document.getElementById('pbar').style.width = pct+'%';
-    document.getElementById('ppct').textContent = pct+'% complete';
+    document.getElementById('ppct').textContent = progressLabel[step] || (pct+'% complete');
     if (nextId === 'rs5') syncRemainingBalance();
     if (step === 15) buildTyLenders();
     if (nextId === 'sload') startLoader();
@@ -3112,7 +3165,20 @@
       return;
     }
     document.getElementById('sqemail-input').style.borderColor = '';
-    go('sq4');
+    go('sqcontact');
+  }
+
+  function sqcontactSubmit() {
+    var phone = (document.getElementById('sqcontact-phone').value || '').trim();
+    if (!phone) {
+      document.getElementById('sqcontact-phone').focus();
+      document.getElementById('sqcontact-phone').style.borderColor = '#e53e3e';
+      return;
+    }
+    document.getElementById('sqcontact-phone').style.borderColor = '';
+    var s14phone = document.getElementById('phone');
+    if (s14phone) s14phone.value = phone;
+    go('sotp');
   }
 
   function sqemailPhoneSubmit() {
