@@ -272,7 +272,7 @@
     .hq-opt.sel { background: var(--primary); border-color: var(--primary); color: #fff; }
     .hq-opt:hover:not(.sel) { border-color: var(--primary); color: var(--primary); }
     .hq-multi-hint { font-size: 11px; color: var(--slate); margin-top: 8px; font-style: italic; }
-    .branch-q { font-size: 21px; font-weight: 800; color: var(--ink); letter-spacing: -0.4px; line-height: 1.3; margin-bottom: 20px; }
+    .branch-q { font-size: 21px; font-weight: 800; color: var(--ink); letter-spacing: -0.4px; line-height: 1.3; margin-bottom: 20px; text-align: center; }
     .branch-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
     .branch-card {
       background: #fff; border: 1.5px solid #d4d4e8; border-radius: 14px;
@@ -436,17 +436,27 @@
     .rate-preview-stars { font-size: 11px; color: #f5a623; margin-top: 3px; line-height: 1; }
     .rate-preview-review-count { font-size: 9px; color: var(--slate); margin-top: 2px; }
     .smatch-inline-form { margin-top: 24px; text-align: center; }
-    .sqemail-green-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--green-lt); border: 1.5px solid rgba(22,162,91,0.25); color: #0f7a46; font-size: 12px; font-weight: 600; padding: 7px 18px; border-radius: 100px; margin-bottom: 16px; }
-    .sqemail-google-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 11px 16px; background: #fff; border: 1.5px solid #dadce0; border-radius: 10px; font-size: 14px; font-weight: 600; color: #3c4043; cursor: pointer; margin-bottom: 14px; transition: background 0.15s, box-shadow 0.15s; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .sqemail-green-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--green-lt); border: 1.5px solid rgba(22,162,91,0.25); color: #0f7a46; font-size: 12px; font-weight: 600; padding: 7px 18px; border-radius: 100px; margin-bottom: 18px; }
+    .sqemail-google-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px 16px; background: #fff; border: 1.5px solid #dadce0; border-radius: 10px; font-size: 14px; font-weight: 600; color: #3c4043; cursor: pointer; margin-bottom: 16px; transition: background 0.15s, box-shadow 0.15s; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
     .sqemail-google-btn:hover { background: #f8f9fa; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
-    .sqemail-or-divider { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .sqemail-or-divider { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
     .sqemail-or-line { flex: 1; height: 1px; background: #e2e8f0; }
     .sqemail-or-text { font-size: 12px; color: #94a3b8; font-weight: 500; white-space: nowrap; }
-    #sqemail .smatch-popup-title { font-size: 21.6px; }
-    .sqemail-rate-bg-wrap { position: relative; min-height: 540px; border-radius: 16px; overflow: hidden; display: flex; align-items: flex-start; justify-content: center; margin-bottom: 16px; padding: 20px 0; }
-    .sqemail-rate-bg-wrap .rate-preview-scroll { position: absolute; top: 10px; left: 0; right: 0; opacity: 0.90; pointer-events: none; margin-bottom: 0; }
-    .sqemail-popup-card { position: relative; z-index: 10; width: min(550px, calc(100% - 40px)); background: #fff; border-radius: 20px; box-shadow: 0 8px 40px rgba(83,73,219,0.20), 0 2px 16px rgba(0,0,0,0.10); padding: 28px 24px 24px; text-align: center; margin-top: 80px; }
-    @media (max-width: 640px) { .sqemail-rate-bg-wrap { min-height: 600px; } }
+    .sqemail-v2-wrap { max-width: 520px; margin: 0 auto; text-align: center; padding: 8px 0 4px; }
+    .sqemail-v2-title { font-size: 26px; font-weight: 800; color: var(--ink); line-height: 1.25; margin-bottom: 12px; letter-spacing: -0.5px; }
+    .sqemail-v2-count { color: #16a25b; }
+    .sqemail-v2-protected { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--slate); font-weight: 500; margin-bottom: 22px; }
+    .sqemail-v2-field { text-align: left; margin-bottom: 16px; }
+    .sqemail-v2-label { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+    .sqemail-v2-input { width: 100%; padding: 14px 16px; border: 1.5px solid #d1d5db; border-radius: 10px; font-size: 15px; font-family: 'Inter', sans-serif; color: var(--ink); background: #fff; box-sizing: border-box; transition: border-color 0.15s, box-shadow 0.15s; outline: none; }
+    .sqemail-v2-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(83,73,219,0.12); }
+    .sqemail-v2-cta { display: block; width: 100%; padding: 17px 24px; background: var(--primary); color: #fff; border: none; border-radius: 12px; font-size: 17px; font-weight: 700; font-family: 'Inter', sans-serif; cursor: pointer; margin-bottom: 22px; transition: background 0.15s, box-shadow 0.15s; box-shadow: 0 4px 18px rgba(83,73,219,0.28); }
+    .sqemail-v2-cta:hover { background: #4239c4; box-shadow: 0 6px 24px rgba(83,73,219,0.36); }
+    .sqemail-v2-badges { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 4px; padding: 16px 0 4px; border-top: 1px solid #e9ecef; }
+    .sqemail-v2-badge { text-align: center; flex: 1; }
+    .sqemail-v2-badge-num { font-size: 18px; font-weight: 800; color: var(--ink); line-height: 1; }
+    .sqemail-v2-badge-label { font-size: 9px; font-weight: 700; color: var(--slate); letter-spacing: 0.5px; margin-top: 3px; text-transform: uppercase; }
+    .sqemail-v2-badge-divider { width: 1px; height: 32px; background: #e2e8f0; margin: 0 4px; flex-shrink: 0; }
 
     /* ─── SMATCH STEP ─── */
     .smatch-title { font-size: 28px; font-weight: 800; color: var(--ink); text-align: center; margin-bottom: 8px; letter-spacing: -0.5px; line-height: 1.2; }
@@ -526,53 +536,46 @@
     .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.83rem; color: var(--slate); font-weight: 500; }
     .trust-check { width: 19px; height: 19px; border-radius: 50%; border: 1.5px solid var(--slate); display: inline-flex; align-items: center; justify-content: center; font-size: 10px; color: var(--slate); flex-shrink: 0; line-height: 1; }
 
-    /* ─── HERO BANNER IMAGE ─── */
+    /* ─── HERO BANNER ─── */
     .hero-banner-wrap {
       position: relative; overflow: hidden;
       width: calc(100% + 80px);
       margin: 0 -40px 36px;
       display: flex; align-items: center; justify-content: center;
       z-index: 2;
+      background: linear-gradient(135deg, #13116e 0%, #2231d4 48%, #1a4ec8 100%);
     }
-    .hero-banner-img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: left center;
-      display: block;
-    }
-    .hero-banner-overlay {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,0.52);
-      z-index: 1;
-    }
+    .hero-banner-img { display: none; }
+    .hero-banner-overlay { display: none; }
     .hero-banner-content {
       position: relative; z-index: 2;
       display: flex; flex-direction: column; align-items: center; gap: 16px;
-      padding: 41px 40px 37px; text-align: center;
+      padding: 48px 40px 44px; text-align: center;
     }
     .hero-banner-wrap .eyebrow {
       margin-bottom: 0;
-      background: #C72424;
+      background: linear-gradient(90deg, #c45500 0%, #e07810 100%);
       color: #ffffff;
-      animation: live-glow 2s ease-in-out infinite;
+      box-shadow: 0 0 22px rgba(210,90,0,0.75), 0 0 50px rgba(210,90,0,0.28);
+      animation: none;
+      letter-spacing: 0.08em;
     }
     .hero-banner-wrap .eyebrow::before {
       background: #ffffff;
-      animation: dot-blink 1.2s ease-in-out infinite;
+      animation: none;
     }
     .hero-banner-wrap h1 {
-      font-size: 32px; font-weight: 900; line-height: 1.2;
+      font-size: 36px; font-weight: 900; line-height: 1.18;
       color: #ffffff;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.35);
       letter-spacing: -0.8px;
-      max-width: 740px;
-      margin: 28px 0 0;
+      max-width: 680px;
+      margin: 4px 0 0;
       text-align: center;
     }
     .hero-banner-sub {
-      color: rgba(255,255,255,0.88);
-      font-size: 1rem; font-weight: 500; line-height: 1.5;
-      margin: 0 0 24px; text-align: center;
+      color: rgba(255,255,255,0.90);
+      font-size: 1rem; font-weight: 400; line-height: 1.6;
+      margin: 0 0 8px; text-align: center; max-width: 560px;
     }
 
     /* ─── PROPERTY TYPE SELECTOR (Landing) ─── */
@@ -1029,14 +1032,14 @@
       .hero-banner-wrap {
         margin: 0 -18px 20px; width: calc(100% + 36px);
       }
-      .hero-banner-content { padding: 32px 18px 28px; gap: 10px; align-items: center; text-align: center; }
+      .hero-banner-content { padding: 36px 22px 32px; gap: 14px; align-items: center; text-align: center; }
       .hero-banner-wrap h1 {
-        font-size: 32px; letter-spacing: -0.6px; text-align: center; margin-bottom: 0;
-        color: #ffffff; text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        font-size: 28px; letter-spacing: -0.4px; text-align: center; margin-bottom: 0;
+        color: #ffffff;
       }
       .hero-banner-sub {
         text-align: center; font-size: 0.9rem; margin-top: 0;
-        color: rgba(255,255,255,0.88); text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+        color: rgba(255,255,255,0.90);
       }
 
       /* Property type grid – 2-col on mobile */
@@ -1762,18 +1765,25 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-banner-wrap fade-up">
-      <picture>
-        <source media="(max-width: 640px)" srcset="veterana-mobile.png">
-        <img class="hero-banner-img" src="veterana2.png" alt="Veteran with family waving American flag">
-      </picture>
-      <div class="hero-banner-overlay"></div>
       <div class="hero-banner-content">
-        <h1>Compare Top VA IRRRL Lender Rates</h1>
-        <p class="hero-banner-sub">Thank you for your service! Our lender network offers mortgage rates below the national average.</p>
+        <div class="eyebrow">LIVE RATES · NO CREDIT PULL · NO OBLIGATION</div>
+        <h1>Compare Rates from Top VA IRRRL Lenders (below national average)</h1>
+        <p class="hero-banner-sub">Answer a few questions and receive personalized VA loan offers from top VA lenders, delivered instantly in one email.</p>
       </div>
     </div>
     <p class="hero-sub fade-up">Real offers from 40+ lenders, matched to your profile in under 3 minutes. Zero obligation, zero impact on your score.</p>
     <div class="hero-form-card fade-up" id="hero-form-card">
+      <!-- Social proof chip -->
+      <div class="social-proof-strip fade-up" style="margin-bottom:12px;">
+        <div class="social-proof-chip">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" fill="#16a25b" opacity="0.18"/>
+            <path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" stroke="#16a25b" stroke-width="1.5"/>
+            <path d="M9 12l2 2 4-4" stroke="#16a25b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>5,200+ veterans use VArates.now to compare VA rates</span>
+        </div>
+      </div>
       <p class="branch-q">What is your branch of service?</p>
       <div class="branch-grid">
         <div class="branch-card" onclick="beginFunnel()">
@@ -1947,17 +1957,6 @@
       </div>
     </div>
 
-    <!-- Social proof chip -->
-    <div class="social-proof-strip fade-up">
-      <div class="social-proof-chip">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" fill="#16a25b" opacity="0.18"/>
-          <path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" stroke="#16a25b" stroke-width="1.5"/>
-          <path d="M9 12l2 2 4-4" stroke="#16a25b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>5,200+ veterans use VArates.now to compare VA rates</span>
-      </div>
-    </div>
 
   </section>
 
@@ -2302,222 +2301,68 @@
 
     <!-- ─── STEP SQEMAIL: EMAIL CAPTURE ─── -->
     <div class="step-card step-card-wide hidden" id="sqemail">
-      <div class="sqemail-rate-bg-wrap">
-        <div class="rate-preview-scroll">
-          <div class="rate-preview-track">
-            <div class="rate-preview-card">
-              <div class="rate-preview-content">
-                <div class="rate-preview-logo-wrap"><img src="farmers-bank-kc-logo.svg" alt="Farmers Bank KC"></div>
-                <div class="rate-preview-name">Rate option 1</div>
-                <div class="rate-preview-rate">5.750<sup>%</sup></div>
-                <div class="rate-preview-label">30yr Fixed</div>
-                <div class="rate-preview-details">
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">5.821%</div></div>
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">2.00</div></div>
-                </div>
-                <div class="rate-preview-nmls">NMLS #1907</div>
-                <div class="rate-preview-stars">★★★★★</div>
-                <div class="rate-preview-review-count">4.9 (12,847 reviews)</div>
-              </div>
-            </div>
-            <div class="rate-preview-card">
-              <div class="rate-preview-content">
-                <div class="rate-preview-logo-wrap"><img src="fbkc-mortgage-logo.png" alt="Farmers Bank KC Mortgage"></div>
-                <div class="rate-preview-name">Rate option 2</div>
-                <div class="rate-preview-rate">5.875<sup>%</sup></div>
-                <div class="rate-preview-label">30yr Fixed</div>
-                <div class="rate-preview-details">
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">5.940%</div></div>
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">2.00</div></div>
-                </div>
-                <div class="rate-preview-nmls">NMLS #3030</div>
-                <div class="rate-preview-stars">★★★★★</div>
-                <div class="rate-preview-review-count">4.8 (6,203 reviews)</div>
-              </div>
-            </div>
-            <div class="rate-preview-card rate-preview-locked">
-              <div class="rate-preview-lowest-tag">⭐ Lowest Rate</div>
-              <div class="rate-preview-content" style="padding-top:18px;">
-                <div class="rate-preview-logo-wrap"><img src="better-mortgage-logo.svg" alt="Better"></div>
-                <div class="rate-preview-name">Rate option 3</div>
-                <div class="rate-preview-rate">5.625<sup>%</sup></div>
-                <div class="rate-preview-label">30yr Fixed</div>
-                <div class="rate-preview-details">
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">5.687%</div></div>
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.125</div></div>
-                </div>
-                <div class="rate-preview-nmls">NMLS #330511</div>
-                <div class="rate-preview-stars">★★★★☆</div>
-                <div class="rate-preview-review-count">4.5 (3,102 reviews)</div>
-              </div>
-              <div class="rate-preview-lock">
-                <span class="rate-preview-lock-icon">🔒</span>
-                <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
-              </div>
-            </div>
-            <div class="rate-preview-card rate-preview-locked">
-              <div class="rate-preview-content">
-                <div class="rate-preview-logo-wrap"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div>
-                <div class="rate-preview-name">Rate option 4</div>
-                <div class="rate-preview-rate">6.000<sup>%</sup></div>
-                <div class="rate-preview-label">30yr Fixed</div>
-                <div class="rate-preview-details">
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.058%</div></div>
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.375</div></div>
-                </div>
-                <div class="rate-preview-nmls">NMLS #236066</div>
-                <div class="rate-preview-stars">★★★★★</div>
-                <div class="rate-preview-review-count">4.7 (1,847 reviews)</div>
-              </div>
-              <div class="rate-preview-lock">
-                <span class="rate-preview-lock-icon">🔒</span>
-                <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
-              </div>
-            </div>
-            <div class="rate-preview-card rate-preview-locked">
-              <div class="rate-preview-2nd-tag">🥈 2nd Lowest</div>
-              <div class="rate-preview-content" style="padding-top:18px;">
-                <div class="rate-preview-logo-wrap"><img src="veterans-united-logo.png" alt="Veterans United"></div>
-                <div class="rate-preview-name">Rate option 5</div>
-                <div class="rate-preview-rate">6.125<sup>%</sup></div>
-                <div class="rate-preview-label">30yr Fixed</div>
-                <div class="rate-preview-details">
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.192%</div></div>
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.500</div></div>
-                </div>
-                <div class="rate-preview-nmls">NMLS #1907</div>
-                <div class="rate-preview-stars">★★★★★</div>
-                <div class="rate-preview-review-count">4.9 (12,847 reviews)</div>
-              </div>
-              <div class="rate-preview-lock">
-                <span class="rate-preview-lock-icon">🔒</span>
-                <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
-              </div>
-            </div>
-            <div class="rate-preview-card rate-preview-locked">
-              <div class="rate-preview-content">
-                <div class="rate-preview-logo-wrap"><img src="rocket-logo.png" alt="Rocket Mortgage"></div>
-                <div class="rate-preview-name">Rate option 6</div>
-                <div class="rate-preview-rate">6.250<sup>%</sup></div>
-                <div class="rate-preview-label">30yr Fixed</div>
-                <div class="rate-preview-details">
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.312%</div></div>
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.625</div></div>
-                </div>
-                <div class="rate-preview-nmls">NMLS #3030</div>
-                <div class="rate-preview-stars">★★★★★</div>
-                <div class="rate-preview-review-count">4.8 (6,203 reviews)</div>
-              </div>
-              <div class="rate-preview-lock">
-                <span class="rate-preview-lock-icon">🔒</span>
-                <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
-              </div>
-            </div>
-            <div class="rate-preview-card rate-preview-locked">
-              <div class="rate-preview-content">
-                <div class="rate-preview-logo-wrap"><img src="better-mortgage-logo.svg" alt="Better"></div>
-                <div class="rate-preview-name">Rate option 7</div>
-                <div class="rate-preview-rate">6.375<sup>%</sup></div>
-                <div class="rate-preview-label">30yr Fixed</div>
-                <div class="rate-preview-details">
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.432%</div></div>
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.750</div></div>
-                </div>
-                <div class="rate-preview-nmls">NMLS #330511</div>
-                <div class="rate-preview-stars">★★★★☆</div>
-                <div class="rate-preview-review-count">4.5 (3,102 reviews)</div>
-              </div>
-              <div class="rate-preview-lock">
-                <span class="rate-preview-lock-icon">🔒</span>
-                <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
-              </div>
-            </div>
-            <div class="rate-preview-card rate-preview-locked">
-              <div class="rate-preview-content">
-                <div class="rate-preview-logo-wrap"><img src="strong-home-mortgage-logo.webp" alt="Strong Home Mortgage"></div>
-                <div class="rate-preview-name">Rate option 8</div>
-                <div class="rate-preview-rate">6.500<sup>%</sup></div>
-                <div class="rate-preview-label">30yr Fixed</div>
-                <div class="rate-preview-details">
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">APR</div><div class="rate-preview-detail-val">6.561%</div></div>
-                  <div class="rate-preview-detail"><div class="rate-preview-detail-label">Points</div><div class="rate-preview-detail-val">0.875</div></div>
-                </div>
-                <div class="rate-preview-nmls">NMLS #236066</div>
-                <div class="rate-preview-stars">★★★★★</div>
-                <div class="rate-preview-review-count">4.7 (1,847 reviews)</div>
-              </div>
-              <div class="rate-preview-lock">
-                <span class="rate-preview-lock-icon">🔒</span>
-                <span class="rate-preview-lock-text">Unlock by adding the phone number below</span>
-              </div>
-            </div>
+      <div class="sqemail-v2-wrap">
+        <!-- Green pill -->
+        <div class="sqemail-green-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#16a25b" opacity="0.15"/><polyline points="8 12 11 15 16 9" stroke="#16a25b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Rates .50 below the national average
+        </div>
+        <!-- Title -->
+        <h2 class="sqemail-v2-title">We found <span class="sqemail-v2-count">32</span> rates for you.<br>Where should we send them?</h2>
+        <!-- Protected line -->
+        <div class="sqemail-v2-protected">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" fill="#16a25b" opacity="0.15" stroke="#16a25b" stroke-width="1.5"/><path d="M9 12l2 2 4-4" stroke="#16a25b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Your info is protected.
+        </div>
+        <!-- Email input -->
+        <div class="sqemail-v2-field">
+          <label class="sqemail-v2-label" for="sqemail-input">Email address</label>
+          <input class="sqemail-v2-input" id="sqemail-input" type="email" placeholder="your@email.com" autocomplete="email">
+        </div>
+        <!-- Or divider -->
+        <div class="sqemail-or-divider">
+          <div class="sqemail-or-line"></div>
+          <span class="sqemail-or-text">or</span>
+          <div class="sqemail-or-line"></div>
+        </div>
+        <!-- Google button -->
+        <button class="sqemail-google-btn" type="button">
+          <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+          Continue with Google
+        </button>
+        <!-- Disclaimer -->
+        <div class="smatch-disclaimers" style="margin-bottom:16px;">
+          <div class="smatch-disclaimer-row">
+            <input type="checkbox" id="sqemail-consent" />
+            <label class="smatch-disclaimer-label" for="sqemail-consent">By checking the box and clicking "See the offers", I provide my express consent to receive emails, notifications, calls (including auto-dialed or pre-recorded/artificial voice calls), and text messages related to mortgage quotes from selected lenders at the contact info I provided. Message and data rates may apply. My consent is not a condition of purchase. Privacy Policy | Terms of Service</label>
           </div>
         </div>
-        <div class="sqemail-popup-card">
-          <!-- Pane 1: Email form -->
-          <div id="sqemail-pane1">
-            <p class="smatch-popup-title">Let lenders bid for your refinance — you pick the winner!</p>
-            <div class="sqemail-green-tag">Rates .50 below the national ave.</div>
-            <button class="sqemail-google-btn" type="button">
-              <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
-              Continue with Google
-            </button>
-            <div class="sqemail-or-divider">
-              <div class="sqemail-or-line"></div>
-              <span class="sqemail-or-text">or</span>
-              <div class="sqemail-or-line"></div>
-            </div>
-            <div style="text-align:left;">
-              <div class="sq2-name-grid" style="margin-bottom:12px;">
-                <div class="sq2-name-field">
-                  <label class="sq2-name-label" for="sqemail-fname">First name <span style="color:#e53e3e;">*</span></label>
-                  <input class="smatch-popup-email" style="margin-bottom:0;" id="sqemail-fname" type="text" placeholder="e.g. John" autocomplete="given-name">
-                </div>
-                <div class="sq2-name-field">
-                  <label class="sq2-name-label" for="sqemail-lname">Last name</label>
-                  <input class="smatch-popup-email" style="margin-bottom:0;" id="sqemail-lname" type="text" placeholder="e.g. Smith" autocomplete="family-name">
-                </div>
-              </div>
-              <div class="sq2-name-field">
-                <label class="sq2-name-label" for="sqemail-input">Email address <span style="color:#e53e3e;">*</span></label>
-                <input class="smatch-popup-email" id="sqemail-input" type="email" placeholder="your@email.com" autocomplete="email">
-              </div>
-            </div>
-            <div class="smatch-disclaimers" style="margin-bottom:14px;">
-              <div class="smatch-disclaimer-row">
-                <input type="checkbox" id="sqemail-consent" />
-                <label class="smatch-disclaimer-label" for="sqemail-consent">By checking the box and clicking "Continue", I agree to the following: I provide my express consent to receive emails, notifications, calls (including auto-dialed or pre-recorded/artificial voice calls), and text messages related to mortgage quotes from selected lenders and their agents at the email address and/or phone number(s) I provided, including wireless numbers, even if listed on a do-not-call registry. I understand that message and data rates may apply, that my consent is not a condition of purchasing any goods or services, and that I may revoke my consent at any time. Privacy Policy | Terms of Service</label>
-              </div>
-            </div>
-            <button class="smatch-popup-btn" onclick="sqemailContinue()">Continue</button>
-            <div class="smatch-popup-badges" style="margin-top:20px;margin-bottom:0;">
-              <img src="badge-va-loans.png" alt="350K+ VA Loans Closed">
-              <img src="badge-5star.png" alt="200K+ 5-Star Reviews">
-              <img src="badge-veterans.png" alt="1000+ Veterans Helped">
-            </div>
+        <!-- CTA button -->
+        <button class="sqemail-v2-cta" onclick="sqemailContinue()">See the offers</button>
+        <!-- Trust badges -->
+        <div class="sqemail-v2-badges">
+          <div class="sqemail-v2-badge">
+            <div class="sqemail-v2-badge-num">15K+</div>
+            <div class="sqemail-v2-badge-label">VA Loans Closed</div>
           </div>
-          <!-- Pane 2: Phone form -->
-          <div id="sqemail-pane2" style="display:none;">
-            <p class="smatch-popup-title">Your rate options are ready!</p>
-            <p class="smatch-popup-sub">Expect a call from our lender network to fine-tune your VA rate and options.</p>
-            <input id="sqemail-phone" class="smatch-popup-email" type="tel" placeholder="(555) 000-0000" autocomplete="tel" />
-            <div class="smatch-disclaimers">
-              <div class="smatch-disclaimer-row">
-                <input type="checkbox" id="sqemail-disc1" />
-                <label class="smatch-disclaimer-label" for="sqemail-disc1">I agree to receive text messages regarding mortgage rate updates, loan information, and related services from rates.now and its lender partners. Message and data rates may apply. Reply STOP to unsubscribe.</label>
-              </div>
-            </div>
-            <button class="smatch-popup-btn" onclick="sqemailPhoneSubmit()">Review these offers</button>
-            <div class="smatch-popup-badges" style="margin-top:20px;margin-bottom:0;">
-              <img src="badge-va-loans.png" alt="350K+ VA Loans Closed">
-              <img src="badge-5star.png" alt="200K+ 5-Star Reviews">
-              <img src="badge-veterans.png" alt="1000+ Veterans Helped">
-            </div>
+          <div class="sqemail-v2-badge-divider"></div>
+          <div class="sqemail-v2-badge">
+            <div class="sqemail-v2-badge-num">90K+</div>
+            <div class="sqemail-v2-badge-label">5-Star Reviews</div>
+          </div>
+          <div class="sqemail-v2-badge-divider"></div>
+          <div class="sqemail-v2-badge">
+            <div class="sqemail-v2-badge-num">25K+</div>
+            <div class="sqemail-v2-badge-label">Veterans Helped</div>
           </div>
         </div>
       </div>
-      <div style="text-align:center;margin-top:8px;">
+      <div style="text-align:center;margin-top:16px;">
         <button class="smatch-back" onclick="go('sq5')">Back</button>
+      </div>
+      <!-- Hidden phone pane (kept for sqemailPhoneSubmit) -->
+      <div id="sqemail-pane2" style="display:none;">
+        <input id="sqemail-phone" class="smatch-popup-email" type="tel" placeholder="(555) 000-0000" autocomplete="tel" />
       </div>
       <div class="smatch-cards-wrap" style="display:none;">
         <div class="smatch-cards">
@@ -2710,7 +2555,7 @@
       <div class="loader-progress-wrap">
         <div class="loader-progress-fill" id="loader-bar"></div>
       </div>
-      <h2 class="step-q" style="margin-bottom:20px;">Finding Your Best Mortgage Match</h2>
+      <h2 class="step-q" style="margin-bottom:20px;">Searching the best rates</h2>
       <div class="loader-steps">
         <div class="load-item" id="li1"><span class="load-dot"></span><span class="load-text">Analyzing your loan preferences.</span></div>
         <div class="load-item" id="li2"><span class="load-dot"></span><span class="load-text">Scoring lender and rate compatibility.</span></div>
@@ -3260,9 +3105,14 @@
   }
 
   function sqemailContinue() {
-    if (!personalizeFunnel()) return;
-    document.getElementById('sqemail-pane1').style.display = 'none';
-    document.getElementById('sqemail-pane2').style.display = 'block';
+    var email = (document.getElementById('sqemail-input').value || '').trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById('sqemail-input').focus();
+      document.getElementById('sqemail-input').style.borderColor = '#e53e3e';
+      return;
+    }
+    document.getElementById('sqemail-input').style.borderColor = '';
+    go('sq4');
   }
 
   function sqemailPhoneSubmit() {
