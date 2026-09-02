@@ -64,6 +64,13 @@
       height: 64px;
     }
     .logo-img { height: 44px; cursor: pointer; display: block; }
+    /* ─── HEADER RATING ─── */
+    .header-rating { display: none; align-items: center; gap: 7px; margin-left: 14px; }
+    .header-rating.visible { display: flex; }
+    .header-rating-stars { color: #f5a623; font-size: 18px; letter-spacing: 2px; line-height: 1; }
+    .header-rating-num { font-size: 14px; font-weight: 700; color: #6b7280; }
+    .header-rating-line { flex: 1; border-top: 1.5px dotted #d1d5db; min-width: 40px; }
+    header.with-rating { justify-content: flex-start; padding-right: 24px; }
     .nav-cta {
       background: var(--primary);
       color: #fff;
@@ -1770,8 +1777,13 @@
 <!-- ══ END ICON LIBRARY ══ -->
 
 <!-- ══════════════ HEADER ══════════════ -->
-<header>
+<header id="site-header">
   <img class="logo-img" src="VArateslogo.png" alt="VArates.now" onclick="showLanding()" style="height:52px;">
+  <div class="header-rating" id="header-rating">
+    <span class="header-rating-stars">★★★★★</span>
+    <span class="header-rating-num">4.9</span>
+    <div class="header-rating-line"></div>
+  </div>
 </header>
 
 <!-- ══════════════ LANDING ══════════════ -->
@@ -2999,8 +3011,8 @@
 <script>
   let curStep = 1;
   let propertyType = '';
-  const progress = { 'sqmil':10, 'sq3':20, 'sq4':38, 'sq5':55, 'sqemail':70, 'sqcontact':99, 'sload':85, 'smatch':92, 'sotp':97, 15:100 };
-  const progressLabel = { 'sqcontact': '99% complete · Final step' };
+  const progress = { 'sqmil':10, 'sq3':20, 'sq4':38, 'sq5':55, 'sqemail':95, 'sqcontact':99, 'sload':85, 'smatch':92, 'sotp':97, 15:100 };
+  const progressLabel = { 'sqemail': '95% complete · Almost there', 'sqcontact': '99% complete · Final step' };
 
   function personalizeFunnel() {
     var inp = document.getElementById('sqemail-fname');
@@ -3140,6 +3152,16 @@
     const pct = progress[step] || 100;
     document.getElementById('pbar').style.width = pct+'%';
     document.getElementById('ppct').textContent = progressLabel[step] || (pct+'% complete');
+    var hdr = document.getElementById('site-header');
+    var hdrRating = document.getElementById('header-rating');
+    var ratingSteps = ['sqemail', 'sqcontact'];
+    if (ratingSteps.indexOf(String(step)) !== -1) {
+      hdrRating.classList.add('visible');
+      hdr.classList.add('with-rating');
+    } else {
+      hdrRating.classList.remove('visible');
+      hdr.classList.remove('with-rating');
+    }
     if (nextId === 'rs5') syncRemainingBalance();
     if (step === 15) buildTyLenders();
     if (nextId === 'sload') startLoader();
