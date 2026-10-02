@@ -465,6 +465,19 @@
     .sqemail-v2-badge-label { font-size: 9px; font-weight: 700; color: var(--slate); letter-spacing: 0.5px; margin-top: 3px; text-transform: uppercase; }
     .sqemail-v2-badge-divider { width: 1px; height: 32px; background: #e2e8f0; margin: 0 4px; flex-shrink: 0; }
 
+    /* ─── SQEMAIL INTRO PANE ─── */
+    .sqemail-intro-sub { font-size: 16px; color: var(--slate); text-align: center; line-height: 1.55; margin-bottom: 24px; }
+    .sqemail-bonus-wrap { display: flex; align-items: center; gap: 16px; background: #f7f6ff; border: 1.5px solid rgba(83,73,219,0.18); border-radius: 14px; padding: 16px 20px; margin-bottom: 20px; }
+    .sqemail-amz-card { flex-shrink: 0; width: 80px; height: 56px; background: #111; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .sqemail-amz-amount { position: absolute; top: 5px; right: 6px; font-size: 8px; font-weight: 700; color: #fff; letter-spacing: 0.3px; }
+    .sqemail-amz-a { font-size: 26px; font-weight: 900; color: #fff; line-height: 1; font-family: 'Times New Roman', serif; margin-top: -2px; }
+    .sqemail-amz-smile { width: 36px; height: 10px; margin-top: 2px; flex-shrink: 0; }
+    .sqemail-bonus-text { font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.4; }
+    .sqemail-free-line { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; color: var(--slate); font-weight: 500; margin-bottom: 22px; }
+    .sqemail-free-line svg { flex-shrink: 0; }
+    .sqemail-intro-cta { display: block; width: 100%; padding: 17px 24px; background: var(--primary); color: #fff; border: none; border-radius: 12px; font-size: 17px; font-weight: 700; font-family: 'Inter', sans-serif; cursor: pointer; transition: background 0.15s, box-shadow 0.15s; box-shadow: 0 4px 18px rgba(83,73,219,0.28); }
+    .sqemail-intro-cta:hover { background: #4239c4; box-shadow: 0 6px 24px rgba(83,73,219,0.36); }
+
     /* ─── SQCONTACT STEP ─── */
     .sqcontact-wrap { max-width: 520px; margin: 0 auto; padding: 8px 0 4px; }
     .sqcontact-title { font-size: 32px; font-weight: 800; color: var(--ink); line-height: 1.2; margin-bottom: 10px; letter-spacing: -0.6px; text-align: center; }
@@ -2327,64 +2340,105 @@
 
     <!-- ─── STEP SQEMAIL: EMAIL CAPTURE ─── -->
     <div class="step-card step-card-wide hidden" id="sqemail">
-      <div class="sqemail-v2-wrap">
-        <!-- Green pill -->
-        <div class="sqemail-green-tag">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#16a25b" opacity="0.15"/><polyline points="8 12 11 15 16 9" stroke="#16a25b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Rates .50 below the national average
-        </div>
-        <!-- Title -->
-        <h2 class="sqemail-v2-title">We found <span class="sqemail-v2-count">32</span> rates for you.<br>Where should we send them?</h2>
-        <!-- Protected line -->
-        <div class="sqemail-v2-protected">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" fill="#16a25b" opacity="0.15" stroke="#16a25b" stroke-width="1.5"/><path d="M9 12l2 2 4-4" stroke="#16a25b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Your info is protected.
-        </div>
-        <!-- Email input -->
-        <div class="sqemail-v2-field">
-          <label class="sqemail-v2-label" for="sqemail-input">Email address</label>
-          <input class="sqemail-v2-input" id="sqemail-input" type="email" placeholder="your@email.com" autocomplete="email">
-        </div>
-        <!-- Or divider -->
-        <div class="sqemail-or-divider">
-          <div class="sqemail-or-line"></div>
-          <span class="sqemail-or-text">or</span>
-          <div class="sqemail-or-line"></div>
-        </div>
-        <!-- Google button -->
-        <button class="sqemail-google-btn" type="button">
-          <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
-          Continue with Google
-        </button>
-        <!-- Disclaimer -->
-        <div class="smatch-disclaimers" style="margin-bottom:16px;">
-          <div class="smatch-disclaimer-row">
-            <input type="checkbox" id="sqemail-consent" />
-            <label class="smatch-disclaimer-label" for="sqemail-consent">By checking the box and clicking "See the offers", I provide my express consent to receive emails, notifications, calls (including auto-dialed or pre-recorded/artificial voice calls), and text messages related to mortgage quotes from selected lenders at the contact info I provided. Message and data rates may apply. My consent is not a condition of purchase. Privacy Policy | Terms of Service</label>
+
+      <!-- Pane 0: Intro (shown first) -->
+      <div id="sqemail-pane0">
+        <div class="sqemail-v2-wrap">
+          <!-- Green pill -->
+          <div class="sqemail-green-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#16a25b" opacity="0.15"/><polyline points="8 12 11 15 16 9" stroke="#16a25b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Rates .50 below the national average
           </div>
+          <!-- Title -->
+          <h2 class="sqemail-v2-title">We found <span class="sqemail-v2-count">32</span> rates for you</h2>
+          <!-- Subtitle -->
+          <p class="sqemail-intro-sub">To send you the rates, we need your contact information.</p>
+          <!-- Amazon bonus box -->
+          <div class="sqemail-bonus-wrap">
+            <div class="sqemail-amz-card">
+              <span class="sqemail-amz-amount">$250</span>
+              <span class="sqemail-amz-a">a</span>
+              <svg class="sqemail-amz-smile" viewBox="0 0 40 12" fill="none">
+                <path d="M3 3 Q20 13 37 3" stroke="#f90" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+                <path d="M31 3 L37 3 L37 9" stroke="#f90" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
+            <div class="sqemail-bonus-text">Bonus: You'll have 1 in 5 chances to win $250</div>
+          </div>
+          <!-- Free / secure line -->
+          <div class="sqemail-free-line">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" fill="#16a25b" opacity="0.2" stroke="#16a25b" stroke-width="1.5"/><path d="M9 12l2 2 4-4" stroke="#16a25b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            100% FREE, secure, and with no obligation
+          </div>
+          <!-- CTA -->
+          <button class="sqemail-intro-cta" onclick="sqemailIntroContinue()">I'm okay with that</button>
         </div>
-        <!-- CTA button -->
-        <button class="sqemail-v2-cta" onclick="sqemailContinue()">See the offers</button>
-        <!-- Trust badges -->
-        <div class="sqemail-v2-badges">
-          <div class="sqemail-v2-badge">
-            <div class="sqemail-v2-badge-num">15K+</div>
-            <div class="sqemail-v2-badge-label">VA Loans Closed</div>
-          </div>
-          <div class="sqemail-v2-badge-divider"></div>
-          <div class="sqemail-v2-badge">
-            <div class="sqemail-v2-badge-num">90K+</div>
-            <div class="sqemail-v2-badge-label">5-Star Reviews</div>
-          </div>
-          <div class="sqemail-v2-badge-divider"></div>
-          <div class="sqemail-v2-badge">
-            <div class="sqemail-v2-badge-num">25K+</div>
-            <div class="sqemail-v2-badge-label">Veterans Helped</div>
-          </div>
+        <div style="text-align:center;margin-top:16px;">
+          <button class="smatch-back" onclick="go('sq5')">Back</button>
         </div>
       </div>
-      <div style="text-align:center;margin-top:16px;">
-        <button class="smatch-back" onclick="go('sq5')">Back</button>
+
+      <!-- Pane 1: Email form (shown after intro) -->
+      <div id="sqemail-pane1" style="display:none;">
+        <div class="sqemail-v2-wrap">
+          <!-- Green pill -->
+          <div class="sqemail-green-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#16a25b" opacity="0.15"/><polyline points="8 12 11 15 16 9" stroke="#16a25b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Rates .50 below the national average
+          </div>
+          <!-- Title -->
+          <h2 class="sqemail-v2-title">We found <span class="sqemail-v2-count">32</span> rates for you.<br>Where should we send them?</h2>
+          <!-- Protected line -->
+          <div class="sqemail-v2-protected">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v5c0 4.95 3.41 9.57 8 10.93C17.59 20.57 21 15.95 21 11V6l-9-4z" fill="#16a25b" opacity="0.15" stroke="#16a25b" stroke-width="1.5"/><path d="M9 12l2 2 4-4" stroke="#16a25b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Your info is protected.
+          </div>
+          <!-- Email input -->
+          <div class="sqemail-v2-field">
+            <label class="sqemail-v2-label" for="sqemail-input">Email address</label>
+            <input class="sqemail-v2-input" id="sqemail-input" type="email" placeholder="your@email.com" autocomplete="email">
+          </div>
+          <!-- Or divider -->
+          <div class="sqemail-or-divider">
+            <div class="sqemail-or-line"></div>
+            <span class="sqemail-or-text">or</span>
+            <div class="sqemail-or-line"></div>
+          </div>
+          <!-- Google button -->
+          <button class="sqemail-google-btn" type="button">
+            <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>
+            Continue with Google
+          </button>
+          <!-- Disclaimer -->
+          <div class="smatch-disclaimers" style="margin-bottom:16px;">
+            <div class="smatch-disclaimer-row">
+              <input type="checkbox" id="sqemail-consent" />
+              <label class="smatch-disclaimer-label" for="sqemail-consent">By checking the box and clicking "See the offers", I provide my express consent to receive emails, notifications, calls (including auto-dialed or pre-recorded/artificial voice calls), and text messages related to mortgage quotes from selected lenders at the contact info I provided. Message and data rates may apply. My consent is not a condition of purchase. Privacy Policy | Terms of Service</label>
+            </div>
+          </div>
+          <!-- CTA button -->
+          <button class="sqemail-v2-cta" onclick="sqemailContinue()">See the offers</button>
+          <!-- Trust badges -->
+          <div class="sqemail-v2-badges">
+            <div class="sqemail-v2-badge">
+              <div class="sqemail-v2-badge-num">15K+</div>
+              <div class="sqemail-v2-badge-label">VA Loans Closed</div>
+            </div>
+            <div class="sqemail-v2-badge-divider"></div>
+            <div class="sqemail-v2-badge">
+              <div class="sqemail-v2-badge-num">90K+</div>
+              <div class="sqemail-v2-badge-label">5-Star Reviews</div>
+            </div>
+            <div class="sqemail-v2-badge-divider"></div>
+            <div class="sqemail-v2-badge">
+              <div class="sqemail-v2-badge-num">25K+</div>
+              <div class="sqemail-v2-badge-label">Veterans Helped</div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:16px;">
+          <button class="smatch-back" onclick="sqemailBackToIntro()">Back</button>
+        </div>
       </div>
       <!-- Hidden phone pane (kept for sqemailPhoneSubmit) -->
       <div id="sqemail-pane2" style="display:none;">
@@ -3171,11 +3225,25 @@
       if (ov) { ov.style.display = 'flex'; document.getElementById('smatch-popup-phone').value = ''; }
     }
     if (step === 'sqemail') {
+      var p0 = document.getElementById('sqemail-pane0');
       var p1 = document.getElementById('sqemail-pane1');
       var p2 = document.getElementById('sqemail-pane2');
-      if (p1) p1.style.display = 'block';
+      if (p0) p0.style.display = 'block';
+      if (p1) p1.style.display = 'none';
       if (p2) p2.style.display = 'none';
     }
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  function sqemailIntroContinue() {
+    document.getElementById('sqemail-pane0').style.display = 'none';
+    document.getElementById('sqemail-pane1').style.display = 'block';
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  function sqemailBackToIntro() {
+    document.getElementById('sqemail-pane1').style.display = 'none';
+    document.getElementById('sqemail-pane0').style.display = 'block';
     window.scrollTo({ top:0, behavior:'smooth' });
   }
 
