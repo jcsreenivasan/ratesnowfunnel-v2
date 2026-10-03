@@ -2646,9 +2646,29 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Use my ZIP code
         </button>
-        <button class="sq5-next-btn" onclick="go('sqemail')" type="button">Next</button>
+        <button class="sq5-next-btn" onclick="go('szload')" type="button">Next</button>
       </div>
       <button class="sq5-back-link" onclick="go('sq4')" type="button">Back</button>
+    </div>
+
+    <!-- ─── STEP SZLOAD: ZIP CODE LOADER ─── -->
+    <div class="step-card hidden" id="szload">
+      <div class="loader-top">
+        <div class="loader-ring">
+          <svg class="svg-icon svg-icon-md"><use href="#icon-sparkle"/></svg>
+        </div>
+      </div>
+      <div class="loader-progress-wrap">
+        <div class="loader-progress-fill" id="zloader-bar"></div>
+      </div>
+      <h2 class="step-q" style="margin-bottom:20px;">Searching the best rates</h2>
+      <div class="loader-steps">
+        <div class="load-item" id="zli1"><span class="load-dot"></span><span class="load-text">Verifying your ZIP code.</span></div>
+        <div class="load-item" id="zli2"><span class="load-dot"></span><span class="load-text">Finding lenders in your area.</span></div>
+        <div class="load-item" id="zli3"><span class="load-dot"></span><span class="load-text">Fetching current VA rates.</span></div>
+        <div class="load-item" id="zli4"><span class="load-dot"></span><span class="load-text">Preparing your personalized results.</span></div>
+      </div>
+      <a class="btn-back" style="margin-top:24px;" onclick="cancelZipLoader()">Back</a>
     </div>
 
     <!-- ─── STEP LOAD: FINDING MATCHES ─── -->
@@ -3053,7 +3073,7 @@
 <script>
   let curStep = 1;
   let propertyType = '';
-  const progress = { 'sqmil':10, 'sq3':20, 'sq4':38, 'sq5':55, 'sqemail':95, 'sqcontact':99, 'sload':85, 'smatch':92, 'sotp':97, 15:100 };
+  const progress = { 'sqmil':10, 'sq3':20, 'sq4':38, 'sq5':55, 'szload':75, 'sqemail':95, 'sqcontact':99, 'sload':85, 'smatch':92, 'sotp':97, 15:100 };
   const progressLabel = { 'sqemail': '95% complete · Almost there', 'sqcontact': '99% complete · Final step' };
 
   function personalizeFunnel() {
@@ -3207,6 +3227,7 @@
     if (nextId === 'rs5') syncRemainingBalance();
     if (step === 15) buildTyLenders();
     if (nextId === 'sload') startLoader();
+    if (nextId === 'szload') startZipLoader();
     if (step === 'smatch') launchConfetti();
     if (step === 'smatch') {
       var ov = document.getElementById('smatch-email-overlay');
@@ -3393,6 +3414,37 @@
   function syncInterestRate() {
     const rate = parseFloat(document.getElementById('ir-range').value).toFixed(2);
     document.getElementById('ir-val').value = rate;
+  }
+
+  let _zipLoaderTimers = [];
+
+  function startZipLoader() {
+    _zipLoaderTimers.forEach(clearTimeout);
+    _zipLoaderTimers = [];
+    ['zli1','zli2','zli3','zli4'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('active','done');
+    });
+    const bar = document.getElementById('zloader-bar');
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        bar.style.transition = 'width 4s linear';
+        bar.style.width = '100%';
+      });
+    });
+    document.getElementById('zli1').classList.add('active');
+    _zipLoaderTimers.push(setTimeout(() => { document.getElementById('zli1').classList.replace('active','done'); document.getElementById('zli2').classList.add('active'); }, 800));
+    _zipLoaderTimers.push(setTimeout(() => { document.getElementById('zli2').classList.replace('active','done'); document.getElementById('zli3').classList.add('active'); }, 1800));
+    _zipLoaderTimers.push(setTimeout(() => { document.getElementById('zli3').classList.replace('active','done'); document.getElementById('zli4').classList.add('active'); }, 2900));
+    _zipLoaderTimers.push(setTimeout(() => { document.getElementById('zli4').classList.replace('active','done'); go('sqemail'); }, 4000));
+  }
+
+  function cancelZipLoader() {
+    _zipLoaderTimers.forEach(clearTimeout);
+    _zipLoaderTimers = [];
+    go('sq5');
   }
 
   let _loaderTimers = [];
